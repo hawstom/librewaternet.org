@@ -196,6 +196,25 @@ h1 .rule-under {
    screenshot, animated GIF or video of the app. Any of those drops straight in
    here -- same element position, same box -- so replacing the drawing is not a
    layout change. Requirements for the replacement asset: dev/positioning.md §9. */
+/* THREE SCREENS, ONE PLATE: the hero at full width and two supporting frames under it.
+   Two columns on anything but a narrow phone, where they stack rather than shrink to
+   illegibility -- a screenshot at a third of a phone's width says nothing. */
+.plate-strip {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: .55rem;
+	margin-top: .55rem;
+}
+.plate-strip > img { display: block; width: 100%; height: auto; }
+@media (max-width: 560px) { .plate-strip { grid-template-columns: 1fr; } }
+.plate-cap {
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-size: .82rem;
+	letter-spacing: .04em;
+	color: var(--ink-2);
+	padding: .5rem .15rem .1rem;
+	line-height: 1.5;
+}
 .plate > svg,
 .plate > img,
 .plate > video {
@@ -354,15 +373,22 @@ a:focus-visible, .btn:focus-visible {
 			</div>
 
 			<figure class="plate" style="margin:0">
-				<!-- PLACEHOLDER. This drafted network stands in for a real screen of the app.
-				     Swap it for an image (PNG or animated GIF) or a video element in the same
-				     760x430 box and nothing else on the page moves. dev/positioning.md §9. -->
-				<svg id="net" viewBox="0 0 760 430" role="img"
-					aria-label="A looped water distribution network: a reservoir feeding a pumped main into four loops of pipe, a storage tank at the north-east, with drafting callouts naming the pump, the tank, a 300 millimetre main and a junction pressure.">
-				</svg>
+				<!-- REAL SCREENS, not a drawing (2026-08-25). What stood here was an <svg id="net">
+				     with an aria-label describing a drafted network and NO GEOMETRY AT ALL — an empty
+				     bordered box, live on the site. The .plate slot was always built to take an <img>
+				     in the same position, so this is the swap it was designed for.
+				     Every image is vetted publishable in the suite's dev/screenshots/INDEX.md. -->
+				<img src="img/0028.png" alt="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile along a chosen path in the pane beneath it." width="1920" height="920" decoding="async">
+				<div class="plate-strip">
+					<img src="img/0007.png" alt="A water network drawn over a site plan with hand-placed labels, leader lines and a title block." width="1920" height="920" loading="lazy" decoding="async">
+					<img src="img/0026.png" alt="The same software with its entire interface in Romanian." width="1920" height="920" loading="lazy" decoding="async">
+				</div>
+				<figcaption class="plate-cap">EPA&rsquo;s Net3 on real streets, read against its own profile &middot;
+					a design drawing on a site plan &middot; the interface in Romanian &middot;
+					<a href="screenshots.html">twelve more, annotated</a></figcaption>
 				<dl class="titleblock">
-					<div><dt>Project</dt><dd>Elm Street</dd></div>
-					<div><dt>Junctions</dt><dd>11</dd></div>
+					<div><dt>Network</dt><dd>EPA Net3</dd></div>
+					<div><dt>Junctions</dt><dd>92</dd></div>
 					<div><dt>Engine</dt><dd>EPANET</dd></div>
 					<div><dt>Licence</dt><dd>GPL v3+</dd></div>
 				</dl>
