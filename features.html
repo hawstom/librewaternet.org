@@ -215,34 +215,35 @@ a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 	</div>
 </header>
 
-<p class="dek">The whole list, plainly, so you can decide whether it is worth your afternoon
-without installing anything.</p>
+<p class="dek">The whole list, plainly, so you can search it for the thing you need, tell us
+what is missing from it, or measure it against whatever you use today.</p>
 
 <p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
 it works today, in a browser, free, with no account. It covers the network model this site is
 about and the rest of the hydraulic calculators it lives beside, because they are one program and
 you get all of it either way. <strong>The list is honest rather than complete:</strong> a line is
 on it because somebody sat down and wrote a sentence for it, and plenty of smaller work never got
-one.</p>
+one. If you only want to know whether the thing is any good, do not read a list &mdash;
+<a href="https://hawsedc.com/engcalcs/Looped-Network.php">diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
-<p class="count">52 things it does. <a href="#edges">And what it does not.</a></p>
+<p class="count">53 things it does. <a href="#edges">And what it does not.</a></p>
 
 <nav class="jump" aria-label="Sections">
 	<a href="#the-calculators">The calculators</a>
 	<a href="#drawing-a-water-network">Drawing a water network</a>
 	<a href="#solving-it">Solving it</a>
 	<a href="#time">Time</a>
-	<a href="#files-and-epanet">Files, and EPANET</a>
-	<a href="#the-map-and-the-world">The map, and the world</a>
+	<a href="#files-and-epanet">Files and EPANET</a>
+	<a href="#the-map-and-the-world">The map and the world</a>
 	<a href="#labels-and-lettering">Labels and lettering</a>
 	<a href="#reading-the-results">Reading the results</a>
 	<a href="#scenarios">Scenarios</a>
-	<a href="#language-licence-and-privacy">Language, licence and privacy</a>
+	<a href="#language-licence-and-privacy">Language, licence, and privacy</a>
 </nav>
 
 <section class="act" id="the-calculators">
-<h2>The calculators <span class="ct">11</span></h2>
+<h2>The calculators <span class="ct">12</span></h2>
 <ul class="feats">
 	<li>Manning pipe flow solves in both directions — the flow from a depth, and the depth from a flow. <!-- 13 --></li>
 	<li>Every pipe and channel page checks the velocity it just computed and says when it is too fast or too slow. <!-- 52, 65 --></li>
@@ -255,6 +256,7 @@ one.</p>
 	<li>One button returns a page to a worked example that passes, so nothing is ever a blank form. <!-- 79 --></li>
 	<li>Name a calculation and copy a link to it; the link carries your inputs, and nothing is shared unless you share it. <!-- 39, 80, 228 --></li>
 	<li>Changing an input unit asks first, and says plainly that it reinterprets the numbers you typed rather than converting them. <!-- 422, 425 --></li>
+	<li>Install it from the browser you already have, and every calculator keeps working with no network at all. <!-- 2 --></li>
 </ul>
 </section>
 
@@ -268,7 +270,7 @@ one.</p>
 	<li>Find elements by any property, jump straight to one by ID, and set a property across everything the search found. <!-- 353, 420, 389 --></li>
 	<li>The File menu remembers your recent projects, and the map remembers where you were looking. <!-- 352, 360 --></li>
 	<li>One toggle clears the readouts off the map when you want the drawing and nothing else. <!-- 253 --></li>
-	<li>A Help menu on the page itself. <!-- 250 --></li>
+	<li>A Help menu specific to this calculator. <!-- 250 --></li>
 </ul>
 </section>
 
@@ -278,23 +280,23 @@ one.</p>
 	<li>A looped network solved by the global gradient method, in the page, with no install and no upload. <!-- 146 --></li>
 	<li>Or solved by the EPANET 2.3 engine itself, compiled into the page and named by version where you can see it. <!-- 451 --></li>
 	<li>Standard gravity throughout, and where the two engines disagree the page tells you by how much. <!-- 419 --></li>
-	<li>Answers follow your edits as you make them, and that is a project setting you can turn off. <!-- 467 --></li>
+	<li>Answers follow your edits as you make them, and if a big network makes that slow, it is a project setting you can turn off. <!-- 467 --></li>
 </ul>
 </section>
 
 <section class="act" id="time">
 <h2>Time <span class="ct">5</span></h2>
 <ul class="feats">
-	<li>Extended-period simulation: tanks fill and drain, demands follow their patterns, and the transport controls scrub the run. <!-- 248.01, 423, 410 --></li>
+	<li>Extended-period simulation: tanks fill and drain, demands follow their patterns, and a bar along the bottom plays the run or steps to any moment in it. <!-- 248.01, 423, 410 --></li>
 	<li>Patterns on a reservoir head and on a pump&#039;s speed, beside the demand patterns. <!-- 248.02 --></li>
 	<li>A Libraries box holding the patterns and curves a run needs. <!-- 460 --></li>
-	<li>Run shows real progress, a completion report, and the engine&#039;s own report of the run. <!-- 450 --></li>
+	<li>A Run button (optional, since answers can follow your edits instead) shows real progress, a completion report, and the engine&#039;s own report of the run. <!-- 450 --></li>
 	<li>Colour limits hold still across a run, so a colour means the same thing at every step. <!-- 448 --></li>
 </ul>
 </section>
 
 <section class="act" id="files-and-epanet">
-<h2>Files, and EPANET <span class="ct">5</span></h2>
+<h2>Files and EPANET <span class="ct">5</span></h2>
 <ul class="feats">
 	<li>Opens EPANET <code>.inp</code> files, takes the part it supports, and reports every difference instead of dropping it quietly. <!-- 196 --></li>
 	<li>An import note is filed on the element it concerns, and you read it in that element&#039;s own property box. <!-- 483 --></li>
@@ -305,7 +307,7 @@ one.</p>
 </section>
 
 <section class="act" id="the-map-and-the-world">
-<h2>The map, and the world <span class="ct">4</span></h2>
+<h2>The map and the world <span class="ct">4</span></h2>
 <ul class="feats">
 	<li>A geographic project is drawn in latitude and longitude over a street map or satellite imagery, with the same drawing tools. <!-- 145 --></li>
 	<li>An existing x/y network can be placed on the world — moved, scaled and rotated onto its real ground. <!-- 476 --></li>
@@ -344,11 +346,11 @@ one.</p>
 </section>
 
 <section class="act" id="language-licence-and-privacy">
-<h2>Language, licence and privacy <span class="ct">4</span></h2>
+<h2>Language, licence, and privacy <span class="ct">4</span></h2>
 <ul class="feats">
 	<li>Twenty-seven languages, across the whole suite and not only its menus. <!-- 7, 15, 22, 34 --></li>
 	<li>Free software under the GNU GPL, source in the open. <!-- 244 --></li>
-	<li>Installable, and it keeps working with no network once installed. <!-- 2, 4, 37 --></li>
+	<li>It installs on a desktop or a phone as an app of its own, icon and all. <!-- 4, 37 --></li>
 	<li>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></li>
 </ul>
 </section>
@@ -366,10 +368,10 @@ one.</p>
 	<!-- BEGIN GENERATED PHONE -->
 <p>And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
 <!-- END GENERATED PHONE -->
-	<p><strong>Nothing here reaches anyone else unless you turn on a feature that needs it, and
-	each one asks separately.</strong> Today there are four: street map tiles from OpenStreetMap,
-	satellite tiles from Mapbox, place-name search, which sends what you typed to OpenStreetMap's
-	geocoder, and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox.
+	<p><strong>For your privacy: nothing here reaches anyone else unless you turn on a feature
+	that needs it, and each one asks separately.</strong> Today there are four: street map tiles
+	from OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to OpenStreetMap's
+	geocoder; and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox.
 	Those last two each have a consent question of their own. Nothing you draw is uploaded unless
 	you turn on one of those, and there is no account to make.</p>
 	<p>If something you need is not on this list, that is the most useful thing you can tell us.
