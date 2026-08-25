@@ -10,8 +10,8 @@
    rules, condensed drafting labels, black structures and blue water — because
    this page and the front door are one document, not two designs.
 
-   Every <img> is loading="lazy" ON PURPOSE: twelve full-resolution captures is
-   6.6 MB, which is nothing down a cable and brutal on a phone. A visitor
+   Every <img> is loading="lazy" ON PURPOSE: fourteen full-resolution captures
+   is 8 MB, which is nothing down a cable and brutal on a phone. A visitor
    fetches only what they scroll to.
    ========================================================================= */
 
@@ -121,6 +121,10 @@ figure.plate { margin: 30px 0 0; }
 	padding: 6px; border-radius: 2px;
 }
 .plate img { display: block; width: 100%; height: auto; border-radius: 1px; }
+/* A phone capture is 1080 x 2061 -- portrait. At the sheet's full width it would stand two
+   screens tall and read as a poster rather than as a phone, so it is held to roughly a phone's
+   own width and centred. The frame around it is the same .shot border every other plate uses. */
+.plate.tall .shot { max-width: 330px; margin-left: auto; margin-right: auto; }
 .plate figcaption {
 	display: flex; flex-wrap: wrap; gap: 6px 18px;
 	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
@@ -168,7 +172,7 @@ a:focus-visible, img:focus-visible { outline: 2px solid var(--water); outline-of
 	</div>
 </header>
 
-<p class="dek">Twelve pictures of the software doing real work, each with what it is showing and
+<p class="dek">Fourteen pictures of the software doing real work, each with what it is showing and
 why that matters.</p>
 
 <p class="standfirst">The network in most of these is EPA's own Net3, placed on the real streets of
@@ -293,10 +297,9 @@ worked out.</p>
 	<div class="shot"><img src="img/0003.png" loading="lazy" decoding="async" width="1920" height="920"
 		alt="The same network in a much narrower browser window, with settings stacked into a single column."></div>
 	<figcaption><span class="n">Plate 9</span><span>Narrow window</span></figcaption>
-	<p class="note">This is a narrow desktop window, not a phone — we have no picture of the phone
-	case yet and would rather say so than let this one stand in for it. What it does show is that at this
-	width the layout reduces by rearranging rather than by hiding. Narrower than this it does hide
-	things &mdash; that is a different plate, and we have not taken it.</p>
+	<p class="note">This is a narrow desktop window, not a phone. What it shows is that at this width
+	the layout reduces by rearranging rather than by hiding. Narrower than this it does hide
+	things; <a href="#phone">the last two plates</a> are that case.</p>
 </figure>
 </section>
 
@@ -347,11 +350,43 @@ worked out.</p>
 </section>
 
 
+<section class="act" id="phone">
+<h2>On a phone</h2>
+
+<figure class="plate tall">
+	<h3>The whole menu, under the thumb that opened it</h3>
+	<p class="cap">On display in one frame: the Water menu open directly beneath its own button,
+	carrying Settings, Libraries, Profile, Tables, Scenarios, Calculate, and the EPANET run report;
+	the network drawn at street level over satellite imagery behind it; the flow colour key down
+	the right-hand side; and the units, the friction method, and the scenario stated along the
+	bottom.</p>
+	<div class="shot"><img src="img/0047.png" loading="lazy" decoding="async" width="1080" height="2066"
+		alt="The software on a phone held upright: a menu open beneath its button, a water network drawn on satellite imagery, a flow colour key at the right, and a status line along the bottom."></div>
+	<figcaption><span class="n">Plate 13</span><span>Phone, tall</span></figcaption>
+	<p class="note">And although you of course prefer working on your PC, it works also on a phone in
+	tall mode. It is the same program rather than a cut-down one &mdash; the same menu over the same
+	drawing &mdash; with the page&rsquo;s own headings dropped and the menu wording reduced to icons
+	to make the room.</p>
+</figure>
+
+<figure class="plate tall">
+	<h3>Find and replace, at phone width</h3>
+	<p class="cap">Every pipe whose diameter is 30 &mdash; thirteen of them, listed, and each one a
+	link to itself on the map &mdash; with the field for the new value sitting above them, still empty.</p>
+	<div class="shot"><img src="img/0043.png" loading="lazy" decoding="async" width="1080" height="2061"
+		alt="A find-and-replace panel filling a phone screen, showing the search terms, a Replace button, and a list of thirteen matching pipes."></div>
+	<figcaption><span class="n">Plate 14</span><span>Editing on a phone</span></figcaption>
+	<p class="note">Editing a network is not only drawing it. This is the panel that changes thirteen
+	pipes in one go, and it is the desktop panel at the width it has to fit into.</p>
+</figure>
+</section>
+
+
 <div class="level">
 	<h2>What these pictures are not</h2>
-	<p>They are a selection. Twelve frames chosen from a larger set, and the ones left out were left
-	out for a reason — some show rough edges we have since fixed, some were taken with three panels
-	open at once and read as clutter rather than capability.</p>
+	<p>They are a selection. Fourteen frames chosen from a larger set, and the ones left out were
+	left out for a reason: nearly all of them show a rough edge we have since fixed, and publishing
+	one of those would be showing you a bug that is no longer there.</p>
 	<p>So take them as an invitation to look, not as proof of anything. The software is free, it runs
 	in your browser, and nothing you draw leaves your machine except through a feature you turn on,
 	which asks first. The honest test is your own network,
