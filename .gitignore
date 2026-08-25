@@ -1,0 +1,12 @@
+# Local scratch and editor droppings
+*.swp
+*~
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Images copied in from the suite's screenshot drop for a specific use.
+# The originals are raw material and live in EngCalcs' dev/screenshots/, which is
+# itself gitignored. Anything published from here must be committed DELIBERATELY,
+# after checking INDEX.md's publishable verdict — so the default is to ignore.
+/img-scratch/
