@@ -20,10 +20,10 @@
  *    keeps mobile out of "a list of reasons to choose us" and gives it one home: the paragraph
  *    that is honest about the edges. A features page is exactly such a list, so the sentence is
  *    moved into that note VERBATIM rather than dropped or reworded.
- *  - OVERRIDE. One sentence understates what the program does and contradicts index.html, which
- *    was corrected against the code on 2026-08-25. Replacing it here keeps the two pages from
- *    disagreeing with each other in public. An override is a debt: the honest fix is upstream, in
- *    features-source.md, and this map should shrink to nothing.
+ *  - OVERRIDE. A sentence replaced because it would be wrong on a public page. The map is EMPTY
+ *    and should stay that way -- an override is a debt, not a mechanism, because it makes this
+ *    page and the source disagree about the same fact. The honest fix is upstream, in
+ *    features-source.md. See the array's own note.
  *
  * Both are keyed by the task IDs the source cites, so a reworded sentence still lands correctly
  * and a DELETED one stops the build instead of vanishing silently.
@@ -35,14 +35,17 @@ $page = __DIR__ . '/../features.html';
 /** Sentence sent to the honest-edges note instead of the list. Key: the source's cited IDs. */
 $RELOCATE = array('486');
 
-/** Sentence replaced. Key: cited IDs. See the docblock -- each entry needs a reason. */
-$OVERRIDE = array(
-	// Source says "four breaks, equal intervals or equal counts, three ramps". The catalogue in
-	// js/lpn-ramps.js holds 41 ramps in three Brewer families, published at 3 to 7 classes, with
-	// more break rules than two. index.html already says 41.
-	'384, 327' => 'Colour the map by any value, from one control: three to seven classes, several '
-		. 'ways of choosing where the breaks fall, and 41 colour ramps.',
-);
+/**
+ * Sentence replaced. Key: cited IDs. See the docblock -- each entry needs a reason.
+ *
+ * **EMPTY, AND THAT IS THE STATE IT IS MEANT TO BE IN.** An override is a DEBT, not a mechanism:
+ * it means a sentence is wrong at the source and this page is papering over it, so the two repos
+ * quietly disagree about the same fact. The one entry this map ever held -- the colour bullet,
+ * which understated the ramp catalogue and contradicted index.html -- was fixed upstream in
+ * dev/features-source.md instead, and removed from here. Fix the next one there too; reach for
+ * this array only when the source cannot be touched, and empty it again as soon as it can.
+ */
+$OVERRIDE = array();
 
 $md = @file_get_contents($src);
 if ($md === false) { fwrite(STDERR, "cannot read $src\n"); exit(1); }
