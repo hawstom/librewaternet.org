@@ -12,6 +12,8 @@ line of it.
 | | |
 |---|---|
 | `index.html` | The landing page. A **draft** — see below. |
+| `screenshots.html` | **Annotated screenshots** — twelve plates, linked from the front door twice (the nav, and beside the hero actions). |
+| `img/` | The twelve captures those plates use, 6.6 MB. Copied out of the suite's `dev/screenshots/` drop, which stays the raw material. |
 | `docs/graphics-plan.md` | How the page gets its pictures on no budget: what to shoot, in what order, and why. Tom's own shoestring plan, revised with his corrections. |
 | `LICENSE` | GNU GPL v3 or later, matching the suite. |
 
@@ -23,7 +25,14 @@ real one — `graphics-plan.md` step 1 is what replaces it.
 
 `docs/graphics-plan.md` refers to captures in the suite's own `dev/screenshots/`, which is
 gitignored there and does not travel. Its `INDEX.md` **is** tracked and records what each image
-shows and whether it may be published. Read that index before reaching for any image.
+shows and whether it may be published. Read that index before reaching for any image — and its
+**remake queue**, which lists the shots still wanted and what disqualified each attempt so far.
+
+**Twelve images are committed here and are the exception to that**, deliberately: the ones on
+`screenshots.html` have earned a public place, so they live with the page that uses them rather
+than in a folder that does not travel. Anything else stays raw material until it earns the same.
+**The biggest known gap is a phone** — the sanctioned claim mentions one and no capture exists, so
+the narrow-window plate says outright that it is a desktop window and not a phone.
 
 ## Before you write one word of copy, read this
 
