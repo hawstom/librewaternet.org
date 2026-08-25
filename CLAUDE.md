@@ -44,6 +44,25 @@ Both LibreWaterNet.org and LibreEPANET.org are owned; only this one gets a page 
 *"Keep both, but EPANET is silent."*). Do not build out, promote, or link prominently to the other.
 The reasoning is Task 523's: we do not want to inherit EPANET's names, assumptions or associations.
 
+## Before every commit: `sh check.sh`
+
+Three checks, seconds, and each one exists because it already shipped broken:
+
+- **Every page declares UTF-8 in its first 1024 bytes.** The live server sends
+  `Content-Type: text/html` with **no charset**, so a page that does not say so is decoded as
+  Windows-1252 and every em dash becomes `â€"` (Tom, 2026-08-25, from the live site). The document
+  carrying its own declaration is the portable fix — it holds on that host, on GitHub Pages and from
+  a `file://` URL. A server-side `AddDefaultCharset utf-8` is deliberately NOT used: it needs
+  `AllowOverride FileInfo`, and where that grant is missing Apache returns 500 for **every** request
+  rather than ignoring the line. That trades a live outage for a line the page can carry itself.
+- **Every `src` and local `href` resolves.** The images come from the suite's `dev/screenshots/`,
+  which is gitignored there and does not travel; a src pointing at one nobody copied is a broken
+  image that looks like a page still loading.
+
+**Writing a new page means adding `<meta charset="utf-8">` as its first line.** Not somewhere in the
+head — first, above the `<title>`, or the title itself is decoded wrongly before the browser reaches
+the declaration.
+
 ## Writing
 
 - **Say the thing that survives the next surprise.** The strongest claims here are the ones a future
