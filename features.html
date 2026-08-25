@@ -1,0 +1,390 @@
+<meta charset="utf-8">
+<title>What it does</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Barlow+Condensed:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+/* ============================================================================
+   The feature list. Same drawing-sheet material as index.html and
+   screenshots.html — hairline rules, condensed drafting labels, black
+   structures and blue water — because the three pages are one document.
+
+   THE LIST ITSELF IS GENERATED, and the sentences are not written here. They
+   come from dev/features.md in the EngCalcs repository, through
+   tools/build-features.php, which rewrites only what sits between the
+   BEGIN/END GENERATED sentinels below. Everything outside them is hand-written
+   and safe to edit.
+
+   Why a page of its own rather than 53 lines added to the front door: the
+   front door has one job, which is the invitation, and a list this long
+   buries it. This is the page for the reader who has already decided to look.
+   ========================================================================= */
+
+:root {
+	--paper:      #FBFBF9;
+	--paper-2:    #F2F4F6;
+	--ink:        #14181C;
+	--ink-2:      #58636E;
+	--rule:       #D3DAE1;
+	--rule-soft:  #E7EBEF;
+	--water:      #1B5FA8;
+	--water-2:    #4E8BC9;
+	--water-soft: #E6EFF8;
+	--pencil:     #B24428;
+
+	--sheet-max: 1160px;
+	--step--1: clamp(.78rem, .74rem + .16vw, .86rem);
+	--step-0:  clamp(1rem, .96rem + .2vw, 1.09rem);
+	--step-1:  clamp(1.2rem, 1.1rem + .5vw, 1.45rem);
+	--step-2:  clamp(1.6rem, 1.35rem + 1.1vw, 2.2rem);
+	--step-3:  clamp(2.4rem, 1.7rem + 3.2vw, 4.6rem);
+}
+:root:not([data-theme="light"]) { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--paper:      #10151A;
+		--paper-2:    #171E25;
+		--ink:        #E8EDF2;
+		--ink-2:      #97A4B1;
+		--rule:       #2C3841;
+		--rule-soft:  #1E262E;
+		--water:      #6FA8DC;
+		--water-2:    #4E8BC9;
+		--water-soft: #17242F;
+		--pencil:     #E0745A;
+		color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--paper:      #10151A;
+	--paper-2:    #171E25;
+	--ink:        #E8EDF2;
+	--ink-2:      #97A4B1;
+	--rule:       #2C3841;
+	--rule-soft:  #1E262E;
+	--water:      #6FA8DC;
+	--water-2:    #4E8BC9;
+	--water-soft: #17242F;
+	--pencil:     #E0745A;
+	color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+	font-size: var(--step-0);
+	line-height: 1.62;
+	-webkit-font-smoothing: antialiased;
+}
+.sheet { max-width: var(--sheet-max); margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) 90px; }
+
+/* ---- title block ---- */
+header.tb {
+	border-bottom: 2px solid var(--ink);
+	padding: clamp(34px, 6vw, 64px) 0 16px;
+	margin-bottom: 34px;
+	display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: flex-end;
+}
+header.tb h1 {
+	font-family: Archivo, system-ui, sans-serif;
+	font-weight: 800; font-size: var(--step-3); line-height: .98;
+	letter-spacing: -.025em; margin: 0; flex: 1 1 300px; text-wrap: balance;
+}
+.tb-meta {
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-weight: 600; font-size: var(--step--1);
+	letter-spacing: .1em; text-transform: uppercase;
+	color: var(--ink-2); line-height: 1.9; text-align: right;
+}
+.tb-meta a { color: var(--water); }
+.dek { font-size: var(--step-1); color: var(--ink-2); max-width: 60ch; margin: 0 0 12px; line-height: 1.45; }
+.standfirst { max-width: 66ch; margin: 0 0 34px; }
+
+/* ---- the count line and the section index ---- */
+.count {
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-weight: 600; font-size: var(--step--1);
+	letter-spacing: .12em; text-transform: uppercase;
+	color: var(--ink-2); margin: 0 0 14px;
+}
+.count a { color: var(--pencil); }
+.jump {
+	display: flex; flex-wrap: wrap; gap: 8px 22px;
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-weight: 600; font-size: var(--step--1);
+	letter-spacing: .1em; text-transform: uppercase;
+	border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+	padding: 12px 0; margin: 0 0 10px;
+}
+.jump a { color: var(--water); text-decoration: none; }
+.jump a:hover, .jump a:focus-visible { text-decoration: underline; }
+
+/* ---- a section of the list ---- */
+section.act > h2 {
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-weight: 600; font-size: var(--step--1);
+	letter-spacing: .16em; text-transform: uppercase;
+	color: var(--water); margin: 46px 0 0;
+	padding-bottom: 7px; border-bottom: 1px solid var(--rule);
+	scroll-margin-top: 18px;
+}
+section.act > h2 .ct { color: var(--ink-2); float: right; letter-spacing: .06em; }
+
+/* Two columns where there is room. A feature is one sentence and never splits
+   across a column, so the reader's eye never has to hunt for the other half. */
+ul.feats {
+	list-style: none; margin: 0; padding: 0;
+	columns: 1; column-gap: clamp(24px, 4vw, 54px);
+}
+@media (min-width: 780px) { ul.feats { columns: 2; } }
+ul.feats li {
+	break-inside: avoid; -webkit-column-break-inside: avoid;
+	padding: 14px 0 14px 22px;
+	border-bottom: 1px solid var(--rule-soft);
+	position: relative;
+	max-width: 62ch;
+}
+/* The drafting tick. A red pencil mark against each line, the way somebody
+   checking a drawing marks off what they have verified. */
+ul.feats li::before {
+	content: ""; position: absolute; left: 0; top: 1.28em;
+	width: 9px; height: 9px;
+	border-left: 2px solid var(--pencil); border-bottom: 2px solid var(--pencil);
+	transform: rotate(-45deg) translateY(-2px);
+}
+ul.feats code {
+	font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: .88em; background: var(--water-soft);
+	padding: .05em .32em; border-radius: 2px;
+}
+
+/* ---- the honest footer ---- */
+.level {
+	border: 1px solid var(--rule); border-left: 3px solid var(--pencil);
+	background: var(--paper-2); border-radius: 0 2px 2px 0;
+	padding: 20px 24px; margin: 56px 0 0;
+	scroll-margin-top: 18px;
+}
+.level h2 {
+	font-family: Archivo, system-ui, sans-serif;
+	font-weight: 600; font-size: var(--step-1); margin: 0 0 10px;
+}
+.level p { max-width: 66ch; margin: 0 0 12px; }
+.level p:last-child { margin-bottom: 0; }
+.level a { color: var(--pencil); }
+
+/* ---- the one thing to do next ---- */
+.go { margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+	font-family: "Barlow Condensed", system-ui, sans-serif;
+	font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
+	font-size: 1.1rem; padding: .8rem 1.7rem;
+	border: 1px solid var(--water); text-decoration: none;
+	background: var(--water); color: var(--paper);
+	transition: background-color .15s ease, border-color .15s ease;
+}
+.btn:hover, .btn:focus-visible { background: var(--ink); border-color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--water); }
+.btn-ghost:hover, .btn-ghost:focus-visible { background: var(--water-soft); border-color: var(--water); color: var(--water); }
+
+footer.tb2 {
+	border-top: 2px solid var(--ink); margin-top: 52px; padding-top: 16px;
+	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-weight: 500; font-size: var(--step--1);
+	letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+	display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between;
+}
+footer.tb2 a { color: var(--water); }
+
+a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="sheet">
+
+<header class="tb">
+	<h1>What it does</h1>
+	<div class="tb-meta">
+		LibreWaterNet<br>
+		<a href="index.html">← the front door</a><br>
+		<a href="screenshots.html">Screenshots</a>
+	</div>
+</header>
+
+<p class="dek">The whole list, plainly, so you can decide whether it is worth your afternoon
+without installing anything.</p>
+
+<p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
+it works today, in a browser, free, with no account. It covers the network model this site is
+about and the rest of the hydraulic calculators it lives beside, because they are one program and
+you get all of it either way. <strong>The list is honest rather than complete:</strong> a line is
+on it because somebody sat down and wrote a sentence for it, and plenty of smaller work never got
+one.</p>
+
+<!-- BEGIN GENERATED FEATURES -->
+<p class="count">52 things it does. <a href="#edges">And what it does not.</a></p>
+
+<nav class="jump" aria-label="Sections">
+	<a href="#the-calculators">The calculators</a>
+	<a href="#drawing-a-water-network">Drawing a water network</a>
+	<a href="#solving-it">Solving it</a>
+	<a href="#time">Time</a>
+	<a href="#files-and-epanet">Files, and EPANET</a>
+	<a href="#the-map-and-the-world">The map, and the world</a>
+	<a href="#labels-and-lettering">Labels and lettering</a>
+	<a href="#reading-the-results">Reading the results</a>
+	<a href="#scenarios">Scenarios</a>
+	<a href="#language-licence-and-privacy">Language, licence and privacy</a>
+</nav>
+
+<section class="act" id="the-calculators">
+<h2>The calculators <span class="ct">11</span></h2>
+<ul class="feats">
+	<li>Manning pipe flow solves in both directions — the flow from a depth, and the depth from a flow. <!-- 13 --></li>
+	<li>Every pipe and channel page checks the velocity it just computed and says when it is too fast or too slow. <!-- 52, 65 --></li>
+	<li>Orifice flow, and the time a tank takes to drain through one. <!-- 6, 12 --></li>
+	<li>Micro-hydropower, from gross head and penstock losses to the power a small site can actually deliver. <!-- 16 --></li>
+	<li>Canal seepage and conveyance efficiency, including whether lining the canal pays for itself. <!-- 29, 38 --></li>
+	<li>Rock chute sizing by the Robinson method. <!-- 30 --></li>
+	<li>Sketches drawn to scale from your own numbers, so you can see the section you just described. <!-- 11 --></li>
+	<li>A tip on every input saying what the number is, in the language of the page. <!-- 31 --></li>
+	<li>One button returns a page to a worked example that passes, so nothing is ever a blank form. <!-- 79 --></li>
+	<li>Name a calculation and copy a link to it; the link carries your inputs, and nothing is shared unless you share it. <!-- 39, 80, 228 --></li>
+	<li>Changing an input unit asks first, and says plainly that it reinterprets the numbers you typed rather than converting them. <!-- 422, 425 --></li>
+</ul>
+</section>
+
+<section class="act" id="drawing-a-water-network">
+<h2>Drawing a water network <span class="ct">8</span></h2>
+<ul class="feats">
+	<li>A drawing toolbar — junction, reservoir, tank, pipe, pump, valve and text — placed by clicking the map. <!-- 146.02 --></li>
+	<li>Many named projects, saved in your own browser, each open in its own tab. <!-- 146.08, 447 --></li>
+	<li>The property box is a window you can drag out of your way, not a panel that owns an edge of the screen. <!-- 344 --></li>
+	<li>ID prefixes you choose, with Apply to all for when you change your mind. <!-- 345 --></li>
+	<li>Find elements by any property, jump straight to one by ID, and set a property across everything the search found. <!-- 353, 420, 389 --></li>
+	<li>The File menu remembers your recent projects, and the map remembers where you were looking. <!-- 352, 360 --></li>
+	<li>One toggle clears the readouts off the map when you want the drawing and nothing else. <!-- 253 --></li>
+	<li>A Help menu on the page itself. <!-- 250 --></li>
+</ul>
+</section>
+
+<section class="act" id="solving-it">
+<h2>Solving it <span class="ct">4</span></h2>
+<ul class="feats">
+	<li>A looped network solved by the global gradient method, in the page, with no install and no upload. <!-- 146 --></li>
+	<li>Or solved by the EPANET 2.3 engine itself, compiled into the page and named by version where you can see it. <!-- 451 --></li>
+	<li>Standard gravity throughout, and where the two engines disagree the page tells you by how much. <!-- 419 --></li>
+	<li>Answers follow your edits as you make them, and that is a project setting you can turn off. <!-- 467 --></li>
+</ul>
+</section>
+
+<section class="act" id="time">
+<h2>Time <span class="ct">5</span></h2>
+<ul class="feats">
+	<li>Extended-period simulation: tanks fill and drain, demands follow their patterns, and the transport controls scrub the run. <!-- 248.01, 423, 410 --></li>
+	<li>Patterns on a reservoir head and on a pump&#039;s speed, beside the demand patterns. <!-- 248.02 --></li>
+	<li>A Libraries box holding the patterns and curves a run needs. <!-- 460 --></li>
+	<li>Run shows real progress, a completion report, and the engine&#039;s own report of the run. <!-- 450 --></li>
+	<li>Colour limits hold still across a run, so a colour means the same thing at every step. <!-- 448 --></li>
+</ul>
+</section>
+
+<section class="act" id="files-and-epanet">
+<h2>Files, and EPANET <span class="ct">5</span></h2>
+<ul class="feats">
+	<li>Opens EPANET <code>.inp</code> files, takes the part it supports, and reports every difference instead of dropping it quietly. <!-- 196 --></li>
+	<li>An import note is filed on the element it concerns, and you read it in that element&#039;s own property box. <!-- 483 --></li>
+	<li>Writes <code>.inp</code> files back out. Every value you did not edit comes back exactly as it went in, character for character. <!-- 281 --></li>
+	<li>Projects are <code>.lwn</code> files — JSON inside, on your own disk, readable without us. <!-- 246 --></li>
+	<li>An examples library that opens Net1, Net2, Net3, Elm Street Center and a Net3 placed on the world, in one click. <!-- 314, 257, 454 --></li>
+</ul>
+</section>
+
+<section class="act" id="the-map-and-the-world">
+<h2>The map, and the world <span class="ct">4</span></h2>
+<ul class="feats">
+	<li>A geographic project is drawn in latitude and longitude over a street map or satellite imagery, with the same drawing tools. <!-- 145 --></li>
+	<li>An existing x/y network can be placed on the world — moved, scaled and rotated onto its real ground. <!-- 476 --></li>
+	<li>Type a place name and the map goes there, if you turn that on. <!-- 437 --></li>
+	<li>Ground elevations read from terrain data and typed into the document, never replacing a number without first showing you the one it would replace. <!-- 497 --></li>
+</ul>
+</section>
+
+<section class="act" id="labels-and-lettering">
+<h2>Labels and lettering <span class="ct">7</span></h2>
+<ul class="feats">
+	<li>Labels place themselves. Where there is no room, a label sheds values in the order you chose instead of disappearing whole. <!-- 397, 398, 399, 469 --></li>
+	<li>Any label can be dragged where you want it, and it keeps a leader back to what it names. <!-- 146.01, 383 --></li>
+	<li>Pipe labels lie along their pipe, the way a map draws a street name. <!-- 329 --></li>
+	<li>Prefixes, suffixes and a separator you choose, with a link&#039;s values on one line. <!-- 333, 336 --></li>
+	<li>A Text object takes several lines, bold, and a rotation that can match a pipe. <!-- 337, 342 --></li>
+	<li>Lettering is haloed, so it stays readable over the drawing underneath it. <!-- 376 --></li>
+	<li>Text, symbols and pipes are three independent screen sizes, so a drawing reads the same at every zoom. <!-- 331, 362 --></li>
+</ul>
+</section>
+
+<section class="act" id="reading-the-results">
+<h2>Reading the results <span class="ct">3</span></h2>
+<ul class="feats">
+	<li>A table for each kind of part in the bottom pane — junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></li>
+	<li>Colour the map by any value, from one control: three to seven classes, several ways of choosing where the breaks fall, and 41 colour ramps. <!-- 384, 327 --></li>
+	<li>Profiles. Click along the map to choose the path, and see ground, hydraulic grade and the pressure between them. <!-- 409, 433, 506 --></li>
+</ul>
+</section>
+
+<section class="act" id="scenarios">
+<h2>Scenarios <span class="ct">1</span></h2>
+<ul class="feats">
+	<li>Change a few properties without disturbing the network they belong to, switch between those scenarios, and see at a glance which elements carry an override. <!-- 201, 407, 412, 512 --></li>
+</ul>
+</section>
+
+<section class="act" id="language-licence-and-privacy">
+<h2>Language, licence and privacy <span class="ct">4</span></h2>
+<ul class="feats">
+	<li>Twenty-seven languages, across the whole suite and not only its menus. <!-- 7, 15, 22, 34 --></li>
+	<li>Free software under the GNU GPL, source in the open. <!-- 244 --></li>
+	<li>Installable, and it keeps working with no network once installed. <!-- 2, 4, 37 --></li>
+	<li>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></li>
+</ul>
+</section>
+<!-- END GENERATED FEATURES -->
+
+<div class="level" id="edges">
+	<h2>And the edges, in the same breath</h2>
+	<p>A list like this reads as though somebody has surveyed the whole territory. Nobody has. We
+	know what we built and we know some of what we lack; we do not know the size of the gap between
+	this and the software an experienced modeller is used to, and saying otherwise would be the
+	first thing on this page to stop being true.</p>
+	<p>What we do know we are missing: a run over time goes through the EPANET engine, and the
+	built-in solver has no time dimension at all. Rule-based controls are not built. Water quality
+	modelling is not built.</p>
+	<!-- BEGIN GENERATED PHONE -->
+<p>And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
+<!-- END GENERATED PHONE -->
+	<p><strong>Nothing here reaches anyone else unless you turn on a feature that needs it, and
+	each one asks separately.</strong> Today there are four: street map tiles from OpenStreetMap,
+	satellite tiles from Mapbox, place-name search, which sends what you typed to OpenStreetMap's
+	geocoder, and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox.
+	Those last two each have a consent question of their own. Nothing you draw is uploaded unless
+	you turn on one of those, and there is no account to make.</p>
+	<p>If something you need is not on this list, that is the most useful thing you can tell us.
+	<a href="index.html#stakeholders">A wish list is a specification.</a></p>
+</div>
+
+<div class="go">
+	<a class="btn" href="https://hawsedc.com/engcalcs/Looped-Network.php">Start a model now</a>
+	<a class="btn btn-ghost" href="https://hawsedc.com/engcalcs/Looped-Network.php?lpn_examples=1">Open an example</a>
+	<a class="btn btn-ghost" href="screenshots.html">See it working</a>
+</div>
+
+<footer class="tb2">
+	<span>LibreWaterNet · free software, GPL v3</span>
+	<span><a href="index.html">The front door</a> · <a href="screenshots.html">Screenshots</a></span>
+</footer>
+
+</div>
