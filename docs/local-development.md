@@ -37,16 +37,35 @@ sudo apache2ctl configtest && sudo systemctl reload apache2
 
 ### Once, on the Windows side
 
-**`/etc/hosts` inside WSL is regenerated on every boot and editing it there does nothing.** The name
-has to resolve for the browser, and the browser is on Windows. Open Notepad **as Administrator**,
-open `C:\Windows\System32\drivers\etc\hosts`, and add:
+**This machine does NOT reach WSL at 127.0.0.1 by itself, and an earlier version of this document
+was wrong to say so.** WSL2 sits behind a NAT whose address changes on every restart. What makes
+`hawsedc.local` work is `C:\TGHFiles\Update-WSL2-IP.ps1`, run elevated at logon by Task Scheduler:
+it writes a `127.0.0.1` hosts line and then points a **netsh port proxy** on `0.0.0.0:80` and
+`:443` at whatever address WSL currently has. The hosts line is static; the proxy is the moving
+part.
 
-```
-127.0.0.1  librewaternet.local
+**Apache in WSL does name-based virtual hosting, so every hostname shares that one proxy.** A second
+site therefore costs exactly one more name — no second proxy, no second port, no second script.
+That script was generalised on 2026-08-25 from a single `$hostname` to a list:
+
+```powershell
+$hostnames = @("hawsedc.local", "librewaternet.local")
 ```
 
-This is the same step `hawsedc.local` already needed, which is why that name works today and nothing
-in this WSL filesystem explains how.
+So there is nothing to add to Task Scheduler. **Run the script once** (elevated) so it rewrites the
+hosts file now instead of at the next logon:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\TGHFiles\Update-WSL2-IP.ps1
+```
+
+**Two things worth knowing about the state it will repair.** The hosts file had
+`172.21.0.1  hawsedc.local`, left by the script's own superseded version — 172.21.0.1 is the
+WINDOWS end of the vEthernet adapter, which the script's comments already name as the original
+defect. It worked only because the proxy listens on `0.0.0.0` and so answered that address too.
+Running the script rewrites it to `127.0.0.1`. And the previous version stripped only its own
+marker and its own hostname, so a hand-added second name would have survived the rewrite silently
+and gone stale; the list is the fix for that too.
 
 ### The certificate
 
