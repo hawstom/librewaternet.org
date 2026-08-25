@@ -39,7 +39,10 @@ done
 # exactly like a page that has not finished loading.
 for f in *.html; do
 	[ -e "$f" ] || continue
-	grep -o 'src="[^"]*"' "$f" | sed 's/src="//;s/"//' | while read -r src; do
+	# NOT `... | while read`: a pipeline's last stage runs in a SUBSHELL, so `bad` set fail=1 in a
+	# copy of the shell that then exited, printed FAIL and returned 0. A check that cannot fail the
+	# build is worse than no check, because it is trusted. Collected first, looped in THIS shell.
+	for src in $(grep -o 'src="[^"]*"' "$f" | sed 's/src="//;s/"//'); do
 		case "$src" in
 			http*|data:*|//*) continue ;;
 		esac
@@ -51,7 +54,8 @@ done
 # 3. NO PAGE LINKS TO A LOCAL FILE THAT IS NOT HERE
 for f in *.html; do
 	[ -e "$f" ] || continue
-	grep -o 'href="[^"]*"' "$f" | sed 's/href="//;s/"//' | while read -r href; do
+	# Looped in this shell, not down a pipe -- see the note in check 2.
+	for href in $(grep -o 'href="[^"]*"' "$f" | sed 's/href="//;s/"//'); do
 		case "$href" in
 			http*|\#*|mailto:*|data:*|//*) continue ;;
 		esac
