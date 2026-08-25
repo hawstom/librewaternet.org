@@ -511,7 +511,7 @@ a:focus-visible, .btn:focus-visible {
 				<p class="note">What is published under that licence stays published: this code cannot be made proprietary later, by anyone, including us. Nobody can promise what comes next &mdash; only that what you already have stays yours.</p>
 			</div>
 			<div>
-				<p><strong>Your model stays on your machine.</strong> Every calculation runs in your own browser; nothing you draw is uploaded, and there is no account to make. Install it and it keeps working with the network cable out.</p>
+				<p><strong>Your model stays on your machine.</strong> Every calculation runs in your own browser; nothing you draw is uploaded unless you turn on a feature that needs it, and each one asks first. There is no account to make. Install it and it keeps working with the network cable out.</p>
 				<p class="note"><strong>We ask you, each time, per feature.</strong> Nothing here reaches anyone else unless you turn on the feature that needs it, and each one asks separately. Today there are four: street map tiles from OpenStreetMap, satellite tiles from Mapbox, place-name search, which sends what you typed to OpenStreetMap&rsquo;s geocoder, and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox. Those last two each have a consent question of their own. Stated here rather than on a policy page, because this is the sentence you need before you click, not after.</p>
 			</div>
 		</div>
@@ -551,6 +551,18 @@ a:focus-visible, .btn:focus-visible {
 		for (k in attrs) { if (Object.prototype.hasOwnProperty.call(attrs, k)) { e.setAttribute(k, attrs[k]); } }
 		return e;
 	}
+	// --- the legend swatches, from the same ramp ----------------------------
+	// ABOVE THE #net GUARD ON PURPOSE. The 2026-08-25 swap to real screenshots removed the
+	// <svg id="net"> this script was written for, so everything after that guard stopped running
+	// -- and .swatch has no background in CSS, so the Draw/Solve/Publish legend rendered as three
+	// empty bordered boxes on the live page. This block never needed the svg; only RAMP.
+	[['sw-draw', 0], ['sw-solve', 2], ['sw-publish', 4]].forEach(function (p) {
+		var box = document.getElementById(p[0]);
+		if (!box) { return; }
+		box.style.background =
+			'linear-gradient(90deg,' + RAMP.slice(0, p[1] + 1).concat(RAMP.slice(p[1] + 1)).join(',') + ')';
+	});
+
 	var svg = document.getElementById('net');
 	if (!svg) { return; }
 
@@ -640,12 +652,5 @@ a:focus-visible, .btn:focus-visible {
 	callout(322, 131, 300, 62, '300 mm DI · 1,240 m', 'start');
 	callout(492, 300, 560, 330, 'J8 · 42 psi', 'start');
 
-	// --- the legend swatches, from the same ramp ----------------------------
-	[['sw-draw', 0], ['sw-solve', 2], ['sw-publish', 4]].forEach(function (p) {
-		var box = document.getElementById(p[0]);
-		if (!box) { return; }
-		box.style.background =
-			'linear-gradient(90deg,' + RAMP.slice(0, p[1] + 1).concat(RAMP.slice(p[1] + 1)).join(',') + ')';
-	});
 }());
 </script>
