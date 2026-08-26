@@ -82,5 +82,5 @@ disqualified only because browser chrome with real names is in frame.
 
 ## State
 
-Draft. Nothing deployed; hosting undecided (EngCalcs ROADMAP Task 479). The inline `#net` graphic in
-`index.html` is a placeholder, not the real one.
+**Live at https://librewaternet.org.** Everything pushed here is published, so a wrong sentence is a
+wrong sentence on the public web; run `docs/review.md` over any copy edit before pushing.

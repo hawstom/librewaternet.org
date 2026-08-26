@@ -1,7 +1,12 @@
 # "Mission", "ministry", and the page that is only in English
 
-**Status: PROPOSAL. Nothing here is published.** Tom asked three questions on 2026-08-25 and all
-three are about wording, which is his. This file is the draft to accept, reject or rewrite.
+**Status: RULED ON AND PUBLISHED (2026-08-25).** Kept as the reasoning behind the wording now live
+on `index.html`. What was decided: the `Why` section ships between `Languages` and `Licence`;
+"ministry" stays off the public page and belongs in the suite's `dev/positioning.md` in Tom's own
+voice, which is still owed; "mission" is kept but appears exactly once on the whole site; the
+false "every label, every tooltip, every warning" sentence is replaced by "every word is evaluated
+for translation"; and the page is called **this welcome page**. The drafts below are superseded by
+what is on the page.
 
 > "(1) How about 'free ministry'? How about the words 'mission' and 'ministry' wherever appropriate
 > as clarifications of why this is available to everybody? (2) 'Why' or 'Free' or 'Mission'
