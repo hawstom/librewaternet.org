@@ -365,8 +365,9 @@ one. If you only want to know whether the thing is any good, do not read a list 
 	<p>What we do know we are missing: a run over time goes through the EPANET engine, and the
 	built-in solver has no time dimension at all. Valves that set their own position, meaning
 	pressure reducing, pressure sustaining and flow control valves, solve through that engine too;
-	a throttle valve solves in either. Where the engine cannot be reached the page says so and
-	solves the one instant it can.</p>
+	a throttle valve solves in either. Where the engine cannot be reached, a network with no such
+	valve in it is still solved for one instant, and the page says that is what you are looking at;
+	a network holding one is refused by name rather than answered wrongly.</p>
 	<!-- BEGIN GENERATED PHONE -->
 <p>And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
 <!-- END GENERATED PHONE -->
