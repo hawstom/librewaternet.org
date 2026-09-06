@@ -1,8 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Annotated Screenshots</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Barlow+Condensed:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LibreWaterNet in use · annotated screenshots</title>
+<meta name="description" content="Fourteen annotated pictures of the software doing real work: EPA's Net3 on real streets, a design drawing on a site plan, scenarios, profiles, 27 languages, and the editor on a phone.">
+<link rel="canonical" href="https://librewaternet.org/screenshots.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LibreWaterNet">
+<meta property="og:url" content="https://librewaternet.org/screenshots.html">
+<meta property="og:title" content="LibreWaterNet in use · annotated screenshots">
+<meta property="og:description" content="Fourteen annotated pictures of the software doing real work: EPA's Net3 on real streets, a design drawing on a site plan, scenarios, profiles, 27 languages, and the editor on a phone.">
+<meta property="og:image" content="https://librewaternet.org/img/0003.png">
+<meta property="og:image:width" content="838">
+<meta property="og:image:height" content="879">
+<meta property="og:image:alt" content="The examples gallery, opening a complete network in one click.">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 /* ============================================================================
@@ -16,6 +29,15 @@
    ========================================================================= */
 
 :root {
+	/* **THE TYPE IS THE DEVICE'S OWN** (EDR-05, 2026-09-06). This page used to fetch three
+	   families from Google, which put a visitor's IP address in front of a third party on a
+	   page whose own argument is that nothing here reaches anyone else unless you ask. The
+	   drawing-sheet look is now carried by weight, spacing and rule work rather than by a
+	   downloaded face. Do not reintroduce a hosted font. */
+	--font-ui: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-cond: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", system-ui, sans-serif;
+	--font-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+
 	--paper:      #FBFBF9;
 	--paper-2:    #F2F4F6;
 	--ink:        #14181C;
@@ -69,7 +91,7 @@ body {
 	margin: 0;
 	background: var(--paper);
 	color: var(--ink);
-	font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+	font-family: var(--font-serif);
 	font-size: var(--step-0);
 	line-height: 1.62;
 	-webkit-font-smoothing: antialiased;
@@ -84,12 +106,12 @@ header.tb {
 	display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: flex-end;
 }
 header.tb h1 {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 800; font-size: var(--step-3); line-height: .98;
 	letter-spacing: -.025em; margin: 0; flex: 1 1 300px; text-wrap: balance;
 }
 .tb-meta {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .1em; text-transform: uppercase;
 	color: var(--ink-2); line-height: 1.9; text-align: right;
@@ -101,7 +123,7 @@ header.tb h1 {
 /* ---- section ---- */
 section.act { margin: 0 0 26px; }
 .act > h2 {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .16em; text-transform: uppercase;
 	color: var(--water); margin: 46px 0 0;
@@ -111,7 +133,7 @@ section.act { margin: 0 0 26px; }
 /* ---- plate: one screenshot and its annotation ---- */
 figure.plate { margin: 30px 0 0; }
 .plate h3 {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 600; font-size: var(--step-1); letter-spacing: -.012em;
 	margin: 0 0 6px; text-wrap: balance;
 }
@@ -127,7 +149,7 @@ figure.plate { margin: 30px 0 0; }
 .plate.tall .shot { max-width: 330px; margin-left: auto; margin-right: auto; }
 .plate figcaption {
 	display: flex; flex-wrap: wrap; gap: 6px 18px;
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 500; font-size: var(--step--1);
 	letter-spacing: .08em; text-transform: uppercase;
 	color: var(--ink-2); margin-top: 9px;
@@ -142,7 +164,7 @@ figure.plate { margin: 30px 0 0; }
 	padding: 20px 24px; margin: 56px 0 0;
 }
 .level h2 {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 600; font-size: var(--step-1); margin: 0 0 10px;
 }
 .level p { max-width: 66ch; margin: 0 0 12px; }
@@ -151,7 +173,7 @@ figure.plate { margin: 30px 0 0; }
 
 footer.tb2 {
 	border-top: 2px solid var(--ink); margin-top: 52px; padding-top: 16px;
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 500; font-size: var(--step--1);
 	letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
 	display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between;
@@ -161,6 +183,8 @@ footer.tb2 a { color: var(--water); }
 a:focus-visible, img:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
+</head>
+<body>
 
 <div class="sheet">
 
@@ -175,7 +199,7 @@ a:focus-visible, img:focus-visible { outline: 2px solid var(--water); outline-of
 <p class="dek">Fourteen pictures of the software doing real work, each with what it is showing and
 why that matters.</p>
 
-<p class="standfirst">The network in most of these is EPA's own Net3, placed on the real streets of
+<p class="standfirst">The network in most of these is EPA&rsquo;s own Net3, placed on the real streets of
 Novato, California. The one drawn on a site plan is a small commercial development. Nothing here is
 a mock-up: every frame is the program running in a browser, and the numbers on them are numbers it
 worked out.</p>
@@ -186,9 +210,9 @@ worked out.</p>
 
 <figure class="plate">
 	<h3>Seven worked examples, open on arrival</h3>
-	<p class="cap">You do not begin with an empty screen. The gallery opens with complete networks —
-	EPA's reference models among them — that load, draw and solve in one click.</p>
-	<div class="shot"><img src="img/0005.png" loading="lazy" decoding="async" width="1920" height="920"
+	<p class="cap">You do not begin with an empty screen. The gallery opens with complete networks,
+	EPA&rsquo;s reference models among them, that load, draw and solve in one click.</p>
+	<div class="shot"><img src="img/0005.png" loading="lazy" decoding="async" width="1920" height="919"
 		alt="The examples gallery, showing seven cards each with a thumbnail of a complete water network."></div>
 	<figcaption><span class="n">Plate 1</span><span>Examples gallery</span></figcaption>
 	<p class="note">The fastest way to find out whether a tool is any good is to watch it solve
@@ -198,8 +222,8 @@ worked out.</p>
 <figure class="plate">
 	<h3>Your EPANET file opens, and it tells you what it did with it</h3>
 	<p class="cap">Importing <code>Net3.inp</code>: 97 junctions, reservoirs and tanks, 119 pipes,
-	pumps and valves, in GPM — then a plain list of what came across and what did not.</p>
-	<div class="shot"><img src="img/0009.png" loading="lazy" decoding="async" width="1920" height="920"
+	pumps and valves, in GPM, then a plain list of what came across and what did not.</p>
+	<div class="shot"><img src="img/0009.png" loading="lazy" decoding="async" width="1918" height="919"
 		alt="The import report after reading an EPANET .inp file, listing what was read and what differed."></div>
 	<figcaption><span class="n">Plate 2</span><span>EPANET import</span></figcaption>
 	<p class="note">This does not claim to hold everything EPANET holds. It reads the parts it
@@ -216,7 +240,7 @@ worked out.</p>
 	<h3>A drawing, not a diagram</h3>
 	<p class="cap">A small commercial development on its own site plan: hand-placed labels on leader
 	lines, a title block, and the pipes drawn over the real thing they are in.</p>
-	<div class="shot"><img src="img/0007.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0007.png" loading="lazy" decoding="async" width="1917" height="919"
 		alt="A water network drawn over a site plan, with hand-placed labels, leader lines and a title block."></div>
 	<figcaption><span class="n">Plate 3</span><span>Design drawing</span></figcaption>
 	<p class="note">Most of the work in a report is not the solve. It is making a page a reviewer
@@ -227,7 +251,7 @@ worked out.</p>
 	<h3>Scenarios: the same network under different demands</h3>
 	<p class="cap">Base and a Daily Flow case, with the three values that belong to the scenario
 	alone counted in the status bar and ringed on the map.</p>
-	<div class="shot"><img src="img/0006.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0006.png" loading="lazy" decoding="async" width="1161" height="918"
 		alt="The scenario menu open over a network, listing Base and Daily Flow with options to add, rename or delete."></div>
 	<figcaption><span class="n">Plate 4</span><span>Scenarios</span></figcaption>
 	<p class="note">A scenario holds only what it changes. Everything else stays the one network, so
@@ -247,15 +271,15 @@ worked out.</p>
 		alt="A water network positioned over a street map of a whole town, with corner handles and a ground distance readout."></div>
 	<figcaption><span class="n">Plate 5</span><span>Georeferencing</span></figcaption>
 	<p class="note">A drawing that came out of a CAD file has coordinates that mean nothing
-	geographic. This is the step that puts it on the Earth &mdash; nothing moves until you confirm,
+	geographic. This is the step that puts it on the Earth. Nothing moves until you confirm,
 	and Cancel puts your original numbers back exactly.</p>
 </figure>
 
 <figure class="plate">
 	<h3>And then the pipes are in the streets</h3>
 	<p class="cap">The same model zoomed to street level: Novato Boulevard, the high school,
-	US 101 — and the mains running where mains run.</p>
-	<div class="shot"><img src="img/0018.png" loading="lazy" decoding="async" width="1920" height="920"
+	US 101, and the mains running where mains run.</p>
+	<div class="shot"><img src="img/0018.png" loading="lazy" decoding="async" width="1921" height="919"
 		alt="The same network at street level, its pipes following named real streets on the map beneath."></div>
 	<figcaption><span class="n">Plate 6</span><span>Street level</span></figcaption>
 	<p class="note">This is the moment a model stops being an abstraction. It is also the moment
@@ -270,31 +294,31 @@ worked out.</p>
 <figure class="plate">
 	<h3>The map above, the profile below</h3>
 	<p class="cap">Pressure by colour across the network, and under it the ground surface, the
-	hydraulic grade line and the pressure band along a chosen path — 26 nodes, 79,161 ft.</p>
-	<div class="shot"><img src="img/0028.png" loading="lazy" decoding="async" width="1920" height="920"
+	hydraulic grade line and the pressure band along a chosen path: 26 nodes, 79,161 ft.</p>
+	<div class="shot"><img src="img/0028.png" loading="lazy" decoding="async" width="1922" height="918"
 		alt="A network coloured by pressure on a street map, with a hydraulic profile along a path in the pane below."></div>
 	<figcaption><span class="n">Plate 7</span><span>Results and profile</span></figcaption>
-	<p class="note">The profile is the drawing that answers "why is the pressure low up there", and
+	<p class="note">The profile is the drawing that answers &ldquo;why is the pressure low up there&rdquo;, and
 	it is the one a client understands on sight.</p>
 </figure>
 
 <figure class="plate">
 	<h3>Colour you choose, not colour you are given</h3>
-	<p class="cap">The ColorBrewer scheme picker over satellite imagery — sequential, diverging and
+	<p class="cap">The ColorBrewer scheme picker over satellite imagery: sequential, diverging and
 	qualitative families, with the band boundaries yours to set.</p>
-	<div class="shot"><img src="img/0004.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0004.png" loading="lazy" decoding="async" width="838" height="878"
 		alt="A colour scheme picker open over a network drawn on satellite imagery."></div>
 	<figcaption><span class="n">Plate 8</span><span>Colour schemes</span></figcaption>
-	<p class="note">Cartographers' palettes rather than a rainbow, because a rainbow's colours carry
-	no order &mdash; nothing in the spectrum says which end is more, which side of a middle you are
+	<p class="note">Cartographers&rsquo; palettes rather than a rainbow, because a rainbow&rsquo;s colours carry
+	no order. Nothing in the spectrum says which end is more, which side of a middle you are
 	on, or which reading is the good one.</p>
 </figure>
 
 <figure class="plate">
 	<h3>A narrower window loses nothing</h3>
-	<p class="cap">The same network, the same colour key, the same settings — in a window about
+	<p class="cap">The same network, the same colour key, the same settings, in a window about
 	840&nbsp;px wide, with the panels stacked into one column.</p>
-	<div class="shot"><img src="img/0003.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0003.png" loading="lazy" decoding="async" width="838" height="879"
 		alt="The same network in a much narrower browser window, with settings stacked into a single column."></div>
 	<figcaption><span class="n">Plate 9</span><span>Narrow window</span></figcaption>
 	<p class="note">This is a narrow desktop window, not a phone. What it shows is that at this width
@@ -309,26 +333,26 @@ worked out.</p>
 
 <figure class="plate">
 	<h3>Controls, read and understood</h3>
-	<p class="cap">Six simple controls from a real model — <code>Link 10 OPEN AT TIME 1</code>,
-	<code>Link 335 OPEN IF Node 1 BELOW 17.1</code> — each marked as understood.</p>
-	<div class="shot"><img src="img/0033.png" loading="lazy" decoding="async" width="1920" height="920"
+	<p class="cap">Six simple controls from a real model (<code>Link 10 OPEN AT TIME 1</code>,
+	<code>Link 335 OPEN IF Node 1 BELOW 17.1</code>), each marked as understood.</p>
+	<div class="shot"><img src="img/0033.png" loading="lazy" decoding="async" width="1920" height="916"
 		alt="A list of simple time and level controls, each marked as understood."></div>
 	<figcaption><span class="n">Plate 10</span><span>Controls</span></figcaption>
 	<p class="note">Tanks fill and drain, demands follow patterns, and the bottom pane plays the day
-	back or steps to any moment in it &mdash; through the EPANET engine, which is where the run lives. Simple
+	back or steps to any moment in it, through the EPANET engine, which is where the run lives. Simple
 	controls are read and honoured, and so are rule-based ones: the engine checks its rule base between
-	time steps, so a rule changes nothing on a single instant, which is the engine's own behaviour.</p>
+	time steps, so a rule changes nothing on a single instant, which is the engine&rsquo;s own behaviour.</p>
 </figure>
 
 <figure class="plate">
 	<h3>The file is yours, and it stays on your machine</h3>
 	<p class="cap">The first time you save, the page explains what saving means here: the file is
 	written only when you ask, and the browser asks its own permission first.</p>
-	<div class="shot"><img src="img/0024.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0024.png" loading="lazy" decoding="async" width="1920" height="921"
 		alt="An explainer shown before the first save, describing that the file is written only on request."></div>
 	<figcaption><span class="n">Plate 11</span><span>Saving</span></figcaption>
 	<p class="note">Nothing is uploaded unless you turn on a feature that needs it, and each one
-	asks first. There is no account, and no copy of your network on anybody's server, because there
+	asks first. There is no account, and no copy of your network on anybody&rsquo;s server, because there
 	is no server doing the work.</p>
 </figure>
 </section>
@@ -339,14 +363,14 @@ worked out.</p>
 
 <figure class="plate">
 	<h3>The whole interface, not the marketing</h3>
-	<p class="cap">Romanian: menus, settings, the colour key, the status bar and the tooltips —
+	<p class="cap">Romanian: menus, settings, the colour key, the status bar and the tooltips.
 	<em>Calculator online gratuit pentru rețele de distribuție a apei</em>.</p>
-	<div class="shot"><img src="img/0026.png" loading="lazy" decoding="async" width="1920" height="920"
+	<div class="shot"><img src="img/0026.png" loading="lazy" decoding="async" width="1917" height="919"
 		alt="The entire interface rendered in Romanian, with a network on a street map coloured by pressure."></div>
 	<figcaption><span class="n">Plate 12</span><span>27 languages</span></figcaption>
 	<p class="note">Twenty-seven languages, and the translation is of the working interface rather
-	than a front page. Some are stronger than others and the quality of each is recorded openly —
-	newly written text reaches English first and the other languages afterwards.</p>
+	than a front page. Some are stronger than others and the quality of each is recorded openly. Newly
+	written text reaches English first and the other languages afterwards.</p>
 </figure>
 </section>
 
@@ -361,20 +385,20 @@ worked out.</p>
 	the network drawn at street level over satellite imagery behind it; the flow colour key down
 	the right-hand side; and the units, the friction method, and the scenario stated along the
 	bottom.</p>
-	<div class="shot"><img src="img/0047.png" loading="lazy" decoding="async" width="1080" height="2066"
+	<div class="shot"><img src="img/0047.png" loading="lazy" decoding="async" width="1080" height="2073"
 		alt="The software on a phone held upright: a menu open beneath its button, a water network drawn on satellite imagery, a flow colour key at the right, and a status line along the bottom."></div>
 	<figcaption><span class="n">Plate 13</span><span>Phone, tall</span></figcaption>
 	<p class="note">And although you of course prefer working on your PC, it works also on a phone in
-	tall mode. It is the same program rather than a cut-down one &mdash; the same menu over the same
-	drawing &mdash; with the page&rsquo;s own headings dropped and the menu wording reduced to icons
+	tall mode. It is the same program rather than a cut-down one, the same menu over the same
+	drawing, with the page&rsquo;s own headings dropped and the menu wording reduced to icons
 	to make the room.</p>
 </figure>
 
 <figure class="plate tall">
 	<h3>Find and replace, at phone width</h3>
-	<p class="cap">Every pipe whose diameter is 30 &mdash; thirteen of them, listed, and each one a
-	link to itself on the map &mdash; with the field for the new value sitting above them, still empty.</p>
-	<div class="shot"><img src="img/0043.png" loading="lazy" decoding="async" width="1080" height="2061"
+	<p class="cap">Every pipe whose diameter is 30: thirteen of them, listed, each one a
+	link to itself on the map, with the field for the new value sitting above them, still empty.</p>
+	<div class="shot"><img src="img/0043.png" loading="lazy" decoding="async" width="1080" height="2073"
 		alt="A find-and-replace panel filling a phone screen, showing the search terms, a Replace button, and a list of thirteen matching pipes."></div>
 	<figcaption><span class="n">Plate 14</span><span>Editing on a phone</span></figcaption>
 	<p class="note">Editing a network is not only drawing it. This is the panel that changes thirteen
@@ -388,10 +412,9 @@ worked out.</p>
 	<p>They are a selection. Fourteen frames chosen from a larger set, and the ones left out were
 	left out for a reason: nearly all of them show a rough edge we have since fixed, and publishing
 	one of those would be showing you a bug that is no longer there.</p>
-	<p>So take them as an invitation to look, not as proof of anything. The software is free, it runs
+	<p>The software is free, it runs
 	in your browser, and nothing you draw leaves your machine except through a feature you turn on,
-	which asks first. The honest test is your own network,
-	and it costs you a few minutes.</p>
+	which asks first. The test that settles it is your own network, and it costs you a few minutes.</p>
 </div>
 
 <footer class="tb2">
@@ -400,3 +423,6 @@ worked out.</p>
 </footer>
 
 </div>
+
+</body>
+</html>

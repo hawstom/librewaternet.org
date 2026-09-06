@@ -1,19 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>LibreWaterNet.org</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Barlow+Condensed:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LibreWaterNet · free water network modelling</title>
+<meta name="description" content="Free water network modelling that runs in your browser. Draw a looped pipe network on a map, solve it with the EPANET engine, read and write EPANET files. No sign-up, no account, 27 languages, GPL v3.">
+<link rel="canonical" href="https://librewaternet.org/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LibreWaterNet">
+<meta property="og:url" content="https://librewaternet.org/index.html">
+<meta property="og:title" content="LibreWaterNet · free water network modelling">
+<meta property="og:description" content="Free water network modelling that runs in your browser. Draw a looped pipe network on a map, solve it with the EPANET engine, read and write EPANET files. No sign-up, no account, 27 languages, GPL v3.">
+<meta property="og:image" content="https://librewaternet.org/img/0007.png">
+<meta property="og:image:width" content="1917">
+<meta property="og:image:height" content="919">
+<meta property="og:image:alt" content="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile beneath it.">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 /* ============================================================================
-   LibreWaterNet — landing page draft
+   LibreWaterNet — landing page
    The page is a DRAWING SHEET: hairline frame, a title block, condensed
-   drafting labels on leader lines. That is not decoration — a map you can
-   publish is the thing this tool has that the alternatives do not, so the
-   page is built out of the same material as the thing it is selling.
+   drafting labels on leader lines. That is not decoration — a map somebody
+   else can read is the thing this tool has that the alternatives do not, so
+   the page is built out of the same material as the thing it is selling.
+   The word for that is LETTERING, not publishing: there is no map export and
+   no image save, and the section that used to be headed Publish said there
+   was (EDR-07, 2026-09-06). What leaves the screen is a screen capture.
    ========================================================================= */
 
 :root {
+	/* **THE TYPE IS THE DEVICE'S OWN** (EDR-05, 2026-09-06). This page used to fetch three
+	   families from Google, which put a visitor's IP address in front of a third party on a
+	   page whose own argument is that nothing here reaches anyone else unless you ask. The
+	   drawing-sheet look is now carried by weight, spacing and rule work rather than by a
+	   downloaded face. Do not reintroduce a hosted font. */
+	--font-ui: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-cond: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", system-ui, sans-serif;
+	--font-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+
 	/* Drawing inks. Black structures, blue water — the suite's own sketch
 	   standard, borrowed for the page. The neutrals are biased toward the
 	   water blue so nothing reads as a default grey. */
@@ -75,7 +100,7 @@ body {
 	margin: 0;
 	background: var(--paper);
 	color: var(--ink);
-	font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+	font-family: var(--font-serif);
 	font-size: var(--step-0);
 	line-height: 1.62;
 	-webkit-font-smoothing: antialiased;
@@ -100,7 +125,7 @@ body {
 
 /* --- drafting labels ---------------------------------------------------- */
 .label {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: .13em;
@@ -109,7 +134,7 @@ body {
 }
 
 h1, h2, h3 {
-	font-family: Archivo, system-ui, -apple-system, sans-serif;
+	font-family: var(--font-ui);
 	text-wrap: balance;
 	margin: 0;
 	line-height: 1.06;
@@ -124,7 +149,7 @@ h1, h2, h3 {
 	border-bottom: 1px solid var(--rule);
 }
 .wordmark {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 800; font-size: 1.06rem;
 	letter-spacing: -.02em;
 }
@@ -165,7 +190,7 @@ h1 .rule-under {
 
 .actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.9rem; }
 .btn {
-	font-family: "Barlow Condensed", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
 	font-size: 1rem;
 	padding: .72rem 1.5rem;
@@ -184,7 +209,7 @@ h1 .rule-under {
 }
 .btn-go:hover, .btn-go:focus-visible { background: var(--ink); border-color: var(--ink); }
 .actions-note {
-	font-family: "Barlow Condensed", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	text-transform: uppercase; letter-spacing: .09em;
 	font-size: .82rem; color: var(--ink-soft);
 	margin-top: .8rem;
@@ -216,7 +241,7 @@ h1 .rule-under {
 .plate-strip > img { display: block; width: 100%; height: auto; }
 @media (max-width: 560px) { .plate-strip { grid-template-columns: 1fr; } }
 .plate-cap {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-size: .82rem;
 	letter-spacing: .04em;
 	color: var(--ink-2);
@@ -244,13 +269,13 @@ h1 .rule-under {
 .titleblock div { padding: .5rem .7rem; border-left: 1px solid var(--rule-soft); }
 .titleblock div:first-child { border-left: 0; }
 .titleblock dt {
-	font-family: "Barlow Condensed", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	text-transform: uppercase; letter-spacing: .12em;
 	font-size: .68rem; color: var(--ink-2); margin: 0;
 }
 .titleblock dd {
 	margin: .15rem 0 0;
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 600; font-size: .9rem;
 	font-variant-numeric: tabular-nums;
 }
@@ -349,6 +374,8 @@ a:focus-visible, .btn:focus-visible {
 }
 @keyframes flow { to { stroke-dashoffset: -18; } }
 </style>
+</head>
+<body>
 
 <div class="sheet-bg"></div>
 
@@ -406,14 +433,14 @@ a:focus-visible, .btn:focus-visible {
 				     bordered box, live on the site. The .plate slot was always built to take an <img>
 				     in the same position, so this is the swap it was designed for.
 				     Every image is vetted publishable in the suite's dev/screenshots/INDEX.md. -->
-				<img src="img/0028.png" alt="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile along a chosen path in the pane beneath it." width="1920" height="920" decoding="async">
+				<img src="img/0028.png" alt="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile along a chosen path in the pane beneath it." width="1922" height="918" decoding="async">
 				<div class="plate-strip">
-					<img src="img/0007.png" alt="A water network drawn over a site plan with hand-placed labels, leader lines and a title block." width="1920" height="920" loading="lazy" decoding="async">
-					<img src="img/0026.png" alt="The same software with its entire interface in Romanian." width="1920" height="920" loading="lazy" decoding="async">
+					<img src="img/0007.png" alt="A water network drawn over a site plan with hand-placed labels, leader lines and a title block." width="1917" height="919" loading="lazy" decoding="async">
+					<img src="img/0026.png" alt="The same software with its entire interface in Romanian." width="1917" height="919" loading="lazy" decoding="async">
 				</div>
 				<figcaption class="plate-cap">EPA&rsquo;s Net3 on real streets, read against its own profile &middot;
 					a design drawing on a site plan &middot; the interface in Romanian &middot;
-					<a href="screenshots.html">twelve more, annotated</a></figcaption>
+					<a href="screenshots.html">eleven more, annotated</a></figcaption>
 				<dl class="titleblock">
 					<div><dt>Network</dt><dd>EPA Net3</dd></div>
 					<div><dt>Junctions</dt><dd>92</dd></div>
@@ -431,7 +458,7 @@ a:focus-visible, .btn:focus-visible {
 		<div class="roles">
 			<article>
 				<h3>Advisors</h3>
-				<p>How should a piece of software be owned by the people who depend on it? We do not know yet. There is no foundation, no board and no governing document; that is precisely why we are asking before writing one.</p>
+				<p>How should a piece of software be owned by the people who depend on it? We do not know yet. There is no foundation and no governing document; that is precisely why we are asking before writing one.</p>
 			</article>
 			<article>
 				<h3>Bug reports</h3>
@@ -458,7 +485,7 @@ a:focus-visible, .btn:focus-visible {
 			<span class="label">What exists today</span>
 			<h2>It is not a proposal. It runs.</h2>
 		</div>
-		<p style="max-width:60ch;margin:0 0 2.2rem">If you came here wanting a water network model rather than a project to join: it is built, it is free, and you can open it right now. It solves, it draws, and it publishes a map you can hand to somebody.</p>
+		<p style="max-width:60ch;margin:0 0 2.2rem">If you came here wanting a water network model rather than a project to join: it is built, it is free, and you can open it right now. It solves, it draws, and it letters the map well enough to put in a report.</p>
 		<div class="legend">
 			<article>
 				<div class="swatch" id="sw-draw"></div>
@@ -472,8 +499,8 @@ a:focus-visible, .btn:focus-visible {
 			</article>
 			<article>
 				<div class="swatch" id="sw-publish"></div>
-				<h3>Publish</h3>
-				<p>Labels you control. Drag one where you want it, set what it says, and it stays there, with leader lines that follow. The point is an exhibit somebody else can read, which is the part that otherwise gets redone by hand in a drawing program.</p>
+				<h3>Label</h3>
+				<p>Labels you control. Drag one where you want it, set what it says, and it stays there, with leader lines that follow. What leaves the screen is a screen capture; what the lettering saves you is the redrawing of the map by hand in a drawing program.</p>
 			</article>
 		</div>
 		<div class="actions" style="margin-top:2.2rem">
@@ -481,7 +508,7 @@ a:focus-visible, .btn:focus-visible {
 			<a class="btn btn-ghost" href="features.html">The whole feature list</a>
 			<a class="btn btn-ghost" href="https://github.com/hawstom/engcalcs">Read the source</a>
 		</div>
-		<p class="note" style="margin-top:1.6rem">Being honest about the edges: development has followed an informal path of assumed most critical features, and there are a lot of unknown gaps between this application and EPANET. The gaps we do know: a run over time goes through the EPANET engine, and the built-in solver has no time dimension. Active valves, the kind that set their own position, solve through that engine too. And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
+		<p class="note" style="margin-top:1.6rem">The edges: we know what we built and we know some of what we lack, and we do not know the size of the gap between this and the software an experienced modeller is used to. What we do know: a run over time goes through the EPANET engine, and the built-in solver has no time dimension. Active valves, the kind that set their own position, solve through that engine too. And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
 	</section>
 
 	<section id="languages">
@@ -522,7 +549,7 @@ a:focus-visible, .btn:focus-visible {
 				</p>
 			</div>
 			<div>
-				<p>Twenty-seven languages is not every language, and the list here is how far the aim has got, not the end of it. What is translated is translated in the program itself &mdash; the labels, the tooltips, the warnings &mdash; rather than left for your browser to paper over an English program, unlike this welcome page, which is in English, and which your browser has translated if you are reading it in another one. Every word is evaluated for translation: where a word is still in English, that is a decision on the record and not something that slipped past us. The network model and the two Manning calculators go into all twenty-seven languages; the rest of the suite into Spanish, Portuguese, French, and Turkish, and every calculator is findable by name in every language while it waits its turn.</p>
+				<p>Twenty-seven languages is not every language, and the list here is how far the aim has got, not the end of it. What is translated is translated in the program itself, the labels, the tooltips and the warnings, rather than left for your browser to paper over an English program, unlike this welcome page, which is in English, and which your browser has translated if you are reading it in another one. Every word is evaluated for translation: where a word is still in English, that is a decision on the record and not something that slipped past us. The network model and the two Manning calculators go into all twenty-seven languages; the rest of the suite into Spanish, Portuguese, French, and Turkish, and every calculator is findable by name in every language while it waits its turn.</p>
 				<p>The translations are AI-made, term by term against a hydraulics glossary, and corrected as people report what reads wrong. How good each language is is recorded openly, and the ones with the fewest speakers to check them are the ones we are least sure of. Your feedback improves every language, English included, in one long global conversation. Right-to-left languages lay out right-to-left.</p>
 				<p>This is the deepest single investment in the project, and it exists because the people who most need a free network solver are very often not working in English. If your language is here and reads badly, that is a bug report we want.</p>
 			</div>
@@ -552,7 +579,7 @@ a:focus-visible, .btn:focus-visible {
 		<div class="two-col">
 			<div>
 				<p>LibreWaterNet is <strong>GNU GPL v3 or later</strong>. There is no paid tier, no free tier that can be taken away later, and no waiting period before the source is yours. Fork it, run it on your own server, teach from it, ship it inside something else that is also free.</p>
-				<p class="note">What is published under that licence stays published: this code cannot be made proprietary later, by anyone, including us. Nobody can promise what comes next &mdash; only that what you already have stays yours.</p>
+				<p class="note">What is published under that licence stays published: this code cannot be made proprietary later, by anyone, including us. Nobody can promise what comes next, only that what you already have stays yours.</p>
 			</div>
 			<div>
 				<p><strong>Your model stays on your machine.</strong> Every calculation runs in your own browser; nothing you draw is uploaded unless you turn on a feature that needs it, and each one asks first. There is no account to make. Install it and it keeps working with the network cable out.</p>
@@ -685,7 +712,7 @@ a:focus-visible, .btn:focus-visible {
 			fill: 'var(--pencil)'
 		});
 		t.setAttribute('style',
-			'font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:14px;' +
+			'font-family:var(--font-cond);font-weight:600;font-size:14px;' +
 			'letter-spacing:.1em;text-transform:uppercase');
 		t.textContent = text;
 		g.appendChild(t);
@@ -698,3 +725,6 @@ a:focus-visible, .btn:focus-visible {
 
 }());
 </script>
+
+</body>
+</html>

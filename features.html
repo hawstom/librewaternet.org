@@ -1,8 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>What it does</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Barlow+Condensed:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What LibreWaterNet does</title>
+<meta name="description" content="The whole feature list: what the network model and the hydraulic calculators do today, in a browser, free, with no account. And, in the same list, what they are short of.">
+<link rel="canonical" href="https://librewaternet.org/features.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LibreWaterNet">
+<meta property="og:url" content="https://librewaternet.org/features.html">
+<meta property="og:title" content="What LibreWaterNet does">
+<meta property="og:description" content="The whole feature list: what the network model and the hydraulic calculators do today, in a browser, free, with no account. And, in the same list, what they are short of.">
+<meta property="og:image" content="https://librewaternet.org/img/0007.png">
+<meta property="og:image:width" content="1917">
+<meta property="og:image:height" content="919">
+<meta property="og:image:alt" content="A water network on a street map, coloured by pressure, with a hydraulic profile beneath it.">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 /* ============================================================================
@@ -22,6 +35,15 @@
    ========================================================================= */
 
 :root {
+	/* **THE TYPE IS THE DEVICE'S OWN** (EDR-05, 2026-09-06). This page used to fetch three
+	   families from Google, which put a visitor's IP address in front of a third party on a
+	   page whose own argument is that nothing here reaches anyone else unless you ask. The
+	   drawing-sheet look is now carried by weight, spacing and rule work rather than by a
+	   downloaded face. Do not reintroduce a hosted font. */
+	--font-ui: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-cond: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Liberation Sans Narrow", system-ui, sans-serif;
+	--font-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+
 	--paper:      #FBFBF9;
 	--paper-2:    #F2F4F6;
 	--ink:        #14181C;
@@ -75,7 +97,7 @@ body {
 	margin: 0;
 	background: var(--paper);
 	color: var(--ink);
-	font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+	font-family: var(--font-serif);
 	font-size: var(--step-0);
 	line-height: 1.62;
 	-webkit-font-smoothing: antialiased;
@@ -90,12 +112,12 @@ header.tb {
 	display: flex; flex-wrap: wrap; gap: 18px 40px; align-items: flex-end;
 }
 header.tb h1 {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 800; font-size: var(--step-3); line-height: .98;
 	letter-spacing: -.025em; margin: 0; flex: 1 1 300px; text-wrap: balance;
 }
 .tb-meta {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .1em; text-transform: uppercase;
 	color: var(--ink-2); line-height: 1.9; text-align: right;
@@ -106,7 +128,7 @@ header.tb h1 {
 
 /* ---- the count line and the section index ---- */
 .count {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .12em; text-transform: uppercase;
 	color: var(--ink-2); margin: 0 0 14px;
@@ -114,7 +136,7 @@ header.tb h1 {
 .count a { color: var(--pencil); }
 .jump {
 	display: flex; flex-wrap: wrap; gap: 8px 22px;
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .1em; text-transform: uppercase;
 	border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
@@ -125,7 +147,7 @@ header.tb h1 {
 
 /* ---- a section of the list ---- */
 section.act > h2 {
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; font-size: var(--step--1);
 	letter-spacing: .16em; text-transform: uppercase;
 	color: var(--water); margin: 46px 0 0;
@@ -170,7 +192,7 @@ ul.feats code {
 	scroll-margin-top: 18px;
 }
 .level h2 {
-	font-family: Archivo, system-ui, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 600; font-size: var(--step-1); margin: 0 0 10px;
 }
 .level p { max-width: 66ch; margin: 0 0 12px; }
@@ -180,7 +202,7 @@ ul.feats code {
 /* ---- the one thing to do next ---- */
 .go { margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .btn {
-	font-family: "Barlow Condensed", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
 	font-size: 1.1rem; padding: .8rem 1.7rem;
 	border: 1px solid var(--water); text-decoration: none;
@@ -193,7 +215,7 @@ ul.feats code {
 
 footer.tb2 {
 	border-top: 2px solid var(--ink); margin-top: 52px; padding-top: 16px;
-	font-family: "Barlow Condensed", "Archivo Narrow", system-ui, sans-serif;
+	font-family: var(--font-cond);
 	font-weight: 500; font-size: var(--step--1);
 	letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
 	display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between;
@@ -203,6 +225,8 @@ footer.tb2 a { color: var(--water); }
 a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
+</head>
+<body>
 
 <div class="sheet">
 
@@ -221,13 +245,13 @@ what is missing from it, or measure it against whatever you use today.</p>
 <p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
 it works today, in a browser, free, with no account. It covers the network model this site is
 about and the rest of the hydraulic calculators it lives beside, because they are one program and
-you get all of it either way. <strong>The list is honest rather than complete:</strong> a line is
+you get all of it either way. <strong>The list is incomplete:</strong> a line is
 on it because somebody sat down and wrote a sentence for it, and plenty of smaller work never got
-one. If you only want to know whether the thing is any good, do not read a list &mdash;
-<a href="https://hawsedc.com/engcalcs/Looped-Network.php">diving in saves time</a>.</p>
+one. If you only want to know whether the thing is any good, do not read a list.
+<a href="https://hawsedc.com/engcalcs/Looped-Network.php">Diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
-<p class="count">53 things it does. <a href="#edges">And what it does not.</a></p>
+<p class="count">62 things it does. <a href="#edges">And what it does not.</a></p>
 
 <nav class="jump" aria-label="Sections">
 	<a href="#the-calculators">The calculators</a>
@@ -245,7 +269,7 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <section class="act" id="the-calculators">
 <h2>The calculators <span class="ct">12</span></h2>
 <ul class="feats">
-	<li>Manning pipe flow solves in both directions — the flow from a depth, and the depth from a flow. <!-- 13 --></li>
+	<li>Manning pipe flow solves in both directions: the flow from a depth, and the depth from a flow. <!-- 13 --></li>
 	<li>Every pipe and channel page checks the velocity it just computed and says when it is too fast or too slow. <!-- 52, 65 --></li>
 	<li>Orifice flow, and the time a tank takes to drain through one. <!-- 6, 12 --></li>
 	<li>Micro-hydropower, from gross head and penstock losses to the power a small site can actually deliver. <!-- 16 --></li>
@@ -261,15 +285,22 @@ one. If you only want to know whether the thing is any good, do not read a list 
 </section>
 
 <section class="act" id="drawing-a-water-network">
-<h2>Drawing a water network <span class="ct">8</span></h2>
+<h2>Drawing a water network <span class="ct">15</span></h2>
 <ul class="feats">
-	<li>A drawing toolbar — junction, reservoir, tank, pipe, pump, valve and text — placed by clicking the map. <!-- 146.02 --></li>
+	<li>A drawing toolbar (junction, reservoir, tank, pipe, pump, valve and text), placed by clicking the map. <!-- 146.02 --></li>
 	<li>Many named projects, saved in your own browser, each open in its own tab. <!-- 146.08, 447 --></li>
 	<li>The property box is a window you can drag out of your way, not a panel that owns an edge of the screen. <!-- 344 --></li>
 	<li>ID prefixes you choose, with Apply to all for when you change your mind. <!-- 345 --></li>
 	<li>Find elements by any property, jump straight to one by ID, and set a property across everything the search found. <!-- 353, 420, 389 --></li>
+	<li>Or type the search out yourself, with AND, OR and brackets, when what you are looking for is more than the pull-downs can say, in the words of your own language. <!-- 540 --></li>
 	<li>The File menu remembers your recent projects, and the map remembers where you were looking. <!-- 352, 360 --></li>
 	<li>One toggle clears the readouts off the map when you want the drawing and nothing else. <!-- 253 --></li>
+	<li>The menus follow the work: everything about the water system is under Water, and everything drawn behind and around it is under Map, so a control is found by name rather than hunted for. <!-- 543 --></li>
+	<li>A long Settings box is searchable and indexed: type a word and only the rows that mention it stay, or jump straight to any section from the list beside them. <!-- 557 --></li>
+	<li>Fire flow analysis for the whole system in one press: every junction tested against the flow your code requires, what it can actually deliver at the residual you set, and what drawing that flow does to everything around it. <!-- 530 --></li>
+	<li>Water quality over a run: how old the water reaching a point is, how much of it came from a source you name, and how a chemical residual decays as it travels, with the reaction coefficients yours to state rather than ours to guess. <!-- 566 --></li>
+	<li>What the pumps cost: how long each one ran, the power it drew, the energy it used and the money that came to, including the demand charge on the highest power drawn at any one moment. <!-- 566.01 --></li>
+	<li>A picture of your own under the drawing, a site plan or an aerial, scaled by picking two points on it or by typing the size of a pixel. <!-- 276 --></li>
 	<li>A Help menu specific to this calculator. <!-- 250 --></li>
 </ul>
 </section>
@@ -278,19 +309,20 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <h2>Solving it <span class="ct">4</span></h2>
 <ul class="feats">
 	<li>A looped network solved by the global gradient method, in the page, with no install and no upload. <!-- 146 --></li>
-	<li>Or solved by the EPANET 2.3 engine itself, compiled into the page and named by version where you can see it. <!-- 451 --></li>
+	<li>Or solved by the EPANET 2.3.5 engine itself, compiled into the page and named by version where you can see it. <!-- 451 --></li>
 	<li>Standard gravity throughout, and where the two engines disagree the page tells you by how much. <!-- 419 --></li>
 	<li>Answers follow your edits as you make them, and if a big network makes that slow, it is a project setting you can turn off. <!-- 467 --></li>
 </ul>
 </section>
 
 <section class="act" id="time">
-<h2>Time <span class="ct">5</span></h2>
+<h2>Time <span class="ct">6</span></h2>
 <ul class="feats">
 	<li>Extended-period simulation: tanks fill and drain, demands follow their patterns, and a bar along the bottom plays the run or steps to any moment in it. <!-- 248.01, 423, 410 --></li>
-	<li>Patterns on a reservoir head and on a pump&#039;s speed, beside the demand patterns. <!-- 248.02 --></li>
+	<li>Patterns on a reservoir head and on a pump&rsquo;s speed, beside the demand patterns. <!-- 248.02 --></li>
 	<li>A Libraries box holding the patterns and curves a run needs. <!-- 460 --></li>
-	<li>A Run button (optional, since answers can follow your edits instead) shows real progress, a completion report, and the engine&#039;s own report of the run. <!-- 450 --></li>
+	<li>Rule-based controls, in EPANET&rsquo;s own words: read them, write them, and edit them in the Libraries box. Every level, pressure and flow in a rule is put into the units your project is showing. <!-- 248.03 --></li>
+	<li>A Run button (optional, since answers can follow your edits instead) shows real progress, a completion report, and the engine&rsquo;s own report of the run. <!-- 450 --></li>
 	<li>Colour limits hold still across a run, so a colour means the same thing at every step. <!-- 448 --></li>
 </ul>
 </section>
@@ -299,9 +331,9 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <h2>Files and EPANET <span class="ct">5</span></h2>
 <ul class="feats">
 	<li>Opens EPANET <code>.inp</code> files, takes the part it supports, and reports every difference instead of dropping it quietly. <!-- 196 --></li>
-	<li>An import note is filed on the element it concerns, and you read it in that element&#039;s own property box. <!-- 483 --></li>
+	<li>An import note is filed on the element it concerns, and you read it in that element&rsquo;s own property box. <!-- 483 --></li>
 	<li>Writes <code>.inp</code> files back out. Every value you did not edit comes back exactly as it went in, character for character. <!-- 281 --></li>
-	<li>Projects are <code>.lwn</code> files — JSON inside, on your own disk, readable without us. <!-- 246 --></li>
+	<li>Projects are <code>.lwn</code> files: JSON inside, on your own disk, readable without us. <!-- 246 --></li>
 	<li>An examples library that opens Net1, Net2, Net3, Elm Street Center and a Net3 placed on the world, in one click. <!-- 314, 257, 454 --></li>
 </ul>
 </section>
@@ -310,9 +342,9 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <h2>The map and the world <span class="ct">4</span></h2>
 <ul class="feats">
 	<li>A geographic project is drawn in latitude and longitude over a street map or satellite imagery, with the same drawing tools. <!-- 145 --></li>
-	<li>An existing x/y network can be placed on the world — moved, scaled and rotated onto its real ground. <!-- 476 --></li>
+	<li>An existing x/y network can be placed on the world, moved, scaled and rotated onto its real ground. <!-- 476 --></li>
 	<li>Type a place name and the map goes there, if you turn that on. <!-- 437 --></li>
-	<li>Ground elevations read from terrain data and typed into the document, never replacing a number without first showing you the one it would replace. <!-- 497 --></li>
+	<li>Ground elevations read from terrain data and typed into the document (as each node is drawn, or over a set you found), never replacing a number without your having asked for exactly that. <!-- 497 --></li>
 </ul>
 </section>
 
@@ -322,7 +354,7 @@ one. If you only want to know whether the thing is any good, do not read a list 
 	<li>Labels place themselves. Where there is no room, a label sheds values in the order you chose instead of disappearing whole. <!-- 397, 398, 399, 469 --></li>
 	<li>Any label can be dragged where you want it, and it keeps a leader back to what it names. <!-- 146.01, 383 --></li>
 	<li>Pipe labels lie along their pipe, the way a map draws a street name. <!-- 329 --></li>
-	<li>Prefixes, suffixes and a separator you choose, with a link&#039;s values on one line. <!-- 333, 336 --></li>
+	<li>Prefixes, suffixes and a separator you choose, with a link&rsquo;s values on one line. <!-- 333, 336 --></li>
 	<li>A Text object takes several lines, bold, and a rotation that can match a pipe. <!-- 337, 342 --></li>
 	<li>Lettering is haloed, so it stays readable over the drawing underneath it. <!-- 376 --></li>
 	<li>Text, symbols and pipes are three independent screen sizes, so a drawing reads the same at every zoom. <!-- 331, 362 --></li>
@@ -330,11 +362,12 @@ one. If you only want to know whether the thing is any good, do not read a list 
 </section>
 
 <section class="act" id="reading-the-results">
-<h2>Reading the results <span class="ct">3</span></h2>
+<h2>Reading the results <span class="ct">4</span></h2>
 <ul class="feats">
-	<li>A table for each kind of part in the bottom pane — junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></li>
+	<li>A table for each kind of part in the bottom pane: junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></li>
 	<li>Colour the map by any value, from one control: three to seven classes, eight ways of choosing where the breaks fall, and 41 colour ramps. <!-- 384, 327 --></li>
 	<li>Profiles. Click along the map to choose the path, and see ground, hydraulic grade and the pressure between them. <!-- 409, 433, 506 --></li>
+	<li>A profile path is saved with the project under a name you give it, and a project holds as many of them as you draw. <!-- 510 --></li>
 </ul>
 </section>
 
@@ -357,11 +390,10 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <!-- END GENERATED FEATURES -->
 
 <div class="level" id="edges">
-	<h2>And the edges, in the same breath</h2>
+	<h2>The edges</h2>
 	<p>A list like this reads as though somebody has surveyed the whole territory. Nobody has. We
 	know what we built and we know some of what we lack; we do not know the size of the gap between
-	this and the software an experienced modeller is used to, and saying otherwise would be the
-	first thing on this page to stop being true.</p>
+	this and the software an experienced modeller is used to.</p>
 	<p>What we do know we are missing: a run over time goes through the EPANET engine, and the
 	built-in solver has no time dimension at all. Valves that set their own position, meaning
 	pressure reducing, pressure sustaining and flow control valves, solve through that engine too;
@@ -373,7 +405,7 @@ one. If you only want to know whether the thing is any good, do not read a list 
 <!-- END GENERATED PHONE -->
 	<p><strong>For your privacy: nothing here reaches anyone else unless you turn on a feature
 	that needs it, and each one asks separately.</strong> Today there are four: street map tiles
-	from OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to OpenStreetMap's
+	from OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to OpenStreetMap&rsquo;s
 	geocoder; and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox.
 	Those last two each have a consent question of their own. Nothing you draw is uploaded unless
 	you turn on one of those, and there is no account to make.</p>
@@ -393,3 +425,6 @@ one. If you only want to know whether the thing is any good, do not read a list 
 </footer>
 
 </div>
+
+</body>
+</html>

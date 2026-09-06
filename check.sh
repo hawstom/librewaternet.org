@@ -8,6 +8,21 @@ fail=0
 say() { printf '%s\n' "$*"; }
 bad() { fail=1; printf 'FAIL  %s\n' "$*"; }
 
+# VISITOR TEXT: the page with its comments, its <style> and <script> blocks and its <code> spans
+# removed. **BOTH REMOVALS ARE NON-GREEDY, AND THAT IS THE WHOLE DIFFICULTY.** Written the natural
+# way in sed -- a `/<script>/,/<\/script>/d` range, or `s/<!--.*-->//g` over a joined file -- each
+# one silently eats the rest of the document when the closing tag shares a line with the opening
+# one, or when a page has two comments. A check that deletes its own haystack passes. Caught by
+# mutation on the sibling site the day this was written: a planted em dash went unreported.
+prose() {
+	awk '{ buf = buf $0 "\n" }
+	     END { gsub(/<!--([^-]|-[^-]|--[^>])*-->/, "", buf)
+	           gsub(/<style[^>]*>([^<]|<[^\/]|<\/[^s])*<\/style>/, "", buf)
+	           gsub(/<script[^>]*>([^<]|<[^\/]|<\/[^s])*<\/script>/, "", buf)
+	           gsub(/<code>[^<]*<\/code>/, "", buf)
+	           print buf }' "$1"
+}
+
 # ---------------------------------------------------------------------------
 # 1. EVERY PAGE DECLARES UTF-8, AND SAYS SO IN ITS FIRST BYTES
 #
@@ -61,6 +76,73 @@ for f in *.html; do
 		esac
 		[ -f "${href%%#*}" ] || bad "$f links to a missing file: $href"
 	done
+done
+
+# ---------------------------------------------------------------------------
+# 4. EVERY PAGE IS A DOCUMENT, NOT A FRAGMENT
+#
+# An editorial review on 2026-09-06 (EDR-01 to EDR-04 in the suite's
+# dev/editorial-review-2026-09-06.md) found all three pages served with no doctype, no <html>, no
+# <head> and no <body>: a browser renders that in QUIRKS MODE, with the legacy box model and legacy
+# line-height rules. Nothing looked broken, which is why it survived from the first draft. The
+# viewport line is the one with a visible cost -- without it a phone lays the page out at a nominal
+# 980px and shrinks it, on the site whose own sentence is that the software works on a phone.
+#
+# `lang` is not decoration either: the index says the browser has translated this page if the reader
+# is not reading English, and this attribute is the input that decision is made from.
+for f in *.html; do
+	[ -e "$f" ] || continue
+	head -c 200 "$f" | grep -qi '<!doctype html>' || bad "$f does not open with <!doctype html> (quirks mode)"
+	grep -qi '<html lang="[a-z-]*"' "$f" || bad "$f has no <html lang> -- browser translation and screen readers both read it"
+	grep -qi '<meta name="viewport"' "$f" || bad "$f has no viewport meta -- a phone will lay it out at 980px and shrink it"
+	grep -qi '<meta name="description"' "$f" || bad "$f has no meta description -- Google writes its own snippet from a page that is mostly a form"
+	grep -qi '<meta property="og:image"' "$f" || bad "$f has no og:image -- pasted into Slack or LinkedIn it is a bare URL"
+done
+
+# ---------------------------------------------------------------------------
+# 5. NOTHING IS FETCHED FROM ANYBODY ELSE
+#
+# These pages used to load three families from Google Fonts, which put every visitor's IP address
+# in front of a third party BEFORE they clicked anything -- one screen above the sentence "Nothing
+# here reaches anyone else unless you turn on the feature that needs it, and each one asks
+# separately." The type is a system stack now. The rule is not about fonts: it is that this site
+# makes no request a visitor did not ask for, which is the one claim on it a sceptical reader can
+# test in a browser's network pane in about four seconds.
+#
+# An outbound LINK is fine and is the point of the site. This looks only at what a page FETCHES.
+for f in *.html; do
+	[ -e "$f" ] || continue
+	grep -o '<link[^>]*rel="stylesheet"[^>]*>' "$f" | grep -q 'http' \
+		&& bad "$f loads a stylesheet from another origin"
+	grep -o '<link[^>]*rel="preconnect"[^>]*>' "$f" | grep -q 'http' \
+		&& bad "$f preconnects to another origin"
+	grep -o '<script[^>]*src="http[^"]*"' "$f" | grep -q . \
+		&& bad "$f loads a script from another origin"
+	grep -o '<img[^>]*src="http[^"]*"' "$f" | grep -q . \
+		&& bad "$f loads an image from another origin"
+	grep -o '@import[^;]*http' "$f" | grep -q . \
+		&& bad "$f @imports from another origin"
+	grep -oE 'url\(["'"'"']?https?:' "$f" | grep -q . \
+		&& bad "$f fetches a CSS asset from another origin"
+done
+
+# ---------------------------------------------------------------------------
+# 6. THE EM DASH RATCHET, IN VISITOR TEXT ONLY
+#
+# The suite's own rule, carried here on 2026-09-06 (EDR-16). It is not a claim about good English:
+# the dash is fine, the reader is not, and a page that leans on it reads as machine-written whatever
+# it says. There were 28 across these three pages and there are none now, so the ratchet is at zero
+# and the next one fails the build.
+#
+# **Scope is visitor text.** Code comments, this file, and commit messages are out of scope on Tom's
+# own instruction ("Use it all you want in private. It's lovely."), so <style>, <script> and HTML
+# comments are stripped before counting. A dash separating two names in a <title> is a typographic
+# separator and carries none of the tell; there is none here, and if one arrives, exempt it here
+# rather than deleting this check.
+for f in *.html; do
+	[ -e "$f" ] || continue
+	n=$(prose "$f" | grep -o -e '—' -e '&mdash;' | wc -l)
+	[ "$n" = 0 ] || bad "$f has $n em dash(es) in visitor text; the ratchet is at zero"
 done
 
 if [ "$fail" = 0 ]; then say 'All checks pass.'; else say ''; say 'BLOCKING FAILURES above.'; fi

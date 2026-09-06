@@ -80,6 +80,12 @@ foreach (array_keys($OVERRIDE) as $ids) {
 /** Markdown inline -> HTML. Backticks are the only markup the source uses in a bullet. */
 function inline($s) {
 	$s = htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+	// The apostrophe is TYPOGRAPHIC on the page and PLAIN in the source (EDR-17, 2026-09-06).
+	// htmlspecialchars turns it into &#039;, which renders as a typewriter mark in the middle of
+	// a serif page whose hand-written half uses &rsquo;. The source stays plain so it is easy to
+	// type; the conversion belongs here, at the one place a sentence becomes markup. A backtick
+	// span is code and keeps the plain mark, so this runs BEFORE code spans are made.
+	$s = preg_replace('/(\w)&#0?39;(?=\w|\b)/u', '$1&rsquo;', $s);
 	return preg_replace('/`([^`]+)`/', '<code>$1</code>', $s);
 }
 function slug($s) {

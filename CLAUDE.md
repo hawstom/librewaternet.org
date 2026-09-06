@@ -46,7 +46,7 @@ The reasoning is Task 523's: we do not want to inherit EPANET's names, assumptio
 
 ## Before every commit: `sh check.sh`
 
-Three checks, seconds, and each one exists because it already shipped broken:
+Six checks now, seconds, and each one exists because it already shipped broken:
 
 - **Every page declares UTF-8 in its first 1024 bytes.** The live server sends
   `Content-Type: text/html` with **no charset**, so a page that does not say so is decoded as
@@ -59,12 +59,59 @@ Three checks, seconds, and each one exists because it already shipped broken:
   which is gitignored there and does not travel; a src pointing at one nobody copied is a broken
   image that looks like a page still loading.
 
-**Writing a new page means adding `<meta charset="utf-8">` as its first line.** Not somewhere in the
-head — first, above the `<title>`, or the title itself is decoded wrongly before the browser reaches
-the declaration.
+**Writing a new page means `<!doctype html>`, `<html lang="en">`, `<head>` with the charset first,
+and a viewport line.** The charset goes above the `<title>`, or the title itself is decoded wrongly
+before the browser reaches the declaration.
+
+- **A PAGE IS A DOCUMENT, NOT A FRAGMENT** (EDR-01, 2026-09-06). All three pages were served with no
+  doctype, no `<html>`, no `<head>` and no `<body>` from the first draft until that review: a
+  browser renders that in QUIRKS MODE, legacy box model and all. Nothing looked broken, which is
+  exactly why it survived, and it is the most embarrassing line of any technical review of this
+  site.
+- **The viewport line is the one with a visible cost.** Without it a phone lays the page out at a
+  nominal 980px and shrinks it, so the sentence about working on a phone was being read on a page
+  that demonstrated the opposite. **And `lang` is not decoration**: the index tells the reader their
+  browser has translated this page, and that attribute is the input the browser decides from.
+- **Every page needs a description and an `og:image`.** Without them the front door of the project
+  pastes into Slack or LinkedIn as a bare URL, and Google writes its own snippet.
+
+### THE TYPE IS THE DEVICE'S OWN, and no font is ever fetched
+
+**Never load a webfont, a script, a stylesheet or an image from another origin. Ever.** These pages
+loaded three families from Google Fonts, which put every visitor's IP address in front of a third
+party BEFORE they clicked anything, one screen above the sentence *"Nothing here reaches anyone else
+unless you turn on the feature that needs it, and each one asks separately"* (EDR-05). The type is a
+system stack now: `--font-ui`, `--font-cond` and `--font-serif`, defined once in each page's
+`:root`. The drawing-sheet look is carried by weight, spacing and rule work, which is what it should
+have been carried by.
+
+Check 5 fails the build on any cross-origin fetch. An outbound LINK is the point of the site and is
+fine; what a page FETCHES is the rule.
+
+### The em dash ratchet, in visitor text only
+
+The suite's rule, carried here 2026-09-06 (EDR-16): there were 28 across these three pages and there
+are none now, so the ratchet is at zero and check 6 fails on the next one. It is not a claim about
+good English. The dash is fine; the reader is not, and a page that leans on it reads as
+machine-written whatever it says. Code comments and this file are out of scope on Tom's own
+instruction (*"Use it all you want in private. It's lovely."*).
+
+**The apostrophe is typographic in visitor text** (`&rsquo;`, `&ldquo;`/`&rdquo;`), including in the
+generated feature list, where `tools/build-features.php` converts it. The Markdown source stays
+plain so it is easy to type.
 
 ## Writing
 
+- **DO NOT ANNOUNCE THE SITE'S OWN VIRTUES** (Tom, 2026-09-06, on a sentence of the sibling site's:
+  *"Methinkest thou boastest too much."*). *Being honest about the edges*, *the list is honest
+  rather than complete*, *the honest test is your own network*, *and it is careful to say so* — each
+  true, and together the one rhetorical move that makes a reader go looking for what is being
+  managed. They are gone from all three pages. An honest page is honest in its declarative
+  sentences; the facts here are unusual enough to need no framing. **Write the fact and stop.**
+- **A CLAIM CORRECTED ON THE SIBLING SITE IS NOT CORRECTED HERE** (EDR-07, EDR-24). Twice in one
+  review: not-epanet.org had already struck *"publish the drawing"* as false and *"no board"* as
+  wrong, and both were still standing on this site, which is the one with the traffic. When a claim
+  is ruled on over there, grep for it here the same day.
 - **Say the thing that survives the next surprise.** The strongest claims here are the ones a future
   discovery cannot falsify. Prefer an honest narrow claim to an impressive broad one.
 - **Quote Tom only from a dated first-person source.** Prose in these files is AI-written and must
