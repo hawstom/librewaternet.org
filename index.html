@@ -129,6 +129,13 @@ h1, h2, h3 {
 	letter-spacing: -.02em;
 }
 .wordmark .libre { color: var(--water); }
+/* **TWO WORDMARKS, ONE UPPER-LEFT.** The sister site's name sits beside our own and
+   quieter than it, so the pair reads as two doors rather than as an advertisement. It
+   wraps before the nav does: on a narrow screen the first question is still "where am I". */
+.marks { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.marks .sister { font-weight: 700; color: var(--ink-2); text-decoration: none; }
+.marks .sister .not { color: var(--ink-2); opacity: .75; }
+.marks .sister:hover, .marks .sister:focus-visible { color: var(--ink); }
 .topbar nav { display: flex; gap: 1.6rem; }
 .topbar nav a { color: var(--ink-2); text-decoration: none; }
 .topbar nav a:hover, .topbar nav a:focus-visible { color: var(--water); }
@@ -348,7 +355,25 @@ a:focus-visible, .btn:focus-visible {
 <div class="sheet">
 
 	<header class="topbar">
-		<div class="wordmark"><span class="libre">Libre</span>WaterNet</div>
+		<!-- **THE SISTER SITE SITS BESIDE THE WORDMARK** (Tom, 2026-09-06: *"At the upper
+		     left of each site we have the domain name. Let's put a link to the other one next
+		     to it. For example LibreWaterNet Not EPANET and Not EPANET LibreWaterNet"*). Both
+		     sites carry the same pair in the same place, so the two read as two doors.
+
+		     **THIS IS A DELIBERATE EXCEPTION TO A STANDING RULE AND IT IS TOM'S.** EngCalcs
+		     `dev/positioning.md` §1 keeps a competitor's name out of a title, tagline, menu
+		     item or headline, and this is a menu item in the strictest sense. ROADMAP Task 591
+		     already reversed that rule for the not-epanet.org site itself; this carries the
+		     reversal one step further, onto this page, on his instruction. It is scoped to
+		     EPANET and to this one link. Every live commercial trademark stays banned here.
+
+		     **DO NOT PUBLISH THIS UNTIL not-epanet.org RESOLVES.** Nothing is deployed and no
+		     domain is pointed anywhere without Tom saying so (Task 591), and a landing page
+		     linking to a dead host is worse than one that does not link at all. -->
+		<div class="marks">
+			<div class="wordmark"><span class="libre">Libre</span>WaterNet</div>
+			<a class="wordmark sister" href="https://not-epanet.org"><span class="not">Not</span> EPANET</a>
+		</div>
 		<nav class="label">
 			<a href="https://hawsedc.com/engcalcs/Looped-Network.php">Open the app</a>
 			<a href="#stakeholders">Who we need</a>
