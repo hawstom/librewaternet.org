@@ -82,7 +82,7 @@ done
 # 4. EVERY PAGE IS A DOCUMENT, NOT A FRAGMENT
 #
 # An editorial review on 2026-09-06 (EDR-01 to EDR-04 in the suite's
-# dev/editorial-review-2026-09-06.md) found all three pages served with no doctype, no <html>, no
+# dev/editorial-review.md) found all three pages served with no doctype, no <html>, no
 # <head> and no <body>: a browser renders that in QUIRKS MODE, with the legacy box model and legacy
 # line-height rules. Nothing looked broken, which is why it survived from the first draft. The
 # viewport line is the one with a visible cost -- without it a phone lays the page out at a nominal
