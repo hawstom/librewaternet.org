@@ -1,0 +1,13 @@
+# Task 479: /app is a pretty URL over the suite, which still lives at /engcalcs/.
+# Internal rewrite, no R flag, so the address bar keeps /app. Both /app and /app/
+# are matched: ecSwMounts() declares the mount as '/app/', a person types '/app'.
+#
+# SCRIPT_NAME under this rule is /engcalcs/Looped-Network.php, so ec_canonical_url()
+# emits the long URL. Making /app canonical is a CODE change, not a server one --
+# ROADMAP 479.01.
+#
+# NO `Options` LINE HERE, DELIBERATELY. An Options directive where AllowOverride
+# Options is not granted returns 500 for EVERY request under this path, with no
+# partial symptom. The ./engcalcs symlink relies on SymLinksIfOwnerMatch instead.
+RewriteEngine On
+RewriteRule ^app/?$ /engcalcs/Looped-Network.php [L]

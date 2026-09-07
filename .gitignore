@@ -10,3 +10,8 @@ Thumbs.db
 # itself gitignored. Anything published from here must be committed DELIBERATELY,
 # after checking INDEX.md's publishable verdict — so the default is to ignore.
 /img-scratch/
+
+# Server-side: the suite is symlinked in from hawsedc.com's docroot so that
+# librewaternet.org/engcalcs/ and the /app rewrite resolve (EngCalcs Task 479).
+# The link is made on the server and must not look like missing content here.
+/engcalcs
