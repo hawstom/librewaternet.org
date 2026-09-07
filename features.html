@@ -156,6 +156,12 @@ section.act > h2 {
 }
 section.act > h2 .ct { color: var(--ink-2); float: right; letter-spacing: .06em; }
 
+/* The edges note uses an ordinary list, which this page had no style for: the feature list is
+   `ul.feats` and styles itself out of existence. Three short lines beat a 95-word paragraph
+   (2026-09-07). */
+#edges ul { margin: .4rem 0 0; padding-left: 1.15em; }
+#edges li { margin: .35rem 0; max-width: 68ch; }
+
 /* Two columns where there is room. A feature is one sentence and never splits
    across a column, so the reader's eye never has to hunt for the other half. */
 ul.feats {
@@ -243,12 +249,11 @@ a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 what is missing from it, or measure it against whatever you use today.</p>
 
 <p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
-it works today, in a browser, free, with no account. It covers the network model this site is
-about and the rest of the hydraulic calculators it lives beside, because they are one program and
-you get all of it either way. <strong>The list is incomplete:</strong> a line is
-on it because somebody sat down and wrote a sentence for it, and plenty of smaller work never got
-one. If you only want to know whether the thing is any good, do not read a list.
-<a href="https://hawsedc.com/engcalcs/Looped-Network.php">Diving in saves time</a>.</p>
+it works today, in a browser, free, with no account. It covers the network model and the hydraulic
+calculators beside it, because they are one program and you get all of it either way.
+<strong>The list is incomplete:</strong> a line is on it because somebody wrote a sentence for it,
+and plenty of smaller work never got one. If you only want to know whether the thing is any good,
+<a href="https://hawsedc.com/engcalcs/Looped-Network.php">diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
 <p class="count">62 things it does. <a href="#edges">And what it does not.</a></p>
@@ -394,21 +399,24 @@ one. If you only want to know whether the thing is any good, do not read a list.
 	<p>A list like this reads as though somebody has surveyed the whole territory. Nobody has. We
 	know what we built and we know some of what we lack; we do not know the size of the gap between
 	this and the software an experienced modeller is used to.</p>
-	<p>What we do know we are missing: a run over time goes through the EPANET engine, and the
-	built-in solver has no time dimension at all. Valves that set their own position, meaning
-	pressure reducing, pressure sustaining and flow control valves, solve through that engine too;
-	a throttle valve solves in either. Where the engine cannot be reached, a network with no such
-	valve in it is still solved for one instant, and the page says that is what you are looking at;
-	a network holding one is refused by name rather than answered wrongly.</p>
+	<p>What we do know we are missing:</p>
+	<ul>
+		<li>A run over time goes through the EPANET engine. The built-in solver has no time dimension.</li>
+		<li>Valves that set their own position, meaning pressure reducing, pressure sustaining and
+			flow control, solve through that engine too. A throttle valve solves in either.</li>
+		<li>With the engine out of reach, a network without such a valve is still solved for one
+			instant and the page says so; one holding a valve is refused by name rather than
+			answered wrongly.</li>
+	</ul>
 	<!-- BEGIN GENERATED PHONE -->
 <p>And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
 <!-- END GENERATED PHONE -->
-	<p><strong>For your privacy: nothing here reaches anyone else unless you turn on a feature
-	that needs it, and each one asks separately.</strong> Today there are four: street map tiles
-	from OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to OpenStreetMap&rsquo;s
-	geocoder; and the ground-elevation lookup, which sends the coordinates of your nodes to Mapbox.
-	Those last two each have a consent question of their own. Nothing you draw is uploaded unless
-	you turn on one of those, and there is no account to make.</p>
+	<p><strong>For your privacy: nothing reaches anyone else unless you turn on a feature that
+	needs it, and each one asks separately.</strong> Today there are four: street map tiles from
+	OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to
+	OpenStreetMap&rsquo;s geocoder; and ground elevations, which send the coordinates of your nodes
+	to Mapbox. The last two ask a consent question of their own. Nothing you draw is uploaded, and
+	there is no account to make.</p>
 	<p>If something you need is not on this list, that is the most useful thing you can tell us.
 	<a href="index.html#stakeholders">A wish list is a specification.</a></p>
 </div>
