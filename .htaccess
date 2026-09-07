@@ -6,10 +6,18 @@
 # emits the long URL. Making /app canonical is a CODE change, not a server one --
 # ROADMAP 479.01.
 #
+# **AND /app REDIRECTS TO /app/ BEFORE ANY OF THAT** (EngCalcs ROADMAP Task 609). A web app
+# manifest's `scope` is compared as a plain STRING PREFIX, so a scope of `/app` would also match
+# `/apple-anything` -- which is why the manifest's scope is `/app/`, and why a visitor sitting at
+# the bare `/app` would otherwise be OUTSIDE it and unable to install the app at all. The failure
+# has no symptom: no error, no warning, just an install button that never appears. This is also
+# the ordinary trailing-slash canonicalisation, so it costs nothing else.
+#
 # NO `Options` LINE HERE, DELIBERATELY. An Options directive where AllowOverride
 # Options is not granted returns 500 for EVERY request under this path, with no
 # partial symptom. The ./engcalcs symlink relies on SymLinksIfOwnerMatch instead.
 RewriteEngine On
+RewriteRule ^app$ /app/ [R=301,L]
 RewriteRule ^app/?$ /engcalcs/Looped-Network.php [L]
 #
 # THE BLOCK BELOW IS cPANEL'S AND IT IS LOAD-BEARING. Setting this vhost's PHP
