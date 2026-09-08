@@ -81,7 +81,7 @@ one with no new trust decision. It was issued 2026-08-25 and runs ten years:
 
 ## One thing that will surprise you locally
 
-The landing page's buttons point at `https://hawsedc.com/engcalcs/...` — absolute production URLs.
+The landing page's buttons point at `https://librewaternet.org/app/` — absolute production URLs.
 So "Start a model" leaves your local site and goes to the live one. That is correct for the
 published page and wrong for a local test of the link, and it is worth knowing before you conclude
 the `Alias` is broken. Reach the local suite directly at
