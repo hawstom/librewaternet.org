@@ -36,6 +36,26 @@ $page = __DIR__ . '/../features.html';
 $RELOCATE = array('486');
 
 /**
+ * Sections of the source this page does NOT show. Key: the `## ` heading, value: the reason.
+ *
+ * **THIS SITE DOES NOT ADVERTISE THE CALCULATOR SUITE** (Tom, 2026-09-11: *"I don't think that LW
+ * and its features page should advertise EC at all. I think we need to remove it."*). The two
+ * products were one program until the divorce of 2026-09-11 (EngCalcs Task 625); the network model
+ * now has its own chrome, its own front door at /app/, and no suite navbar. A features page that
+ * still listed Manning pipe flow, orifice drain time, micro-hydropower, canal seepage and rock
+ * chute sizing was selling somebody else's software on LibreWaterNet's own page.
+ *
+ * **SKIPPED HERE RATHER THAN DELETED AT THE SOURCE**, because `dev/features.md` is the EngCalcs
+ * suite's own feature list and those features are real and still shipped -- they simply are not
+ * this site's. One source of truth, two audiences; the choice of what to show belongs to the site
+ * making it. A feature genuinely shared by both belongs in a section this page keeps, and the
+ * offline/install line was moved there at the source for exactly that reason.
+ */
+$SKIP_SECTIONS = array(
+	'The calculators' => 'the single-purpose hydraulic calculators are a separate suite (Task 625)',
+);
+
+/**
  * Sentence replaced. Key: cited IDs. See the docblock -- each entry needs a reason.
  *
  * **EMPTY, AND THAT IS THE STATE IT IS MEANT TO BE IN.** An override is a DEBT, not a mechanism:
@@ -57,6 +77,7 @@ $seen = array();
 foreach (preg_split('/\R/', $md) as $line) {
 	if (preg_match('/^## (.+)$/', $line, $m)) {
 		$cur = trim($m[1]);
+		if (isset($SKIP_SECTIONS[$cur])) { $cur = null; continue; }
 		$sections[$cur] = array();
 		continue;
 	}

@@ -249,25 +249,28 @@ a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 <p class="dek">The whole list, plainly, so you can search it for the thing you need, tell us
 what is missing from it, or measure it against whatever you use today.</p>
 
-<!-- **"they are one program" WAS TRUE UNTIL 2026-09-11 AND IS NOT NOW** (EngCalcs Task 625). The
-     network model moved out of the calculator suite's chrome that day: it has its own menu bar,
-     its own front door at /app/, and the suite's navbar is gone from it. Tom, reading this page
-     afterwards: *"Still talks about EC. Fix that."* The calculators are still by the same author
-     and still free, and they are still listed below because a reader measuring this against what
-     they use today wants to know what else is here -- but they are a SEPARATE suite at a separate
-     address, and a sentence saying otherwise is now simply false. -->
+<!-- **THIS PAGE DOES NOT ADVERTISE THE CALCULATOR SUITE** (Tom, 2026-09-11: *"I don't think that
+     LW and its features page should advertise EC at all ... All we might do is say that lwn grew
+     out of EC and sprouted its own wings and flew."*). The standfirst said "they are one program
+     and you get all of it either way", which was true until the divorce of that morning (EngCalcs
+     Task 625) and false by the afternoon; the list below also carried a twelve-item section on
+     Manning, orifices, micro-hydropower and rock chutes. Both are gone. The sentence that
+     replaced them is his own, and it is the whole of what this site says about where it came
+     from -- a lineage, not a cross-sell.
+
+     The section is skipped in tools/build-features.php, NOT deleted from the source: those
+     features are real and still shipped, they are simply not this site's. -->
 <p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
-it works today, in a browser, free, with no account. It covers the network model, and the
-single-purpose hydraulic calculators kept alongside it by the same author.
+it works today, in a browser, free, with no account. LibreWaterNet grew out of a suite of
+single-purpose hydraulic calculators, sprouted its own wings, and flew.
 <strong>The list is incomplete:</strong> a line is on it because somebody wrote a sentence for it,
 and plenty of smaller work never got one. If you only want to know whether the thing is any good,
 <a href="https://librewaternet.org/app/">diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
-<p class="count">62 things it does. <a href="#edges">And what it does not.</a></p>
+<p class="count">51 things it does. <a href="#edges">And what it does not.</a></p>
 
 <nav class="jump" aria-label="Sections">
-	<a href="#the-calculators">The calculators</a>
 	<a href="#drawing-a-water-network">Drawing a water network</a>
 	<a href="#solving-it">Solving it</a>
 	<a href="#time">Time</a>
@@ -278,24 +281,6 @@ and plenty of smaller work never got one. If you only want to know whether the t
 	<a href="#scenarios">Scenarios</a>
 	<a href="#language-licence-and-privacy">Language, licence, and privacy</a>
 </nav>
-
-<section class="act" id="the-calculators">
-<h2>The calculators <span class="ct">12</span></h2>
-<ul class="feats">
-	<li>Manning pipe flow solves in both directions: the flow from a depth, and the depth from a flow. <!-- 13 --></li>
-	<li>Every pipe and channel page checks the velocity it just computed and says when it is too fast or too slow. <!-- 52, 65 --></li>
-	<li>Orifice flow, and the time a tank takes to drain through one. <!-- 6, 12 --></li>
-	<li>Micro-hydropower, from gross head and penstock losses to the power a small site can actually deliver. <!-- 16 --></li>
-	<li>Canal seepage and conveyance efficiency, including whether lining the canal pays for itself. <!-- 29, 38 --></li>
-	<li>Rock chute sizing by the Robinson method. <!-- 30 --></li>
-	<li>Sketches drawn to scale from your own numbers, so you can see the section you just described. <!-- 11 --></li>
-	<li>A tip on every input saying what the number is, in the language of the page. <!-- 31 --></li>
-	<li>One button returns a page to a worked example that passes, so nothing is ever a blank form. <!-- 79 --></li>
-	<li>Name a calculation and copy a link to it; the link carries your inputs, and nothing is shared unless you share it. <!-- 39, 80, 228 --></li>
-	<li>Changing an input unit asks first, and says plainly that it reinterprets the numbers you typed rather than converting them. <!-- 422, 425 --></li>
-	<li>Install it from the browser you already have, and every calculator keeps working with no network at all. <!-- 2 --></li>
-</ul>
-</section>
 
 <section class="act" id="drawing-a-water-network">
 <h2>Drawing a water network <span class="ct">15</span></h2>
@@ -392,11 +377,12 @@ and plenty of smaller work never got one. If you only want to know whether the t
 </section>
 
 <section class="act" id="language-licence-and-privacy">
-<h2>Language, licence, and privacy <span class="ct">4</span></h2>
+<h2>Language, licence, and privacy <span class="ct">5</span></h2>
 <ul class="feats">
 	<li>Twenty-seven languages, and every word is evaluated for translation: the network model and the two Manning calculators go into all of them, the rest of the suite into Spanish, Portuguese, French, and Turkish, and every calculator is findable by name in every language while it waits its turn. <!-- 7, 15, 22, 34 --></li>
 	<li>Free software under the GNU GPL, source in the open. <!-- 244 --></li>
 	<li>It installs on a desktop or a phone as an app of its own, icon and all. <!-- 4, 37 --></li>
+	<li>Open it once with a connection and it keeps working with none: the whole thing is stored by your browser as you go. <!-- 2 --></li>
 	<li>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></li>
 </ul>
 </section>
