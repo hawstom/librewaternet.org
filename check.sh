@@ -145,5 +145,56 @@ for f in *.html; do
 	[ "$n" = 0 ] || bad "$f has $n em dash(es) in visitor text; the ratchet is at zero"
 done
 
+# ---------------------------------------------------------------------------
+# 7. TAGS NEST, AND THE PAGE IS THE ONLY THING THAT NOTICES WHEN THEY DO NOT
+#
+# **THIS EXISTS BECAUSE A STRAY </div> SHIPPED AND NOTHING HERE SAW IT** (2026-09-11). An edit to
+# index.html's header left one closing tag too many; the browser recovered by ending <header>
+# eleven lines early, which silently moved every following element OUT of the containers the
+# stylesheet addresses. `.plate img { width: 100% }` stopped matching and every screenshot on the
+# front page rendered at its natural size. Tom saw it as "LWN rendering is broken" -- every check
+# above passed, because none of them reads structure.
+#
+# **THE FAILURE MODE IS WHY IT IS WORTH A CHECK**: nothing 404s, no console error, the HTML looks
+# right in a diff, and the damage lands on selectors a long way from the edit. The EngCalcs
+# repository has had html_balance_check.php for exactly this since the day an unclosed <tr> shipped
+# in a calculator; this site simply never got one.
+#
+# Python's own parser rather than a dependency: it is already required by tools/build_claims.py.
+for f in *.html; do
+	[ -e "$f" ] || continue
+	python3 - "$f" <<'PYEOF' || fail=1
+import sys
+from html.parser import HTMLParser
+VOID = {'br','img','input','meta','link','hr','source','area','base','col','embed','param','track','wbr'}
+class P(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True); self.stack=[]; self.err=[]
+    def handle_starttag(self, t, a):
+        if t not in VOID: self.stack.append((t, self.getpos()[0]))
+    def handle_endtag(self, t):
+        if t in VOID: return
+        if not self.stack:
+            self.err.append('line %d: stray </%s>' % (self.getpos()[0], t)); return
+        if self.stack[-1][0] != t:
+            self.err.append('line %d: </%s> closes <%s> opened at line %d'
+                            % (self.getpos()[0], t, self.stack[-1][0], self.stack[-1][1]))
+            for i in range(len(self.stack)-1, -1, -1):
+                if self.stack[i][0] == t:
+                    del self.stack[i:]; break
+        else:
+            self.stack.pop()
+f = sys.argv[1]
+p = P(); p.feed(open(f, encoding='utf-8').read())
+left = [x for x in p.stack if x[0] not in ('html', 'body')]
+if p.err or left:
+    for e in p.err[:5]:
+        print('  FAIL  %s %s' % (f, e))
+    for t, l in left[:5]:
+        print('  FAIL  %s: <%s> opened at line %d is never closed' % (f, t, l))
+    sys.exit(1)
+PYEOF
+done
+
 if [ "$fail" = 0 ]; then say 'All checks pass.'; else say ''; say 'BLOCKING FAILURES above.'; fi
 exit "$fail"
