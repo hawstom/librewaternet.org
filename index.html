@@ -233,9 +233,11 @@ h1 .rule-under {
 /* THREE SCREENS, ONE PLATE: the hero at full width and two supporting frames under it.
    Two columns on anything but a narrow phone, where they stack rather than shrink to
    illegibility -- a screenshot at a third of a phone's width says nothing. */
+/* Three since 2026-09-12, when the crowded frame took the lead slot and pushed 0028 down here.
+   `auto-fit` rather than a typed count, so the next one that arrives does not need a rule. */
 .plate-strip {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 	gap: .55rem;
 	margin-top: .55rem;
 }
@@ -428,14 +430,25 @@ a:focus-visible, .btn:focus-visible {
 				     bordered box, live on the site. The .plate slot was always built to take an <img>
 				     in the same position, so this is the swap it was designed for.
 				     Every image is vetted publishable in the suite's dev/screenshots/INDEX.md. -->
-				<img src="img/0028.png" alt="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile along a chosen path in the pane beneath it." width="1922" height="918" decoding="async">
+				<!-- **THE LEAD FRAME IS THE CROWDED ONE** (Tom, 2026-09-12: *"This quintessence of
+				     what we've built ... Feature it prominently."*). What stood here was 0028, a
+				     clean single answer: one network, colored by pressure, one profile under it.
+				     It is the better PICTURE and it was making the weaker CLAIM, because a reader
+				     who has never heard of this cannot tell a finished program from a good demo of
+				     one feature. This frame has Settings, the Libraries, fire flow, pump energy,
+				     scenario comparison, the tables and a profile open together over the same
+				     network, and nobody mistakes that for a demo. 0028 keeps its place in the
+				     strip below, where it is still the clean answer.
+				     Every image is vetted publishable in the suite's dev/screenshots/INDEX.md. -->
+				<img src="img/0082.png" alt="One browser window showing a water network on a street map with the Settings box, the Libraries box, a fire flow analysis, a pump energy report, a scenario comparison and a hydraulic profile all open over it." width="1920" height="921" decoding="async">
 				<div class="plate-strip">
+					<img src="img/0028.png" alt="A water network on a street map of Novato, California, colored by pressure, with a hydraulic profile along a chosen path in the pane beneath it." width="1922" height="918" loading="lazy" decoding="async">
 					<img src="img/0007.png" alt="A water network drawn over a site plan with hand-placed labels, leader lines and a title block." width="1917" height="919" loading="lazy" decoding="async">
 					<img src="img/0026.png" alt="The same software with its entire interface in Romanian." width="1917" height="919" loading="lazy" decoding="async">
 				</div>
-				<figcaption class="plate-cap">EPA&rsquo;s Net3 on real streets, read against its own profile &middot;
-					a design drawing on a site plan &middot; the interface in Romanian &middot;
-					<a href="screenshots.html">eleven more, annotated</a></figcaption>
+				<figcaption class="plate-cap">Settings, Libraries, fire flow, pump energy, scenarios, tables and a profile, all open on one network &middot;
+					EPA&rsquo;s Net3 on real streets &middot; a design drawing on a site plan &middot; the interface in Romanian &middot;
+					<a href="screenshots.html">twelve more, annotated</a></figcaption>
 				<dl class="titleblock">
 					<div><dt>Network</dt><dd>EPA Net3</dd></div>
 					<div><dt>Junctions</dt><dd>92</dd></div>
