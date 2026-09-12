@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://librewaternet.org/img/0007.png">
 <meta property="og:image:width" content="1917">
 <meta property="og:image:height" content="919">
-<meta property="og:image:alt" content="A water network on a street map of Novato, California, coloured by pressure, with a hydraulic profile beneath it.">
+<meta property="og:image:alt" content="A water network on a street map of Novato, California, colored by pressure, with a hydraulic profile beneath it.">
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
@@ -406,7 +406,7 @@ a:focus-visible, .btn:focus-visible {
 			<a href="#what">What exists</a>
 			<a href="#languages">Languages</a>
 			<a href="#why">Why</a>
-			<a href="#licence">Licence</a>
+			<a href="#license">License</a>
 		</nav>
 	</header>
 
@@ -416,7 +416,7 @@ a:focus-visible, .btn:focus-visible {
 				<p class="label">A community-owned project, built in the open</p>
 				<h1>World<br>owned.<span class="rule-under"></span></h1>
 				<p class="lede"><em>Water network design and management software for everybody everywhere.</em></p>
-				<p class="lede-2"><strong>Looking for stakeholders, not for money.</strong> We are building this together, and the people who use it should own it. Come and tell us what it has to be.</p>
+				<p class="lede-2"><strong>Looking for stakeholders, not for money.</strong> We are building this together, and the people who use it should own it. Come and tell us what you need it to be.</p>
 				<div class="actions">
 					<a class="btn btn-go" href="https://librewaternet.org/app/">Start a model now</a>
 					<a class="btn btn-ghost" href="#stakeholders">See who we need</a>
@@ -453,7 +453,7 @@ a:focus-visible, .btn:focus-visible {
 					<div><dt>Network</dt><dd>EPA Net3</dd></div>
 					<div><dt>Junctions</dt><dd>92</dd></div>
 					<div><dt>Engine</dt><dd>EPANET</dd></div>
-					<div><dt>Licence</dt><dd>GPL v3+</dd></div>
+					<div><dt>License</dt><dd>GPL v3+</dd></div>
 				</dl>
 			</figure>
 		</div>
@@ -462,11 +462,11 @@ a:focus-visible, .btn:focus-visible {
 	<section id="stakeholders" class="invite">
 		<span class="label">Looking for stakeholders, not for money</span>
 		<h2>Four kinds of person we are looking for</h2>
-		<p>There is nothing to buy here for now, no donation button, and everything you see is yours and ours together. We are asking for your time, your judgement, your experience, the bug you hit, the thing you need it to do next. What the project is short of is people who will steer it; and it is early enough that steering still changes where it goes.</p>
+		<p>There is no intention to offer anything to buy here or add a donation button, and everything you see is yours and ours together. We are asking for your time, your judgement, your experience, the bug you hit, and the thing you need it to do next. What the project is short of is people who will steer it; and it is early enough that steering still changes where it goes.</p>
 		<div class="roles">
 			<article>
 				<h3>Advisors</h3>
-				<p>How should a piece of software be owned by the people who depend on it? We do not know yet. There is no foundation and no governing document; that is why we are asking before writing one.</p>
+				<p>How should a piece of software be owned by the people who depend on it? We do not know yet. We have directors-in-waiting, and founder Tom Haws, P.E. is an <a href="https://npsge.org">experienced nonprofit CEO</a>, but we have chosen to wait for clarity before forming a foundation or writing a governing document; that is why we are asking before writing one.</p>
 			</article>
 			<article>
 				<h3>Bug reports</h3>
@@ -474,11 +474,11 @@ a:focus-visible, .btn:focus-visible {
 			</article>
 			<article>
 				<h3>Power users with wish lists</h3>
-				<p>People who model networks all day know what is missing better than we do. Tell us what you need it to do, in the order you need it. A wish list is a specification.</p>
+				<p>People who model networks all day know what is missing better than we do. Tell us what you need it to do, in the order you need it. Your wish list is our specification.</p>
 			</article>
 			<article>
 				<h3>Non-profit directors</h3>
-				<p>Water systems get designed and run by organisations without a software budget. If that is you, we want to hear what stands between your engineers and a model they can actually use.</p>
+				<p>Water systems get designed and run by organizations without a software budget. If that is you, we want to hear what stands between your engineers and a model they can actually use.</p>
 			</article>
 		</div>
 		<p class="note">If the answer to a question is &ldquo;we have not decided that yet,&rdquo; we would rather say so and hear from you than publish a plan nobody outside the project has read.</p>
@@ -491,19 +491,19 @@ a:focus-visible, .btn:focus-visible {
 	<section id="what">
 		<div class="sec-head">
 			<span class="label">What exists today</span>
-			<h2>It is not a proposal. It runs.</h2>
+			<h2>It is not a proposal. It runs, it's robust, and it's waiting for your feature request.</h2>
 		</div>
-		<p style="max-width:60ch;margin:0 0 2.2rem">If you came here wanting a water network model rather than a project to join: it is built, it is free, and you can open it right now. It solves, it draws, and it letters the map well enough to put in a report.</p>
+		<p style="max-width:60ch;margin:0 0 2.2rem">If you came here wanting a water network model rather than a project to join: it is built, it is free, and you can open it right now. It solves, it draws, and it creates report-quality annotation.</p>
 		<div class="legend">
 			<article>
 				<div class="swatch" id="sw-draw"></div>
 				<h3>Draw</h3>
-				<p>Junctions, reservoirs, tanks, pipes, pumps and valves, placed on a map. Put it on real ground with a street or satellite basemap behind it, or keep it schematic. Open an EPANET <code>.inp</code> file and it tells you every difference it found rather than dropping anything quietly. It also opens the <code>.net</code> file EPANET saves, which we read by working the format out from examples, and the page tells you to trust that route less. Write an <code>.inp</code> back out and every number you did not change comes back character for character.</p>
+				<p>Junctions, reservoirs, tanks, pipes, pumps, valves, and annotation text, placed on your XY system or on a Lat/Lon map (WGS 84 / Pseudo-Mercator EPSG:3857) with street or satellite view. Open an EPANET <code>.inp</code> file and it tells you every difference it found rather than ignoring anything quietly. It also opens the <code>.net</code> file EPANET saves, which we decoded by working the format out from examples, and the page tells you to trust that route less. Write an <code>.inp</code> back out and every number you did not change comes back character for character.</p>
 			</article>
 			<article>
 				<div class="swatch" id="sw-solve"></div>
 				<h3>Solve</h3>
-				<p>Pressures and flows from the global gradient method, or from the EPANET engine itself running in your browser. Solve one instant, or run a whole day, with demand patterns, simple controls, tanks that fill and drain, and a bar along the bottom that plays the run or steps to any moment in it. Over a run the EPANET engine also answers the water quality questions: how old the water reaching a point is, how much of it came from a source you name, and how a chemical residual decays on the way. The same run says how long each pump ran, the power it drew, the energy it used and what that cost. Colour the map by pressure, flow, velocity or head loss, in any of 41 colour ramps.</p>
+				<p>Pressures and flows internally from the global gradient method, or from the EPANET engine itself running in your browser. Solve one moment, or run an extended period, with demand patterns, simple controls, tanks that fill and drain, with animation play and step controls. For an extended period simulation, the EPANET engine also answers water quality questions: how old the water reaching a point is, how much of it came from a source you name, and how a chemical residual decays on the way. The same run says how long each pump ran, the power it drew, the energy it used and what that cost. Color the map by pressure, flow, velocity or head loss, in any of 41 color ramps.</p>
 			</article>
 			<article>
 				<div class="swatch" id="sw-publish"></div>
@@ -571,7 +571,7 @@ a:focus-visible, .btn:focus-visible {
 		</div>
 		<div class="two-col">
 			<div>
-				<p>A water system serving ten thousand people has the same physics as one serving a million, and the engineer in front of it deserves the same tools. Software budgets are not handed out the way water problems are. That is the reason it is free; the licence below is what makes that permanent.</p>
+				<p>A water system serving ten thousand people has the same physics as one serving a million, and the engineer in front of it deserves the same tools. Software budgets are not handed out the way water problems are. That is the reason it is free; the license below is what makes that permanent.</p>
 			</div>
 			<div>
 				<p>So this is a mission and not a product, which is also why we are asking for stakeholders instead of customers. A product needs buyers. What this needs is people who will say what it has to be, and then hold us to it.</p>
@@ -579,15 +579,15 @@ a:focus-visible, .btn:focus-visible {
 		</div>
 	</section>
 
-	<section id="licence">
+	<section id="license">
 		<div class="sec-head">
-			<span class="label">Licence</span>
+			<span class="label">License</span>
 			<h2>World owned means yours to keep</h2>
 		</div>
 		<div class="two-col">
 			<div>
 				<p>LibreWaterNet is <strong>GNU GPL v3 or later</strong>. There is no paid tier, no free tier that can be taken away later, and no waiting period before the source is yours. Fork it, run it on your own server, teach from it, ship it inside something else that is also free.</p>
-				<p class="note">What is published under that licence stays published: this code cannot be made proprietary later, by anyone, including us. Nobody can promise what comes next, only that what you already have stays yours.</p>
+				<p class="note">What is published under that license stays published: this code cannot be made proprietary later, by anyone, including us. Nobody can promise what comes next, only that what you already have stays yours.</p>
 			</div>
 			<div>
 				<p><strong>Your model stays on your machine.</strong> Every calculation runs in your own browser; nothing you draw is uploaded unless you turn on a feature that needs it, and each one asks first. There is no account to make. Install it and it keeps working with the network cable out.</p>
@@ -627,7 +627,7 @@ a:focus-visible, .btn:focus-visible {
 		['J7', 'J9'], ['J9', 'T1'], ['J9', 'J8'], ['J8', 'J6'],
 		['J4', 'J10'], ['J10', 'J11'], ['J11', 'J8']
 	];
-	// Colour by value, the way the app does — five steps of one ramp.
+	// Color by value, the way the app does — five steps of one ramp.
 	var RAMP = ['#9EC3E3', '#6FA8DC', '#4E8BC9', '#2E6FB0', '#1B5FA8'];
 	var CLASS = [2, 4, 3, 3, 4, 4, 3, 2, 2, 3, 4, 1, 1, 2, 1, 0];
 
@@ -660,7 +660,7 @@ a:focus-visible, .btn:focus-visible {
 			stroke: RAMP[CLASS[i]], 'stroke-width': w, 'stroke-linecap': 'round'
 		}));
 		// The moving dashes are the water. Drawn as a second, lighter stroke
-		// over the pipe so the pipe's own colour still reads.
+		// over the pipe so the pipe's own color still reads.
 		var f = el('line', {
 			x1: a[0], y1: a[1], x2: b[0], y2: b[1],
 			stroke: 'rgba(255,255,255,.55)', 'stroke-width': Math.max(1, w - 1.6),
