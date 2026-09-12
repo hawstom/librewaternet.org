@@ -57,7 +57,7 @@
 	--step-2:  clamp(1.6rem, 1.35rem + 1.1vw, 2.2rem);
 	--step-3:  clamp(2.4rem, 1.7rem + 3.2vw, 4.6rem);
 }
-:root:not([data-theme="light"]) { color-scheme: light; }
+:root:not([data-theme="light"]) {color-scheme: light; }
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) {
 		--paper:      #10151A;
@@ -117,8 +117,8 @@ header.tb h1 {
 	letter-spacing: .1em; text-transform: uppercase;
 	color: var(--ink-2); line-height: 1.9; text-align: right;
 }
-.tb-meta a { color: var(--water); }
-.dek { font-size: var(--step-1); color: var(--ink-2); max-width: 60ch; margin: 0 0 12px; line-height: 1.45; }
+.tb-meta a {color: var(--water); }
+.dek { font-size: var(--step-1);color: var(--ink-2); max-width: 60ch; margin: 0 0 12px; line-height: 1.45; }
 .standfirst { max-width: 66ch; margin: 0 0 46px; }
 
 /* ---- section ---- */
@@ -138,7 +138,7 @@ figure.plate { margin: 30px 0 0; }
 	font-weight: 600; font-size: var(--step-1); letter-spacing: -.012em;
 	margin: 0 0 6px; text-wrap: balance;
 }
-.plate .cap { color: var(--ink-2); margin: 0 0 16px; max-width: 68ch; }
+.plate .cap {color: var(--ink-2); margin: 0 0 16px; max-width: 68ch; }
 .plate .shot {
 	border: 1px solid var(--rule); background: var(--paper-2);
 	padding: 6px; border-radius: 2px;
@@ -155,7 +155,7 @@ figure.plate { margin: 30px 0 0; }
 	letter-spacing: .08em; text-transform: uppercase;
 	color: var(--ink-2); margin-top: 9px;
 }
-.plate figcaption .n { color: var(--water); }
+.plate figcaption .n {color: var(--water); }
 .plate .note { max-width: 68ch; margin: 14px 0 0; }
 
 /* ---- the honest footer ---- */
@@ -170,16 +170,16 @@ figure.plate { margin: 30px 0 0; }
 }
 .level p { max-width: 66ch; margin: 0 0 12px; }
 .level p:last-child { margin-bottom: 0; }
-.level a { color: var(--pencil); }
+.level a {color: var(--pencil); }
 
 footer.tb2 {
 	border-top: 2px solid var(--ink); margin-top: 52px; padding-top: 16px;
 	font-family: var(--font-cond);
 	font-weight: 500; font-size: var(--step--1);
-	letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2);
+	letter-spacing: .1em; text-transform: uppercase;color: var(--ink-2);
 	display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between;
 }
-footer.tb2 a { color: var(--water); }
+footer.tb2 a {color: var(--water); }
 
 a:focus-visible, img:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
@@ -201,8 +201,8 @@ a:focus-visible, img:focus-visible { outline: 2px solid var(--water); outline-of
 why that matters.</p>
 
 <p class="standfirst">The network in most of these is EPA&rsquo;s own Net3, placed on the real streets of
-Novato, California. The one drawn on a site plan is a small commercial development. Nothing here is
-a mock-up: every frame is the program running in a browser, and the numbers on them are its own.</p>
+Novato, California. The one drawn on a site plan is a small commercial development. And everything here is 
+easy for you to reproduce using the provided examples.</p>
 
 
 <section class="act">
@@ -211,7 +211,7 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 <figure class="plate">
 	<h3>Seven worked examples, open on arrival</h3>
 	<p class="cap">You do not begin with an empty screen. The gallery opens with complete networks,
-	EPA&rsquo;s reference models among them, that load, draw and solve in one click.</p>
+	EPA&rsquo;s reference models among them, that load and solve in one click.</p>
 	<div class="shot"><img src="img/0005.png" loading="lazy" decoding="async" width="1920" height="919"
 		alt="The examples gallery, showing seven cards each with a thumbnail of a complete water network."></div>
 	<figcaption><span class="n">Plate 1</span><span>Examples gallery</span></figcaption>
@@ -222,7 +222,7 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 <figure class="plate">
 	<h3>Your EPANET file opens, and it tells you what it did with it</h3>
 	<p class="cap">Importing <code>Net3.inp</code>: 97 junctions, reservoirs and tanks, 119 pipes,
-	pumps and valves, in GPM, then a plain list of what came across and what did not.</p>
+	pumps and valves, in GPM, then a plain list of what came across and what did not. (Chemical analysis is now implemented.)</p>
 	<div class="shot"><img src="img/0009.png" loading="lazy" decoding="async" width="1918" height="919"
 		alt="The import report after reading an EPANET .inp file, listing what was read and what differed."></div>
 	<figcaption><span class="n">Plate 2</span><span>EPANET import</span></figcaption>
@@ -249,13 +249,13 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 
 <figure class="plate">
 	<h3>Scenarios: the same network under different demands</h3>
-	<p class="cap">Base and a Daily Flow case, with the three values that belong to the scenario
-	alone counted in the status bar and ringed on the map.</p>
+	<p class="cap">Base and a Daily Flow case, with the three values unique to the scenario
+	counted in the status bar and circled on the map.</p>
 	<div class="shot"><img src="img/0006.png" loading="lazy" decoding="async" width="1161" height="918"
 		alt="The scenario menu open over a network, listing Base and Daily Flow with options to add, rename or delete."></div>
 	<figcaption><span class="n">Plate 4</span><span>Scenarios</span></figcaption>
-	<p class="note">A scenario holds only what it changes. Everything else stays the one network, so
-	fixing a pipe fixes it everywhere.</p>
+	<p class="note">A scenario holds only its differences from the base model. Everything else stays in the base model, so
+	fixing a base asset fixes it everywhere.</p>
 </figure>
 </section>
 
@@ -270,9 +270,8 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 	<div class="shot"><img src="img/0020.png" loading="lazy" decoding="async" width="1920" height="920"
 		alt="A water network positioned over a street map of a whole town, with corner handles and a ground distance readout."></div>
 	<figcaption><span class="n">Plate 5</span><span>Georeferencing</span></figcaption>
-	<p class="note">A drawing that came out of a CAD file has coordinates that mean nothing
-	geographic. This is the step that puts it on the Earth. Nothing moves until you confirm,
-	and Cancel puts your original numbers back exactly.</p>
+	<p class="note">You can keep your existing networks in their original coordinate system with their original backdrop or you can convert them to 
+	geographic coordinates (latitude and longitude). The image shown is at the final step that drops it onto the world map. Nothing is converted until you confirm, and Cancel puts your original numbers back exactly.</p>
 </figure>
 
 <figure class="plate">
@@ -293,30 +292,29 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 
 <figure class="plate">
 	<h3>The map above, the profile below</h3>
-	<p class="cap">Pressure by colour across the network, and under it the ground surface, the
+	<p class="cap">Pressure by color across the network, and under it the ground surface, the
 	hydraulic grade line and the pressure band along a chosen path: 26 nodes, 79,161 ft.</p>
 	<div class="shot"><img src="img/0028.png" loading="lazy" decoding="async" width="1922" height="918"
-		alt="A network coloured by pressure on a street map, with a hydraulic profile along a path in the pane below."></div>
+		alt="A network colored by pressure on a street map, with a hydraulic profile along a path in the pane below."></div>
 	<figcaption><span class="n">Plate 7</span><span>Results and profile</span></figcaption>
 	<p class="note">The profile is the drawing that answers &ldquo;why is the pressure low up there&rdquo;, and
-	it is the one a client understands on sight.</p>
+	it is the one an executive understands on sight.</p>
 </figure>
 
 <figure class="plate">
-	<h3>Colour you choose, not colour you are given</h3>
+	<h3>Colors, colors, lovely colors</h3>
 	<p class="cap">The ColorBrewer scheme picker over satellite imagery: sequential, diverging and
-	qualitative families, with the band boundaries yours to set.</p>
+	qualitative families, with the band boundaries customizable.</p>
 	<div class="shot"><img src="img/0004.png" loading="lazy" decoding="async" width="838" height="878"
-		alt="A colour scheme picker open over a network drawn on satellite imagery."></div>
-	<figcaption><span class="n">Plate 8</span><span>Colour schemes</span></figcaption>
-	<p class="note">Cartographers&rsquo; palettes rather than a rainbow, because a rainbow&rsquo;s colours carry
-	no order. Nothing in the spectrum says which end is more, which side of a middle you are
+		alt="A color scheme picker open over a network drawn on satellite imagery."></div>
+	<figcaption><span class="n">Plate 8</span><span>Color schemes</span></figcaption>
+	<p class="note">Spectrums that convey clearly which end is more, which side of a middle you are
 	on, or which reading is the good one.</p>
 </figure>
 
 <figure class="plate">
-	<h3>A narrower window loses nothing</h3>
-	<p class="cap">The same network, the same colour key, the same settings, in a window about
+	<h3>A narrower window</h3>
+	<p class="cap">The same network, the same color key, the same settings, in a window about
 	840&nbsp;px wide, with the panels stacked into one column.</p>
 	<div class="shot"><img src="img/0003.png" loading="lazy" decoding="async" width="838" height="879"
 		alt="The same network in a much narrower browser window, with settings stacked into a single column."></div>
@@ -341,7 +339,7 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 	<p class="note">Tanks fill and drain, demands follow patterns, and the bottom pane plays the day
 	back or steps to any moment in it, through the EPANET engine, which is where the run lives. Simple
 	controls are read and honoured, and so are rule-based ones: the engine checks its rule base between
-	time steps, so a rule changes nothing on a single instant, which is the engine&rsquo;s own behaviour.</p>
+	time steps, so a rule changes nothing on a steady state analysis, which is the engine&rsquo;s own behaviour.</p>
 </figure>
 
 <figure class="plate">
@@ -362,11 +360,11 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 <h2>In your own language</h2>
 
 <figure class="plate">
-	<h3>The whole interface, not the marketing</h3>
-	<p class="cap">Romanian: menus, settings, the colour key, the status bar and the tooltips.
+	<h3>Entire interface translated</h3>
+	<p class="cap">Romanian: menus, settings, the color key, the status bar and the tooltips.
 	<em>Calculator online gratuit pentru rețele de distribuție a apei</em>.</p>
 	<div class="shot"><img src="img/0026.png" loading="lazy" decoding="async" width="1917" height="919"
-		alt="The entire interface rendered in Romanian, with a network on a street map coloured by pressure."></div>
+		alt="The entire interface rendered in Romanian, with a network on a street map colored by pressure."></div>
 	<figcaption><span class="n">Plate 12</span><span>27 languages</span></figcaption>
 	<p class="note">Twenty-seven languages, and the translation is of the working interface rather
 	than a front page. Some are stronger than others and the quality of each is recorded openly. Newly
@@ -379,19 +377,19 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 <h2>On a phone</h2>
 
 <figure class="plate tall">
-	<h3>The whole menu, under the thumb that opened it</h3>
-	<p class="cap">On display in one frame: the Water menu open directly beneath its own button,
-	carrying Settings, Libraries, Profile, Tables, Scenarios, Calculate, and the EPANET run report;
-	the network drawn at street level over satellite imagery behind it; the flow colour key down
+	<h3>The Water menu open</h3>
+	<p class="cap">On display in one frame: the Water menu open directly beneath its respective button,
+	carrying Settings, Libraries, Profile, Tables, Scenarios, Calculate, and the EPANET run report (missing Fire flow and Pump Energy);
+	the network drawn at street level over satellite imagery behind it; the flow color key down
 	the right-hand side; and the units, the friction method, and the scenario stated along the
 	bottom.</p>
 	<div class="shot"><img src="img/0047.png" loading="lazy" decoding="async" width="1080" height="2073"
-		alt="The software on a phone held upright: a menu open beneath its button, a water network drawn on satellite imagery, a flow colour key at the right, and a status line along the bottom."></div>
+		alt="The software on a phone held upright: a menu open beneath its button, a water network drawn on satellite imagery, a flow color key at the right, and a status line along the bottom."></div>
 	<figcaption><span class="n">Plate 13</span><span>Phone, tall</span></figcaption>
 	<p class="note">And although you of course prefer working on your PC, it works also on a phone in
 	tall mode. It is the same program rather than a cut-down one, the same menu over the same
 	drawing, with the page&rsquo;s own headings dropped and the menu wording reduced to icons
-	to make the room.</p>
+	to make it fit.</p>
 </figure>
 
 <figure class="plate tall">
@@ -401,20 +399,18 @@ a mock-up: every frame is the program running in a browser, and the numbers on t
 	<div class="shot"><img src="img/0043.png" loading="lazy" decoding="async" width="1080" height="2073"
 		alt="A find-and-replace panel filling a phone screen, showing the search terms, a Replace button, and a list of thirteen matching pipes."></div>
 	<figcaption><span class="n">Plate 14</span><span>Editing on a phone</span></figcaption>
-	<p class="note">Editing a network is not only drawing it. This is the panel that changes thirteen
-	pipes in one go, and it is the desktop panel at the width it has to fit into.</p>
+	<p class="note">Editing a network is not only drawing it. This is one of three places where you can change thirteen
+	pipes in one go, and it is the same desktop interface fitted to a phone screen.</p>
 </figure>
 </section>
 
 
 <div class="level">
 	<h2>What these pictures are not</h2>
-	<p>They are a selection. Fourteen frames chosen from a larger set, and the ones left out were
-	left out for a reason: nearly all of them show a rough edge we have since fixed, and publishing
-	one of those would be showing you a bug that is no longer there.</p>
+	<p>They are not all up to date, and they are not everything. They are just fourteen frames to give you some ideas of what you can do with this.</p>
 	<p>The software is free, it runs
 	in your browser, and nothing you draw leaves your machine except through a feature you turn on,
-	which asks first. The test that settles it is your own network, and it costs you a few minutes.</p>
+	which asks first. Your definitive shopping test is on your own network, and it costs you just a few minutes to upload for a spin.</p>
 </div>
 
 <footer class="tb2">
