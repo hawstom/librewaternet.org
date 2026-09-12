@@ -393,7 +393,11 @@ h1 .rule-under {
 .actions-note {
 	font-family: var(--cond);
 	text-transform: uppercase; letter-spacing: .09em;
-	font-size: .82rem; color: var(--ink-soft);
+	/* --ink-2, not --ink-soft: the latter is defined in neither theme, and an undefined custom
+	   property on an INHERITED property falls back to the inherited value rather than erroring --
+	   so this read full-strength --ink and silently ignored the muting its own name promises.
+	   Found 2026-09-12; --ink-2 is the secondary tone every other muted line on the site uses. */
+	font-size: .82rem; color: var(--ink-2);
 	margin-top: .8rem;
 }
 .actions-note a { color: inherit; }
@@ -504,8 +508,19 @@ code {
 .invite h2 { font-size: var(--step-2); font-weight: 600; }
 .invite .label { color: var(--pencil); }
 .invite p { margin: 0; max-width: 56ch; }
-.invite .btn { border-color: var(--pencil); color: var(--pencil); }
-.invite .btn:hover, .invite .btn:focus-visible { background: var(--pencil); color: var(--paper); }
+/* The invitation's two asks are GHOSTS, and the bespoke override they used to have was a bug.
+   It set a pencil border and pencil TEXT and never cleared .btn's `background: var(--water)`, so
+   pencil sat on a water plate at a measured 1.22:1 -- which is what Tom saw and called painful
+   (2026-09-12). Its own hover rule gave the intent away: a transparent resting state.
+   Reusing .btn-ghost rather than re-clearing the background by hand, so there is one outline
+   button on this page and this rule only says which colour it wears here. Write-to-us and
+   open-an-issue are a matched, equal-weight pair, and the page's real primary calls ("Start a
+   model now", "Open the app") should not have to compete with them.
+   Pencil on paper measures 5.88:1 at rest and 5.96:1 on hover -- both clear AA. */
+.invite .btn-ghost { color: var(--pencil); border-color: var(--pencil); }
+.invite .btn-ghost:hover, .invite .btn-ghost:focus-visible {
+	background: var(--pencil); color: var(--paper); border-color: var(--pencil);
+}
 /* The four kinds of person, inside the invitation box. Two up, because the
    ask is the page's subject and each one needs a sentence, not a caption. */
 .roles { display: grid; gap: 1.7rem 2.2rem; grid-template-columns: 1fr; }
