@@ -157,35 +157,31 @@ section.act > h2 {
 }
 section.act > h2 .ct { color: var(--ink-2); float: right; letter-spacing: .06em; }
 
-/* The edges note uses an ordinary list, which this page had no style for: the feature list is
-   `ul.feats` and styles itself out of existence. Three short lines beat a 95-word paragraph
-   (2026-09-07). */
-#edges ul { margin: .4rem 0 0; padding-left: 1.15em; }
-#edges li { margin: .35rem 0; max-width: 68ch; }
-
-/* Two columns where there is room. A feature is one sentence and never splits
-   across a column, so the reader's eye never has to hunt for the other half. */
-ul.feats {
-	list-style: none; margin: 0; padding: 0;
-	columns: 1; column-gap: clamp(24px, 4vw, 54px);
+/* ONE COLUMN, ONE FEATURE PER ROW (Tom, 2026-09-12). This was a two-column list, and two
+   columns are what made 37 one-sentence rows read as a sprawl -- the eye has to find where the
+   left column ends and the right begins, once per section. A table row spans the measure, the
+   rule under it runs the full width, and the order down the page is the order it is written in.
+   `max-width` is on the cell's text, not on the row, so the rules stay flush. */
+table.feats {
+	width: 100%; border-collapse: collapse;
+	margin: 0; table-layout: fixed;
 }
-@media (min-width: 780px) { ul.feats { columns: 2; } }
-ul.feats li {
-	break-inside: avoid; -webkit-column-break-inside: avoid;
-	padding: 14px 0 14px 22px;
+table.feats td {
+	padding: 13px 0 13px 22px;
 	border-bottom: 1px solid var(--rule-soft);
 	position: relative;
-	max-width: 62ch;
+	text-align: left; vertical-align: top;
+	hyphens: none; overflow-wrap: break-word;
 }
 /* The drafting tick. A red pencil mark against each line, the way somebody
    checking a drawing marks off what they have verified. */
-ul.feats li::before {
+table.feats td::before {
 	content: ""; position: absolute; left: 0; top: 1.28em;
 	width: 9px; height: 9px;
 	border-left: 2px solid var(--pencil); border-bottom: 2px solid var(--pencil);
 	transform: rotate(-45deg) translateY(-2px);
 }
-ul.feats code {
+table.feats code {
 	font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 	font-size: .88em; background: var(--water-soft);
 	padding: .05em .32em; border-radius: 2px;
@@ -257,8 +253,7 @@ a:focus-visible { outline: 2px solid var(--water); outline-offset: 3px; }
      list usually is, on purpose, and that the browser's own find is how to use it. His own
      sentence, with the keystroke widened -- Ctrl+F is not the shortcut on a Mac, and naming only
      one would send half the readers hunting. -->
-<p class="dek">A little more detailed than a conventional features list, in the interest of
-completeness. Use your browser&rsquo;s find (Ctrl+F, or &#8984;F on a Mac) to search it.</p>
+<p class="dek">Everything here works today, in a browser, free, with no account.</p>
 
 <!-- **THIS PAGE DOES NOT ADVERTISE THE CALCULATOR SUITE** (Tom, 2026-09-11: *"I don't think that
      LW and its features page should advertise EC at all ... All we might do is say that lwn grew
@@ -271,15 +266,12 @@ completeness. Use your browser&rsquo;s find (Ctrl+F, or &#8984;F on a Mac) to se
 
      The section is skipped in tools/build-features.php, NOT deleted from the source: those
      features are real and still shipped, they are simply not this site's. -->
-<p class="standfirst">This is a list of what has been built, not of what is planned. Everything on
-it works today, in a browser, free, with no account. LibreWaterNet grew out of a suite of
-single-purpose hydraulic calculators, sprouted its own wings, and flew.
-<strong>The list is incomplete:</strong> a line is on it because somebody wrote a sentence for it,
-and plenty of smaller work never got one. If you only want to know whether the thing is any good,
+<p class="standfirst">
+<strong>This list is long and detailed, but incomplete</strong>. Use your browser&rsquo;s find (Ctrl+F, or &#8984;F on a Mac) to search for a feature you are interested in. If you only want to know whether the thing is any good,
 <a href="https://librewaternet.org/app/">diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
-<p class="count">37 things it does. <a href="#edges">And what it does not.</a></p>
+<p class="count">37 things it does.</p>
 
 <nav class="jump" aria-label="Sections">
 	<a href="#the-network-model">The network model</a>
@@ -295,122 +287,113 @@ and plenty of smaller work never got one. If you only want to know whether the t
 
 <section class="act" id="the-network-model">
 <h2>The network model <span class="ct">3</span></h2>
-<ul class="feats">
-	<li>A looped water network solved in the page by the global gradient method, with nothing to install. <!-- 146 --></li>
-	<li>Or solved by EPANET 2.3.5 itself, the EPA&rsquo;s own engine compiled into the page, and where the two engines disagree the page tells you by how much. <!-- 451, 419 --></li>
-	<li>Answers follow your edits as you make them, and on a network large enough for that to drag, you can turn it off. <!-- 467 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>A looped water network solved in the page by the global gradient method, with nothing to install. <!-- 146 --></td></tr>
+	<tr><td>Or solved by EPANET 2.3.5 itself, the EPA&rsquo;s own engine compiled into the page, and where the two engines disagree the page tells you by how much. <!-- 451, 419 --></td></tr>
+	<tr><td>Answers follow your edits as you make them, and on a network large enough for that to drag, you can turn it off. <!-- 467 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="starting-from-what-you-already-have">
 <h2>Starting from what you already have <span class="ct">7</span></h2>
-<ul class="feats">
-	<li>Opens EPANET <code>.inp</code> files, takes the part it supports, and files a note on the element concerned for every difference rather than dropping it quietly. <!-- 196, 483 --></li>
-	<li>Net1, Net2, Net3, Elm Street Center and a Net3 placed on the world, each one click away. <!-- 314, 257, 454 --></li>
-	<li>Draw in latitude and longitude over a street map or satellite imagery, with the same tools you use anywhere else. <!-- 145 --></li>
-	<li>An x/y network you already have can be placed on the world, then moved, scaled and rotated onto its real ground. <!-- 476 --></li>
-	<li>Your own site plan or aerial photograph under the drawing, scaled by picking two points on it or by typing the size of a pixel. <!-- 276 --></li>
-	<li>Type a place name and the map goes there, if you turn that on. <!-- 437 --></li>
-	<li>Ground elevations read from terrain data and typed into the document, never replacing a number you already have without your having asked for exactly that. <!-- 497 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Opens EPANET <code>.inp</code> files, takes the part it supports, and files a note on the element concerned for every difference rather than dropping it quietly. <!-- 196, 483 --></td></tr>
+	<tr><td>Net1, Net2, Net3, Elm Street Center and a Net3 placed on the world, each one click away. <!-- 314, 257, 454 --></td></tr>
+	<tr><td>Draw in latitude and longitude over a street map or satellite imagery, with the same tools you use anywhere else. <!-- 145 --></td></tr>
+	<tr><td>An x/y network you already have can be placed on the world, then moved, scaled and rotated onto its real ground. <!-- 476 --></td></tr>
+	<tr><td>Your own site plan or aerial photograph under the drawing, scaled by picking two points on it or by typing the size of a pixel. <!-- 276 --></td></tr>
+	<tr><td>Type a place name and the map goes there, if you turn that on. <!-- 437 --></td></tr>
+	<tr><td>Ground elevations read from terrain data and typed into the document, never replacing a number you already have without your having asked for exactly that. <!-- 497 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="drawing-the-network">
 <h2>Drawing the network <span class="ct">4</span></h2>
-<ul class="feats">
-	<li>Junction, reservoir, tank, pipe, pump, valve and text, placed by clicking the map. <!-- 146.02 --></li>
-	<li>ID prefixes you choose, with Apply to all for when you change your mind. <!-- 345 --></li>
-	<li>Find elements by any property, jump straight to one by ID, and set a property across everything the search found. <!-- 353, 420, 389 --></li>
-	<li>Or write the search out yourself, with AND, OR and brackets, in the words of your own language. <!-- 540 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Junction, reservoir, tank, pipe, pump, valve and text, placed by clicking the map. <!-- 146.02 --></td></tr>
+	<tr><td>ID prefixes you choose, with Apply to all for when you change your mind. <!-- 345 --></td></tr>
+	<tr><td>Find elements by any property, jump straight to one by ID, and set a property across everything the search found. <!-- 353, 420, 389 --></td></tr>
+	<tr><td>Or write the search out yourself, with AND, OR and brackets, in the words of your own language. <!-- 540 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="over-time">
 <h2>Over time <span class="ct">5</span></h2>
-<ul class="feats">
-	<li>Extended-period simulation: tanks fill and drain, demands follow their patterns, and a transport bar plays the run or steps to any moment in it. <!-- 248.01, 423, 410 --></li>
-	<li>Patterns on a reservoir head and on a pump&rsquo;s speed, beside the demand patterns. <!-- 248.02 --></li>
-	<li>Rule-based controls in EPANET&rsquo;s own words, read, written and edited beside the patterns and curves a run needs, with every level, pressure and flow in a rule put into the units your project is showing. <!-- 248.03, 460 --></li>
-	<li>A run reports its progress as it goes and hands you the engine&rsquo;s own report of it at the end. <!-- 450 --></li>
-	<li>Color limits hold still across a run, so a color means the same thing at every step. <!-- 448 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Extended-period simulation: tanks fill and drain, demands follow their patterns, and a transport bar plays the run or steps to any moment in it. <!-- 248.01, 423, 410 --></td></tr>
+	<tr><td>Patterns on a reservoir head and on a pump&rsquo;s speed, beside the demand patterns. <!-- 248.02 --></td></tr>
+	<tr><td>Rule-based controls in EPANET&rsquo;s own words, read, written and edited beside the patterns and curves a run needs, with every level, pressure and flow in a rule put into the units your project is showing. <!-- 248.03, 460 --></td></tr>
+	<tr><td>A run reports its progress as it goes and hands you the engine&rsquo;s own report of it at the end. <!-- 450 --></td></tr>
+	<tr><td>Color limits hold still across a run, so a color means the same thing at every step. <!-- 448 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="what-else-it-will-tell-you">
 <h2>What else it will tell you <span class="ct">4</span></h2>
-<ul class="feats">
-	<li>Fire flow for the whole system in one press: every junction tested against the flow your code requires, what it can actually deliver at the residual you set, and what drawing that flow does to everything around it. <!-- 530 --></li>
-	<li>Water quality over a run: how old the water reaching a point is, how much of it came from a source you name, and how a chemical residual decays as it travels, with the reaction coefficients yours to state rather than ours to guess. <!-- 566 --></li>
-	<li>What the pumps cost: how long each one ran, the power it drew, the energy it used and the money that came to, including the demand charge on the highest power drawn at any one moment. <!-- 566.01 --></li>
-	<li>Profiles: click along the map to choose the path, see ground, hydraulic grade and the pressure between them, and save the path with the project under a name you give it. <!-- 409, 433, 506, 510 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Fire flow for the whole system in one press: every junction tested against the flow your code requires, what it can actually deliver at the residual you set, and what drawing that flow does to everything around it. <!-- 530 --></td></tr>
+	<tr><td>Water quality over a run: how old the water reaching a point is, how much of it came from a source you name, and how a chemical residual decays as it travels, with the reaction coefficients yours to state rather than ours to guess. <!-- 566 --></td></tr>
+	<tr><td>What the pumps cost: how long each one ran, the power it drew, the energy it used and the money that came to, including the demand charge on the highest power drawn at any one moment. <!-- 566.01 --></td></tr>
+	<tr><td>Profiles: click along the map to choose the path, see ground, hydraulic grade and the pressure between them, and save the path with the project under a name you give it. <!-- 409, 433, 506, 510 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="reading-the-answers">
 <h2>Reading the answers <span class="ct">6</span></h2>
-<ul class="feats">
-	<li>A table for each kind of part: junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></li>
-	<li>Color the map by any value, from one control: three to seven classes, eight ways of choosing where the breaks fall, and 41 color ramps. <!-- 384, 327 --></li>
-	<li>Labels place themselves, keep a leader back to what they name if you drag them elsewhere, and where there is no room shed values in the order you chose instead of disappearing whole. <!-- 397, 398, 399, 469, 146.01, 383 --></li>
-	<li>Pipe labels lie along their pipe the way a map draws a street name, with prefixes, suffixes and a separator you choose. <!-- 329, 333, 336 --></li>
-	<li>A Text object takes several lines, bold, and a rotation that can match a pipe, and all lettering is haloed so it stays readable over the drawing underneath. <!-- 337, 342, 376 --></li>
-	<li>Text, symbols and pipes are three independent screen sizes, so a drawing reads the same at every zoom. <!-- 331, 362 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>A table for each kind of part: junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></td></tr>
+	<tr><td>Color the map by any value, from one control: three to seven classes, eight ways of choosing where the breaks fall, and 41 color ramps. <!-- 384, 327 --></td></tr>
+	<tr><td>Labels place themselves, keep a leader back to what they name if you drag them elsewhere, and where there is no room shed values in the order you chose instead of disappearing whole. <!-- 397, 398, 399, 469, 146.01, 383 --></td></tr>
+	<tr><td>Pipe labels lie along their pipe the way a map draws a street name, with prefixes, suffixes and a separator you choose. <!-- 329, 333, 336 --></td></tr>
+	<tr><td>A Text object takes several lines, bold, and a rotation that can match a pipe, and all lettering is haloed so it stays readable over the drawing underneath. <!-- 337, 342, 376 --></td></tr>
+	<tr><td>Text, symbols and pipes are three independent screen sizes, so a drawing reads the same at every zoom. <!-- 331, 362 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="scenarios">
 <h2>Scenarios <span class="ct">1</span></h2>
-<ul class="feats">
-	<li>Change a few properties without disturbing the network they belong to, switch between those scenarios, and see at a glance which elements carry an override. <!-- 201, 407, 412, 512 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Change a few properties without disturbing the network they belong to, switch between those scenarios, and see at a glance which elements carry an override. <!-- 201, 407, 412, 512 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="where-your-work-lives">
 <h2>Where your work lives <span class="ct">4</span></h2>
-<ul class="feats">
-	<li>A project is a <code>.lwn</code> file: JSON inside, on your own disk, readable without us. <!-- 246 --></li>
-	<li>As many projects as you like, each open in its own tab and saved in your own browser as you work, with the File menu remembering the recent ones and each reopening where you were looking. <!-- 146.08, 447, 352, 360 --></li>
-	<li>Writes EPANET <code>.inp</code> files back out, and every value you did not edit comes back exactly as it went in, character for character. <!-- 281 --></li>
-	<li>Open it once with a connection and it keeps working with none, and it installs on a desktop or a phone as an app of its own, icon and all. <!-- 2, 4, 37 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>A project is a <code>.lwn</code> file: JSON inside, on your own disk, readable without us. <!-- 246 --></td></tr>
+	<tr><td>As many projects as you like, each open in its own tab and saved in your own browser as you work, with the File menu remembering the recent ones and each reopening where you were looking. <!-- 146.08, 447, 352, 360 --></td></tr>
+	<tr><td>Writes EPANET <code>.inp</code> files back out, and every value you did not edit comes back exactly as it went in, character for character. <!-- 281 --></td></tr>
+	<tr><td>Open it once with a connection and it keeps working with none, and it installs on a desktop or a phone as an app of its own, icon and all. <!-- 2, 4, 37 --></td></tr>
+</tbody>
+</table>
 </section>
 
 <section class="act" id="language-license-and-privacy">
 <h2>Language, license, and privacy <span class="ct">3</span></h2>
-<ul class="feats">
-	<li>Twenty-seven languages, and every word is evaluated for translation: the network model and the two Manning calculators go into all of them, the rest of the suite into Spanish, Portuguese, French, and Turkish, and every calculator is findable by name in every language while it waits its turn. <!-- 7, 15, 22, 34 --></li>
-	<li>Free software under the GNU GPL, source in the open. <!-- 244 --></li>
-	<li>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></li>
-</ul>
+<table class="feats">
+<tbody>
+	<tr><td>Twenty-seven languages, and every word is evaluated for translation: the network model and the two Manning calculators go into all of them, the rest of the suite into Spanish, Portuguese, French, and Turkish, and every calculator is findable by name in every language while it waits its turn. <!-- 7, 15, 22, 34 --></td></tr>
+	<tr><td>Free software under the GNU GPL, source in the open. <!-- 244 --></td></tr>
+	<tr><td>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></td></tr>
+</tbody>
+</table>
 </section>
 <!-- END GENERATED FEATURES -->
-
-<div class="level" id="edges">
-	<h2>The edges</h2>
-	<p>A list like this reads as though somebody has surveyed the whole territory. Nobody has. We
-	know what we built and we know some of what we lack; we do not know the size of the gap between
-	this and the software an experienced modeller is used to.</p>
-	<p>What we do know we are missing:</p>
-	<ul>
-		<li>A run over time goes through the EPANET engine. The built-in solver has no time dimension.</li>
-		<li>Valves that set their own position, meaning pressure reducing, pressure sustaining and
-			flow control, solve through that engine too. A throttle valve solves in either.</li>
-		<li>With the engine out of reach, a network without such a valve is still solved for one
-			instant and the page says so; one holding a valve is refused by name rather than
-			answered wrongly.</li>
-	</ul>
-	<!-- BEGIN GENERATED PHONE -->
-<p>And although you of course prefer working on your PC, it works also on a phone in tall mode.</p>
-<!-- END GENERATED PHONE -->
-	<p><strong>For your privacy: nothing reaches anyone else unless you turn on a feature that
-	needs it, and each one asks separately.</strong> Today there are four: street map tiles from
-	OpenStreetMap; satellite tiles from Mapbox; place-name search, which sends what you typed to
-	OpenStreetMap&rsquo;s geocoder; and ground elevations, which send the coordinates of your nodes
-	to Mapbox. The last two ask a consent question of their own. Nothing you draw is uploaded, and
-	there is no account to make.</p>
-	<p>If something you need is not on this list, that is the most useful thing you can tell us.
-	<a href="index.html#stakeholders">A wish list is a specification.</a></p>
-</div>
 
 <div class="go">
 	<a class="btn" href="https://librewaternet.org/app/">Start a model now</a>

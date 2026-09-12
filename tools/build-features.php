@@ -11,29 +11,36 @@
  *
  *     php tools/build-features.php [path/to/engcalcs/dev/features.md]
  *
- * It rewrites only what sits between the sentinel comments in features.html. The page's design,
- * its framing prose and its honest-edges note are hand-written and are never touched.
+ * It rewrites only what sits between the sentinel comments in features.html. The page's design
+ * and its framing prose are hand-written and are never touched.
  *
- * TWO DEPARTURES FROM THE SOURCE, both deliberate, both declared below rather than done quietly:
+ * THREE DEPARTURES FROM THE SOURCE, all deliberate, all declared below rather than done quietly:
  *
- *  - RELOCATE. The phone sentence is a sanctioned claim word for word, but dev/positioning.md §3
- *    keeps mobile out of "a list of reasons to choose us" and gives it one home: the paragraph
- *    that is honest about the edges. A features page is exactly such a list, so the sentence is
- *    moved into that note VERBATIM rather than dropped or reworded.
+ *  - SKIP_SECTIONS. A whole `## area` this site does not show. See that array's own note.
+ *  - SKIP_IDS. One sentence kept off this page, with the reason.
  *  - OVERRIDE. A sentence replaced because it would be wrong on a public page. The map is EMPTY
  *    and should stay that way -- an override is a debt, not a mechanism, because it makes this
  *    page and the source disagree about the same fact. The honest fix is upstream, in
  *    features-source.md. See the array's own note.
  *
- * Both are keyed by the task IDs the source cites, so a reworded sentence still lands correctly
- * and a DELETED one stops the build instead of vanishing silently.
+ * The last two are keyed by the task IDs the source cites, so a reworded sentence still lands
+ * correctly and a DELETED one stops the build instead of vanishing silently.
  */
 
 $src = $argv[1] ?? __DIR__ . '/../../hawsedc.subset/engcalcs/dev/features.md';
 $page = __DIR__ . '/../features.html';
 
-/** Sentence sent to the honest-edges note instead of the list. Key: the source's cited IDs. */
-$RELOCATE = array('486');
+/**
+ * Sentences kept OFF this page, with the reason. Key: the source's cited IDs.
+ *
+ * `486` is the phone sentence, and it used to be RELOCATED rather than dropped: dev/positioning.md
+ * §3 keeps mobile out of "a list of reasons to choose us" and gave it one home, the honest-edges
+ * note at the foot of this page. **Tom deleted that whole note on 2026-09-12**, so the one place
+ * the claim was allowed to stand is gone and there is nowhere to relocate it TO. It is therefore
+ * not on this page at all, which §3 permits -- the rule constrains where the claim may appear, it
+ * does not require the claim. Restore the note and this goes back to being a relocation.
+ */
+$SKIP_IDS = array('486' => 'the honest-edges note that was its only sanctioned home is gone');
 
 /**
  * Sections of the source this page does NOT show. Key: the `## ` heading, value: the reason.
@@ -72,7 +79,7 @@ if ($md === false) { fwrite(STDERR, "cannot read $src\n"); exit(1); }
 
 $sections = array();
 $cur = null;
-$relocated = array();
+$skipped = array();
 $seen = array();
 foreach (preg_split('/\R/', $md) as $line) {
 	if (preg_match('/^## (.+)$/', $line, $m)) {
@@ -87,12 +94,12 @@ foreach (preg_split('/\R/', $md) as $line) {
 	$ids  = $m[2];
 	$seen[$ids] = true;
 	if (isset($OVERRIDE[$ids])) { $text = $OVERRIDE[$ids]; }
-	if (in_array($ids, $RELOCATE, true)) { $relocated[$ids] = $text; continue; }
+	if (isset($SKIP_IDS[$ids])) { $skipped[$ids] = $text; continue; }
 	$sections[$cur][] = array($text, $ids);
 }
 
-foreach ($RELOCATE as $ids) {
-	if (!isset($seen[$ids])) { fwrite(STDERR, "relocated feature $ids is no longer in the source\n"); exit(1); }
+foreach (array_keys($SKIP_IDS) as $ids) {
+	if (!isset($seen[$ids])) { fwrite(STDERR, "skipped feature $ids is no longer in the source\n"); exit(1); }
 }
 foreach (array_keys($OVERRIDE) as $ids) {
 	if (!isset($seen[$ids])) { fwrite(STDERR, "overridden feature $ids is no longer in the source\n"); exit(1); }
@@ -121,24 +128,26 @@ foreach ($sections as $title => $items) {
 	$id = slug($title);
 	$total += count($items);
 	$nav[] = '<a href="#' . $id . '">' . inline($title) . '</a>';
+	// **A SINGLE-COLUMN TABLE, one feature per row** (Tom, 2026-09-12: *"Can you please make the
+	// features list a single-column table like other sites?"*). It was a two-column `ul`, which
+	// is what made 37 one-sentence rows read as a sprawl: the eye has to find where the left
+	// column ends and the right one begins, on every section. One column of full-width rows with
+	// a rule between them is the shape a specification table has everywhere else.
 	$out = "<section class=\"act\" id=\"$id\">\n<h2>" . inline($title)
-		. ' <span class="ct">' . count($items) . "</span></h2>\n<ul class=\"feats\">\n";
+		. ' <span class="ct">' . count($items) . "</span></h2>\n<table class=\"feats\">\n<tbody>\n";
 	foreach ($items as $it) {
-		$out .= "\t<li>" . inline($it[0]) . " <!-- " . $it[1] . " --></li>\n";
+		$out .= "\t<tr><td>" . inline($it[0]) . " <!-- " . $it[1] . " --></td></tr>\n";
 	}
-	$body[] = $out . "</ul>\n</section>";
+	$body[] = $out . "</tbody>\n</table>\n</section>";
 }
 
-$html = "<p class=\"count\">" . $total . " things it does. <a href=\"#edges\">And what it does not.</a></p>\n\n"
+$html = "<p class=\"count\">" . $total . " things it does.</p>\n\n"
 	. "<nav class=\"jump\" aria-label=\"Sections\">\n\t" . implode("\n\t", $nav) . "\n</nav>\n\n"
 	. implode("\n\n", $body) . "\n";
-
-$phone = "<p>" . inline(reset($relocated)) . "</p>\n";
 
 $doc = @file_get_contents($page);
 if ($doc === false) { fwrite(STDERR, "cannot read $page\n"); exit(1); }
 $doc = splice($doc, 'FEATURES', $html, $page);
-$doc = splice($doc, 'PHONE', $phone, $page);
 file_put_contents($page, $doc);
 echo "features.html: $total features in " . count($body) . " sections, from $src\n";
 
