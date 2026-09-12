@@ -20,10 +20,26 @@
 	--rule:       #D3DAE1;
 	--rule-soft:  #E7EBEF;
 	--water:      #1B5FA8;
-	--water-2:    #4E8BC9;
+	/* The link's HOVER, and its job is to step AWAY from the page: darker than --water on paper,
+	   lighter than it on a dark ground, so it is redefined per theme below. It used to be #4E8BC9
+	   and consumed by nothing -- lighter than --water, which on near-white paper measures 3.46:1
+	   and fails AA for text, so it could not have taken this job as it stood (2026-09-12). */
+	--water-2:    #14477E;
 	--water-soft: #E6EFF8;
-	/* Red pencil. An engineer marks up a drawing in red; here it appears only
-	   on the disclaimer rule and on a correction mark, nowhere else. */
+	/* A SOLID BUTTON IS THE SAME COLOUR IN BOTH THEMES, deliberately, and that is why these three
+	   are NOT in the theme blocks below. --water has two jobs -- text on a dark ground, and a large
+	   fill -- and one token cannot do both: inverted to a light tint for text, it turns every
+	   filled button into a bright plate glowing on a near-black page. Tom, 2026-09-12: *"These
+	   colors are painful to my eyes."* So the fill holds the light-mode blue always, and carries
+	   its own near-white ink rather than --paper, which flips to near-black in dark mode and would
+	   put 1.5:1 text on it. Measured: ink on fill 6.32:1, ink on the hover fill 9.19:1. */
+	--water-fill:       #1B5FA8;
+	--water-fill-ink:   #FBFBF9;
+	--water-fill-hover: #14477E;
+	/* Red pencil. An engineer marks up a drawing in red, and it is NOT an interactive colour:
+	   the disclaimer rule, the drafting ticks, and the invitation box with its own two asks. Plain
+	   navigation is water. It had spread to every link's hover state, .count and .level, at which
+	   point it was the page's second link colour rather than an accent (2026-09-12). */
 	--pencil:     #B24428;
 
 	--sheet-max: 960px;
@@ -53,6 +69,7 @@
 		--rule:       #2C3841;
 		--rule-soft:  #1E262E;
 		--water:      #6FA8DC;
+		--water-2:    #9CC6EA;
 		--water-soft: #17242F;
 		--pencil:     #E0745A;
 		color-scheme: dark;
@@ -66,6 +83,7 @@
 	--rule:       #2C3841;
 	--rule-soft:  #1E262E;
 	--water:      #6FA8DC;
+	--water-2:    #9CC6EA;
 	--water-soft: #17242F;
 	--pencil:     #E0745A;
 	color-scheme: dark;
@@ -119,7 +137,7 @@ h3 { font-size: var(--step-1); font-weight: 650; }
 
 p { margin: 0 0 1rem; max-width: 68ch; }
 a { color: var(--water); }
-a:hover, a:focus-visible { color: var(--pencil); }
+a:hover, a:focus-visible { color: var(--water-2); }
 
 .label {
 	font-family: var(--cond);
@@ -145,7 +163,6 @@ a:hover, a:focus-visible { color: var(--pencil); }
 	letter-spacing: -.02em;
 	color: var(--ink); text-decoration: none;
 }
-.wordmark .not { color: var(--pencil); }
 
 /* **TWO WORDMARKS, ONE UPPER-LEFT.** The sister site's name sits beside our own, quieter
    than it but built from the same parts, so the pair reads as two doors rather than as a
@@ -197,11 +214,16 @@ a:hover, a:focus-visible { color: var(--pencil); }
 	font-weight: 600; text-transform: uppercase; letter-spacing: .1em;
 	font-size: 1rem;
 	padding: .62rem 1.3rem;
-	border: 1px solid var(--water);
-	background: var(--water); color: var(--paper);
+	border: 1px solid var(--water-fill);
+	background: var(--water-fill); color: var(--water-fill-ink);
 	text-decoration: none;
 }
-.btn:hover, .btn:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+/* Darkens rather than flipping to --ink, which in dark mode is near-WHITE: a hover that turns the
+   button into a white plate is the glare these tokens exist to remove, at its worst. */
+.btn:hover, .btn:focus-visible {
+	background: var(--water-fill-hover); border-color: var(--water-fill-hover);
+	color: var(--water-fill-ink);
+}
 
 /* --- sections ----------------------------------------------------------- */
 section { padding: clamp(2.4rem, 6vw, 4rem) 0 0; }
@@ -380,16 +402,15 @@ h1 .rule-under {
 }
 .lede em { font-style: italic; color: var(--water); }
 .actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.9rem; }
-.btn-primary { background: var(--water); color: var(--paper); }
 /* The one button the page is FOR. Bigger than its neighbours on purpose -- a reader
-   who wants the software and not the invitation should find it without reading. */
+   who wants the software and not the invitation should find it without reading.
+   SIZE ONLY: it used to restate .btn's three colour declarations and its own hover, which is three
+   more places to forget when the palette moves -- and .btn-primary, deleted with them, was
+   byte-identical to plain .btn (2026-09-12). */
 .btn-go {
 	font-size: 1.22rem;
 	padding: .95rem 2.1rem;
-	background: var(--water); color: var(--paper);
-	border-color: var(--water);
 }
-.btn-go:hover, .btn-go:focus-visible { background: var(--ink); border-color: var(--ink); }
 .actions-note {
 	font-family: var(--cond);
 	text-transform: uppercase; letter-spacing: .09em;
@@ -401,9 +422,6 @@ h1 .rule-under {
 	margin-top: .8rem;
 }
 .actions-note a { color: inherit; }
-.btn-primary:hover, .btn-primary:focus-visible { background: var(--ink); border-color: var(--ink); }
-.btn-ghost { color: var(--water); background: transparent; }
-.btn-ghost:hover, .btn-ghost:focus-visible { background: var(--water-soft); }
 /* --- the map ------------------------------------------------------------ */
 .plate {
 	border: 1px solid var(--rule);
@@ -552,7 +570,7 @@ footer a:hover { color: var(--water); }
 	letter-spacing: .12em; text-transform: uppercase;
 	color: var(--ink-2); margin: 0 0 14px;
 }
-.count a { color: var(--pencil); }
+.count a { color: var(--water); }
 .jump {
 	display: flex; flex-wrap: wrap; gap: 8px 22px;
 	font-family: var(--cond);
@@ -615,10 +633,12 @@ table.feats code {
 }
 .level p { max-width: 66ch; margin: 0 0 12px; }
 .level p:last-child { margin-bottom: 0; }
-.level a { color: var(--pencil); }
+.level a { color: var(--water); }
 /* ---- the one thing to do next ---- */
 .go { margin: 40px 0 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.btn-ghost { background: transparent; color: var(--water); }
+/* border-color stated rather than inherited: .btn's border is --water-fill now, which is a dark
+   blue and all but invisible against a dark page. An outline button's outline is TEXT-weight. */
+.btn-ghost { background: transparent; color: var(--water); border-color: var(--water); }
 .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--water-soft); border-color: var(--water); color: var(--water); }
 
 /* ---- THE SCREENSHOT GALLERY ----------------------------------------------
