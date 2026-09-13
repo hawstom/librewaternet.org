@@ -44,20 +44,28 @@ $NAV = array(
 	// host at /engcalcs/contact.php -- so the honest cheap answer is to point at it rather than
 	// write a second form here that would post to the same script.
 	//
-	// An ABSOLUTE URL and not a relative one: this bar is generated into seven pages and the
-	// suite is mounted at a path, not a directory beside them. It carries no `?from=` -- that
+	// **ROOT-RELATIVE, like every other link on this site** (Tom, 2026-09-12: *"What justification
+	// is there for absolute links to same site? This is making testing confusing."* There was
+	// none, and `docs/local-development.md` had been recording the cost as a curiosity: "Start a
+	// model" on a LOCAL page left the local site and opened the live one, so the one link a local
+	// preview most wants to test was the one link it could not.) A leading slash and not a bare
+	// `engcalcs/contact.php`: the bar is generated into pages at the root today, but it is the
+	// shared chrome and it must not resolve against whatever directory a page is served from --
+	// the same rule the suite's own `nav_link_absolute_check.php` holds. It carries no `?from=` -- that
 	// parameter names a CALCULATOR the invitation was clicked on, and formmail.php validates it
 	// against the real page list, so anything invented here reaches the e-mail as "not recorded"
 	// anyway. Arriving by the menu is what actually happened.
-	'https://librewaternet.org/engcalcs/contact.php' => 'Contact',
+	'/engcalcs/contact.php' => 'Contact',
 );
 /** A page that is not in the bar, and the entry that should read as current while you are on it. */
 $CHILD_OF = array('epanet.html' => 'credits.html');
 
-// The bar may name a page this repository does not own -- Contact lives in the suite -- so the
-// list of files to REWRITE is the local half of it, never the bar itself.
+// The bar may name a page this repository does not own -- Contact is served from the suite, under
+// a mount this repository has no files for -- so the list of files to REWRITE is the half of the
+// bar that IS a file here, never the bar itself. A full URL and a rooted path are both "not ours";
+// what makes a page ours is a plain relative name.
 $local = array_values(array_filter(array_keys($NAV), function ($h) {
-	return strpos($h, '://') === false;
+	return strpos($h, '://') === false && substr($h, 0, 1) !== '/';
 }));
 $pages = array_merge($local, array_keys($CHILD_OF));
 $root  = dirname(__DIR__);

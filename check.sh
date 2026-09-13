@@ -67,6 +67,23 @@ done
 
 # ---------------------------------------------------------------------------
 # 3. NO PAGE LINKS TO A LOCAL FILE THAT IS NOT HERE
+#
+# **A ROOT-RELATIVE HREF IS CHECKED, NOT SKIPPED**, and that is the whole point of this rewrite.
+# Every in-page link became `/...` on 2026-09-12 (Tom: *"What justification is there for absolute
+# links to same site? This is making testing confusing."*), and a `http*` case would have skipped
+# them as external before and an unguarded `-f` would fail them all now. Either way the check goes
+# quiet on the links this site actually has, which is the failure mode that matters: it would still
+# print PASS while a typo shipped.
+#
+# Two kinds of `/path`, and they are told apart by a DECLARATION rather than by guessing:
+#
+#   * A page of THIS repository, reached from the root -- `/index.html`, `/img/0007.png`. It
+#     resolves to a file here, so it is checked as one.
+#   * A SERVER MOUNT this repository owns no files for -- `/app/` and `/engcalcs/`, which are a
+#     rewrite and a symlink onto the suite's checkout (engcalcs Task 479). Nothing here can prove
+#     one resolves, so the prefix is declared and anything under it passes. **A path that matches
+#     no mount and no file still FAILS**, which is what keeps `/aps/` from shipping.
+MOUNTS='/app/ /engcalcs/'
 for f in *.html; do
 	[ -e "$f" ] || continue
 	# Looped in this shell, not down a pipe -- see the note in check 2.
@@ -74,7 +91,23 @@ for f in *.html; do
 		case "$href" in
 			http*|\#*|mailto:*|data:*|//*) continue ;;
 		esac
-		[ -f "${href%%#*}" ] || bad "$f links to a missing file: $href"
+		path=${href%%#*}
+		path=${path%%\?*}
+		case "$path" in
+			/*)
+				mounted=0
+				for m in $MOUNTS; do
+					case "$path" in "$m"*) mounted=1 ;; esac
+				done
+				[ "$mounted" = 1 ] && continue
+				# `/` is the front page, which the server resolves by its own DirectoryIndex.
+				[ "$path" = "/" ] && path=/index.html
+				[ -f ".$path" ] || bad "$f links to a missing file: $href"
+				;;
+			*)
+				[ -f "$path" ] || bad "$f links to a missing file: $href"
+				;;
+		esac
 	done
 done
 

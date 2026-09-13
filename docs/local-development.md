@@ -79,10 +79,29 @@ one with no new trust decision. It was issued 2026-08-25 and runs ten years:
 
 **These are NOT in any repository and must not be.** A private key in git is a private key on GitHub.
 
-## One thing that will surprise you locally
+## The links are root-relative, so a local preview really is local
 
-The landing page's buttons point at `https://librewaternet.org/app/` — absolute production URLs.
-So "Start a model" leaves your local site and goes to the live one. That is correct for the
-published page and wrong for a local test of the link, and it is worth knowing before you conclude
-the `Alias` is broken. Reach the local suite directly at
-<https://librewaternet.local/engcalcs/Looped-Network.php>.
+Every in-page link is `/...` — `/app/`, `/engcalcs/contact.php`, `/features.html` — so "Start a
+model" on a local page opens the LOCAL suite. Both setups above serve this repository at the root,
+which is what makes that work.
+
+**It used to be the other way round and that was the reason for the change** (Tom, 2026-09-12:
+*"What justification is there for absolute links to same site? This is making testing confusing."*).
+The buttons were full `https://librewaternet.org/...` URLs, so the one link a local preview most
+wants to test was the one link that left the local site — and this document recorded that as a
+curiosity to be worked around rather than as the defect it was.
+
+**Three tags are still absolute and must stay so:** `og:url` and `og:image`, because a link-preview
+crawler fetches them from its own server and cannot resolve a relative one, and `rel="canonical"`,
+which is absolute by convention here and in the suite. None of them is a link a reader clicks.
+
+**Use setup 2 to test a link into the suite.** `php -S` has no rewrite and no `Alias`, so it owns no
+`/app/` and no `/engcalcs/` — and it does not 404 them either: PHP's built-in server falls back to
+the document root's index, so `/app/`, `/engcalcs/contact.php` and `/nope.html` alike all return the
+front page with a 200. Measured 2026-09-12. That is quieter than a 404 and worse, because a link
+that silently lands on the front page looks like a link that worked. `librewaternet.local` carries
+the real `Alias` and reads this repository's own `.htaccess` (`AllowOverride All`), so both mounts
+resolve there exactly as in production.
+
+Serving this repository from anywhere but a root will break the links — `file://` browsing included.
+Use one of the two servers above.
