@@ -44,6 +44,16 @@ $NAV = array(
 	// host at /engcalcs/contact.php -- so the honest cheap answer is to point at it rather than
 	// write a second form here that would post to the same script.
 	//
+	// **THE BRAND SHIFT ON ARRIVAL WAS PUT TO HIM AND RULED NOT A DEFECT** (Tom, 2026-09-12,
+	// choosing it over both alternatives: *"Leave it -- the brand shift is honest."*). The reader
+	// lands on a navbar saying "HawsEDC Calculators", carrying the whole EngCalcs menu -- the same
+	// chrome Task 625 deliberately took OFF the app page. That is not an oversight and it is not to
+	// be re-raised: the suite is where the software lives, and somebody writing to us is writing to
+	// the same people either way. **The two rejected fixes, so neither is re-proposed:** gating
+	// `echoHeader("EngCalcsApp")` on a parameter this link would carry, which is cheap and was the
+	// recommendation; and a LWN-styled form here posting to the same `formmail.php`, which would be
+	// a second form to keep in step and would lose contact.php's 27 translations.
+	//
 	// **ROOT-RELATIVE, like every other link on this site** (Tom, 2026-09-12: *"What justification
 	// is there for absolute links to same site? This is making testing confusing."* There was
 	// none, and `docs/local-development.md` had been recording the cost as a curiosity: "Start a
