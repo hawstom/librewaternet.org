@@ -130,6 +130,10 @@ for f in *.html; do
 	grep -qi '<meta name="viewport"' "$f" || bad "$f has no viewport meta -- a phone will lay it out at 980px and shrink it"
 	grep -qi '<meta name="description"' "$f" || bad "$f has no meta description -- Google writes its own snippet from a page that is mostly a form"
 	grep -qi '<meta property="og:image"' "$f" || bad "$f has no og:image -- pasted into Slack or LinkedIn it is a bare URL"
+	# The card's own byline. Four of seven pages lacked it (fixed 2026-09-12, with the canonicals
+	# below and found the same way): without it a preview shows the bare host name where the other
+	# three pages show "LibreWaterNet", so the same site posts two different-looking cards.
+	grep -qi '<meta property="og:site_name"' "$f" || bad "$f has no og:site_name -- its card is bylined with the bare host name"
 	# **AND IT NAMES ITS OWN ADDRESS.** Four of the seven pages carried og:url and no canonical
 	# (found 2026-09-12, while auditing the absolute links Tom asked about); nothing held it, which
 	# is the whole reason three pages had one and four did not. A page with no canonical lets a
