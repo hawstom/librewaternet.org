@@ -25,9 +25,9 @@
  */
 
 /**
- * The site bar. **SIX ENTRIES, AND epanet.html IS DELIBERATELY NOT ONE.**
+ * The site bar. **epanet.html IS DELIBERATELY NOT ON IT.**
  * About EPANET is a supporting page for Credits, reached from it and about somebody else's
- * software; a seventh entry would give the bar two ranks of importance and no way to show it.
+ * software; an entry of its own would give the bar two ranks of importance and no way to show it.
  * Being on it marks Credits current instead, which is where a reader came from and where Back
  * would take them.
  */
@@ -38,11 +38,28 @@ $NAV = array(
 	'credits.html'     => 'Credits',
 	'disclosures.html' => 'Disclosures',
 	'citations.html'   => 'Citations',
+	// **CONTACT IS THE SUITE'S OWN PAGE, AND THAT IS EXPLICITLY FOR NOW** (Tom, 2026-09-12: *"LWN
+	// lacks a Contact link. For now, add the standard Contact page."*). It is the only contact
+	// form that exists, it is already translated into 27 languages, and it is served from this
+	// host at /engcalcs/contact.php -- so the honest cheap answer is to point at it rather than
+	// write a second form here that would post to the same script.
+	//
+	// An ABSOLUTE URL and not a relative one: this bar is generated into seven pages and the
+	// suite is mounted at a path, not a directory beside them. It carries no `?from=` -- that
+	// parameter names a CALCULATOR the invitation was clicked on, and formmail.php validates it
+	// against the real page list, so anything invented here reaches the e-mail as "not recorded"
+	// anyway. Arriving by the menu is what actually happened.
+	'https://librewaternet.org/engcalcs/contact.php' => 'Contact',
 );
 /** A page that is not in the bar, and the entry that should read as current while you are on it. */
 $CHILD_OF = array('epanet.html' => 'credits.html');
 
-$pages = array_merge(array_keys($NAV), array_keys($CHILD_OF));
+// The bar may name a page this repository does not own -- Contact lives in the suite -- so the
+// list of files to REWRITE is the local half of it, never the bar itself.
+$local = array_values(array_filter(array_keys($NAV), function ($h) {
+	return strpos($h, '://') === false;
+}));
+$pages = array_merge($local, array_keys($CHILD_OF));
 $root  = dirname(__DIR__);
 $n     = 0;
 
