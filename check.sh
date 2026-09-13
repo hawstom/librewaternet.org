@@ -130,6 +130,21 @@ for f in *.html; do
 	grep -qi '<meta name="viewport"' "$f" || bad "$f has no viewport meta -- a phone will lay it out at 980px and shrink it"
 	grep -qi '<meta name="description"' "$f" || bad "$f has no meta description -- Google writes its own snippet from a page that is mostly a form"
 	grep -qi '<meta property="og:image"' "$f" || bad "$f has no og:image -- pasted into Slack or LinkedIn it is a bare URL"
+	# **AND IT NAMES ITS OWN ADDRESS.** Four of the seven pages carried og:url and no canonical
+	# (found 2026-09-12, while auditing the absolute links Tom asked about); nothing held it, which
+	# is the whole reason three pages had one and four did not. A page with no canonical lets a
+	# search engine pick its own preferred address among any duplicates it finds -- and this site is
+	# reachable at more than one host name during development, which is exactly that situation.
+	#
+	# The two must AGREE. They are the same claim written for two different readers -- a crawler and
+	# a link-preview fetcher -- so a page saying one thing to Google and another to Slack is a page
+	# whose own address is in dispute. Compared literally, which is what makes a copy-paste from the
+	# page above it fail here rather than in public.
+	can=$(grep -o '<link rel="canonical" href="[^"]*"' "$f" | sed 's/.*href="//;s/"//')
+	ogu=$(grep -o '<meta property="og:url" content="[^"]*"' "$f" | sed 's/.*content="//;s/"//')
+	[ -n "$can" ] || bad "$f has no rel=canonical -- a search engine will choose its own address for it"
+	[ -z "$can" ] || [ -z "$ogu" ] || [ "$can" = "$ogu" ] \
+		|| bad "$f canonical ($can) and og:url ($ogu) name different addresses"
 done
 
 # ---------------------------------------------------------------------------
