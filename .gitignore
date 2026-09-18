@@ -15,3 +15,9 @@ Thumbs.db
 # librewaternet.org/engcalcs/ and the /app rewrite resolve (EngCalcs Task 479).
 # The link is made on the server and must not look like missing content here.
 /engcalcs
+
+# A PHP fatal in tools/ wrote this over HTTP while that directory was publicly
+# executable (closed 2026-09-18, tools/.htaccess). It is a server artefact, never
+# source, and it must not be committed: it can carry paths and request detail.
+tools/error_log
+error_log

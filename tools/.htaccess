@@ -1,0 +1,23 @@
+# BUILD TOOLING. NOTHING HERE IS FOR A VISITOR.
+#
+# **THIS DIRECTORY WAS LIVE ON THE PUBLIC WEB UNTIL 2026-09-18**, and Tom found it by noticing an
+# untracked `tools/error_log` in `git status` -- the log a PHP fatal had been writing while somebody
+# or something ran these scripts over HTTP. Measured before this file existed:
+#   https://librewaternet.org/tools/                   200, a full directory index
+#   https://librewaternet.org/tools/build-chrome.php   200, EXECUTED
+#   https://librewaternet.org/tools/build-features.php 500, EXECUTED and fatal (this wrote error_log)
+#   https://librewaternet.org/tools/build_claims.py    200, source downloadable
+#
+# So the exposure was not a listing. It was REMOTE EXECUTION of this site's own build scripts, plus
+# readable source for the one the server does not execute.
+#
+# **`Require all denied` AND NOT `Options -Indexes`.** An Options directive where AllowOverride
+# Options is not granted returns 500 for EVERY request under the path, with no partial symptom --
+# the root .htaccess here records that same reasoning, and the EngCalcs working guide records it as
+# a rule that can take a whole suite down on a host change. `Require all denied` is mod_authz_core,
+# which this host grants: it is exactly how `engcalcs/dev/.htaccess` blocks its own tooling, and
+# that block is proven on this account.
+#
+# Same family as the `.claude` exposure closed on 2026-09-16, which was also found from OUTSIDE the
+# repository rather than by any check inside it.
+Require all denied
