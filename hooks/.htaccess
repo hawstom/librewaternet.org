@@ -1,0 +1,4 @@
+# THE GIT HOOKS THIS REPOSITORY INSTALLS. Executable text, for a clone and not for a visitor. This
+# directory answered 200 with a full index until 2026-09-18.
+# `Require all denied` and NOT `Options -Indexes`: see tools/exposure-check.sh.
+Require all denied

@@ -1,0 +1,17 @@
+# WHICH TOP-LEVEL DIRECTORIES OF THIS SITE A VISITOR MAY REACH.
+#
+# The document root IS this repository -- deployment is `git pull` into ~/addon_html/librewaternet.org/
+# -- so every tracked directory is reachable over HTTP unless something says otherwise. Adding a
+# directory is therefore a decision about the public web, and this file is where it is written down.
+# `sh tools/exposure-check.sh` refuses a directory that appears here in neither state, and refuses a
+# `deny` row whose directory has stopped denying.
+#
+# Format:  <web|deny>  <directory>  <the reason, in a few words>
+# A `deny` row also needs `Require all denied` in that directory's own .htaccess. NOT
+# `Options -Indexes`: where `AllowOverride Options` is not granted, an Options line returns 500 for
+# every request under the path. See the head of tools/exposure-check.sh.
+
+web   img     the screenshots, diagrams and favicons the pages show
+deny  docs    working notes, editorial reviews and the local Apache vhost files; never visitor material
+deny  hooks   the git hooks this repository installs; tooling, and executable text
+deny  tools   the build scripts. A .php here is EXECUTED by the server; that is the 2026-09-18 exposure

@@ -20,6 +20,18 @@ RewriteEngine On
 RewriteRule ^app$ /app/ [R=301,L]
 RewriteRule ^app/?$ /engcalcs/Looped-Network.php [L]
 #
+# BLANKET DOT-PATH RULE. Every request whose path carries a directory segment beginning with a dot
+# is 404ed here, in a file this repository ships. `.git` is not a tracked directory, so no check
+# reading the checkout can ever see it, and the 403 it returns today comes from a host-wide setting
+# we do not own -- a host change can silence that without touching anything here.
+#
+# **`<FilesMatch "^\.">` WOULD NOT COVER THIS: it matches FILENAMES**, so `.git/config` is served as
+# an ordinary file because it is not itself a dotfile. That exact mistake is how
+# hawsedc.com/engcalcs/.claude/settings.json reached the open web on 2026-09-16.
+#
+# mod_alias, so it needs no AllowOverride Options and cannot 500 the site.
+RedirectMatch 404 "/\.(?!well-known/)[^/]+/"
+#
 # THE BLOCK BELOW IS cPANEL'S AND IT IS LOAD-BEARING. Setting this vhost's PHP
 # version in MultiPHP Manager WRITES it here, and it is how ea-php83 is actually
 # applied. Delete it and the vhost falls back to the account default, which is

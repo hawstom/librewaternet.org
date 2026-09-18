@@ -1,0 +1,5 @@
+# WORKING NOTES, NOT VISITOR MATERIAL. Editorial reviews, planning notes, and the local Apache
+# vhost files. This directory answered 200 with a full index -- apache/ and all -- until 2026-09-18.
+# `Require all denied` and NOT `Options -Indexes`: see tools/exposure-check.sh for why an Options
+# line can return 500 for every request under a path.
+Require all denied

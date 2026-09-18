@@ -249,6 +249,22 @@ PYEOF
 done
 
 # ---------------------------------------------------------------------------
+# NOTHING IS EXPOSED ON THE WEB BY DEFAULT
+#
+# The document root IS this repository, so every tracked directory is reachable over HTTP unless
+# something says otherwise. tools/ was publicly EXECUTABLE until 2026-09-18 -- build-chrome.php
+# answered 200 and ran, build-features.php answered 500 and ran -- and this file was green the whole
+# time. tools/docroot-declarations.txt is now where a directory is declared web-served or blocked,
+# and a directory declared neither way fails here.
+#
+# The selftest is not ceremony: this check passes by finding nothing, which is also what it does
+# when it has gone blind. It breaks a throwaway tree nine ways and requires the real check to name
+# each one.
+# ---------------------------------------------------------------------------
+sh tools/exposure-check.sh || bad "a directory of this site is exposed or undeclared (above)"
+sh tools/exposure-selftest.sh || bad "tools/exposure-check.sh no longer catches its own mutations"
+
+# ---------------------------------------------------------------------------
 # THE PRE-PUSH HOOK IS INSTALLED, AND IS THE ONE IN hooks/.
 #
 # A hook is a COPY in .git/hooks rather than core.hooksPath, because hooksPath resolves INTO THE
