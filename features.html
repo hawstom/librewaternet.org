@@ -79,7 +79,7 @@
 <a href="/app/">diving in saves time</a>.</p>
 
 <!-- BEGIN GENERATED FEATURES -->
-<p class="count">32 things it does.</p>
+<p class="count">42 things it does.</p>
 
 <nav class="jump" aria-label="Sections">
 	<a href="#solver">Solver</a>
@@ -87,6 +87,8 @@
 	<a href="#import-export-and-map-or-backdrop">Import, Export, and Map or Backdrop</a>
 	<a href="#adding-editing-and-displaying-assets-and-results">Adding, editing, and displaying assets and results</a>
 	<a href="#extended-period-simulations">Extended period simulations</a>
+	<a href="#analyses">Analyses</a>
+	<a href="#scenarios-and-alternatives">Scenarios and alternatives</a>
 	<a href="#premium-features-included-for-everybody">Premium features included for everybody</a>
 	<a href="#language-license-and-privacy">Language, license, and privacy</a>
 </nav>
@@ -113,30 +115,40 @@
 </section>
 
 <section class="act" id="import-export-and-map-or-backdrop">
-<h2>Import, Export, and Map or Backdrop <span class="ct">5</span></h2>
+<h2>Import, Export, and Map or Backdrop <span class="ct">9</span></h2>
 <table class="feats">
 <tbody>
 	<tr><td>EPANET <code>.inp</code> files import and export with data fidelity and detailed accept/ignore report. <!-- 196, 483, 281 --></td></tr>
 	<tr><td>Examples from EPANET and others, XY and Lat/Lon, loaded and solved in one click. <!-- 314, 257, 454 --></td></tr>
 	<tr><td>World map canvas or your own backdrop with friendly positioning options. <!-- 145, 276 --></td></tr>
 	<tr><td>XY to Lat/Lon conversion import wizard. <!-- 476 --></td></tr>
+	<tr><td>Convert a copy of a project to another coordinate system and other units, with a wizard that zooms, scales, and rotates your network onto the map; new projects can start in a real EPSG projection. <!-- 696, 641 --></td></tr>
+	<tr><td>Import points, lines, and polygons from GeoJSON, shapefile, and DXF files as Shapes, and import a list of surveyed points as junctions. <!-- 592 --></td></tr>
+	<tr><td>Libraries of patterns, curves, controls, rules, pipe types, and fittings, with pipes attached to a library pipe type and fittings list by reference so they stay in sync, and whole libraries copied in from another project file. <!-- 611, 792, 465, 590 --></td></tr>
+	<tr><td>Export tables to ODS, XLSX, or CSV by table and scenario with the libraries they refer to, copy any table with its headings, and take a screenshot of the map and copy it into a report. Network export to GeoJSON and DXF, and a workspace file that carries your box layout to another screen. <!-- 776, 793 --></td></tr>
 	<tr><td>Place name search and elevations from map DEM w/ preview. <!-- 437, 497 --></td></tr>
 </tbody>
 </table>
 </section>
 
 <section class="act" id="adding-editing-and-displaying-assets-and-results">
-<h2>Adding, editing, and displaying assets and results <span class="ct">8</span></h2>
+<h2>Adding, editing, and displaying assets and results <span class="ct">14</span></h2>
 <table class="feats">
 <tbody>
 	<tr><td>Junction, reservoir, tank, pipe with vertex draw and edit mode, pump, valve, and annotation text. <!-- 146.02 --></td></tr>
+	<tr><td>Junction Pipe Chain tool: specify points along the map to draw junction, pipe, junction until you press Escape, or specify an existing node to continue from it; a junction placed on a pipe offers to split that pipe at the new node. <!-- 719 --></td></tr>
+	<tr><td>Draw Shapes (points, lines, and polygons) on the map, kept in a Shapes table; a Shape is annotation and is not part of the network. <!-- 779 --></td></tr>
+	<tr><td>Snap to objects: nodes, pipe vertices, points along a pipe, and Shape points all attract the cursor, which makes imported DXF and shapefile Shapes something you can trace a network from. <!-- 782 --></td></tr>
 	<tr><td>Customizable multi- node and link labels including prefixes, suffixes, separator, and drop/shed order with auto or manual placement on leaders or aligned with links. <!-- 345, 329, 333, 336, 397, 398, 399, 469, 146.01, 383 --></td></tr>
 	<tr><td>Find, replace, goto elements including complex queries in your language. <!-- 353, 420, 389, 540 --></td></tr>
 	<tr><td>Editable, pasteable, spreadsheet-like asset tables: junctions, reservoirs, tanks, pipes, pumps and valves. <!-- 434, 455 --></td></tr>
+	<tr><td>Group edit assets three different ways: Find and replace, Select area, and spreadsheet edit Tables. <!-- 266 --></td></tr>
 	<tr><td>Network coloring: three to seven ranges, eight ways of choosing where the breaks fall, and 41 color ramps. <!-- 384, 327 --></td></tr>
 	<tr><td>Multi-line annotation text objects with bold, rotation w/ pipe match option, and association to assets. <!-- 337, 342, 376 --></td></tr>
 	<tr><td>Independent size settings for text, symbol, and pipes. <!-- 331, 362 --></td></tr>
 	<tr><td>HGL profiles with modern path selection and editing. <!-- 409, 433, 506, 510 --></td></tr>
+	<tr><td>Graphs: time series, profile, contour on the map, frequency distribution, and a flow balance of production against consumption. <!-- 600, 640 --></td></tr>
+	<tr><td>Time series graphs at the foot of Properties and as bubbles on the map from an asset&rsquo;s right-click menu, including tank depth; the bubbles are a Presentation override. <!-- 637, 784, 804, 795 --></td></tr>
 </tbody>
 </table>
 </section>
@@ -151,19 +163,37 @@
 	<tr><td>EPANET run report. <!-- 450 --></td></tr>
 	<tr><td>Color limits constant through a simulation, so a color means the same thing at every step. <!-- 448 --></td></tr>
 	<tr><td>Water quality: age, share from a source, chemical decay. <!-- 566 --></td></tr>
-	<tr><td>Pump energy cost: Run length, power use, and cost including peak demand charge. <!-- 566.01 --></td></tr>
+	<tr><td>Pump energy report: for each pump, the share of the run it operates, efficiency, average and peak power, energy used, and cost including a peak demand charge. <!-- 566.01, 577 --></td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="act" id="analyses">
+<h2>Analyses <span class="ct">2</span></h2>
+<table class="feats">
+<tbody>
+	<tr><td>Fire flow failure and collateral (design) failure analysis. <!-- 530 --></td></tr>
+	<tr><td>Criticality, which removes each pipe, pump, and valve in turn and reports the effect, and demand scaling, which finds the largest demand scale the system can carry, both run on a copy of the network. <!-- 751, 754 --></td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="act" id="scenarios-and-alternatives">
+<h2>Scenarios and alternatives <span class="ct">2</span></h2>
+<table class="feats">
+<tbody>
+	<tr><td>Scenarios whose overrides are marked on the map with an amber ring, a Manage overrides list that shows each override beside the value it replaces and clears any of them, a Copy properties command that carries an asset&rsquo;s overrides, and a comparison report that solves every scenario from a copy and tabulates its overrides, lowest pressure, and highest velocity. <!-- 201, 407, 412, 512 --></td></tr>
+	<tr><td>Alternatives that build on one another in an inheritance tree, shared among scenarios, with overrides mergeable upward into the alternative above, each alternative holding overrides in categories such as Presentation (how the map looks, including a saved map view) and Calculation (run time and time step), ready-made scenarios in every new project, and a Basic mode that hides the alternatives until you want them, and many more management features. <!-- 750, 765, 755, 801, 802 --></td></tr>
 </tbody>
 </table>
 </section>
 
 <section class="act" id="premium-features-included-for-everybody">
-<h2>Premium features included for everybody <span class="ct">4</span></h2>
+<h2>Premium features included for everybody <span class="ct">2</span></h2>
 <table class="feats">
 <tbody>
-	<tr><td>Fire flow failure and collateral (design) failure analysis. <!-- 530 --></td></tr>
-	<tr><td>Scenarios: override management and report, scenario comparison report. <!-- 201, 407, 412, 512 --></td></tr>
-	<tr><td>Pipe types: one &quot;150 mm PVC&quot; definition that hundreds of pipes point at, so editing the definition edits every pipe that uses it. Detach one pipe when it needs to be the exception. <!-- 465 --></td></tr>
-	<tr><td>Fittings: a pipe&rsquo;s minor loss summed from named fittings and their quantities, seeded from EPANET&rsquo;s own thirteen-row table and editable, because the real coefficient depends on size and make. <!-- 590 --></td></tr>
+	<tr><td>Scenarios and alternatives (see <a href="#scenarios-and-alternatives">Scenarios and alternatives</a>). <!-- see: Scenarios and alternatives --></td></tr>
+	<tr><td>Fire flow, criticality, and demand scaling analyses (see <a href="#analyses">Analyses</a>). <!-- see: Analyses --></td></tr>
 </tbody>
 </table>
 </section>
@@ -174,7 +204,7 @@
 <tbody>
 	<tr><td>Twenty-seven languages, and every word is evaluated for translation. <!-- 15, 22 --></td></tr>
 	<tr><td>Free software under the GNU GPL, source in the open. <!-- 244 --></td></tr>
-	<tr><td>No account, and nothing counted about you, not even a visitor code, unless you say yes. <!-- 286, 288 --></td></tr>
+	<tr><td>No account, no visitor identifier, and nothing counted about you unless you say yes. <!-- 286, 288 --></td></tr>
 </tbody>
 </table>
 </section>

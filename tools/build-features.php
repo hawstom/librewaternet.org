@@ -81,6 +81,7 @@ $sections = array();
 $cur = null;
 $skipped = array();
 $seen = array();
+$pointers = array();
 foreach (preg_split('/\R/', $md) as $line) {
 	if (preg_match('/^## (.+)$/', $line, $m)) {
 		$cur = trim($m[1]);
@@ -96,6 +97,9 @@ foreach (preg_split('/\R/', $md) as $line) {
 	if (isset($OVERRIDE[$ids])) { $text = $OVERRIDE[$ids]; }
 	if (isset($SKIP_IDS[$ids])) { $skipped[$ids] = $text; continue; }
 	$sections[$cur][] = array($text, $ids);
+	// A POINTER row carries `see: <heading>` where IDs would be (EngCalcs generate_features.php). It
+	// is not a feature: it is shown, linked to its section, and left out of the count.
+	if (strpos($ids, 'see: ') === 0) { $pointers[$cur][count($sections[$cur]) - 1] = trim(substr($ids, 5)); }
 }
 
 foreach (array_keys($SKIP_IDS) as $ids) {
@@ -126,7 +130,7 @@ $body = array();
 foreach ($sections as $title => $items) {
 	if (!$items) { continue; }
 	$id = slug($title);
-	$total += count($items);
+	$total += count($items) - (isset($pointers[$title]) ? count($pointers[$title]) : 0);
 	$nav[] = '<a href="#' . $id . '">' . inline($title) . '</a>';
 	// **A SINGLE-COLUMN TABLE, one feature per row** (Tom, 2026-09-12: *"Can you please make the
 	// features list a single-column table like other sites?"*). It was a two-column `ul`, which
@@ -135,8 +139,13 @@ foreach ($sections as $title => $items) {
 	// a rule between them is the shape a specification table has everywhere else.
 	$out = "<section class=\"act\" id=\"$id\">\n<h2>" . inline($title)
 		. ' <span class="ct">' . count($items) . "</span></h2>\n<table class=\"feats\">\n<tbody>\n";
-	foreach ($items as $it) {
-		$out .= "\t<tr><td>" . inline($it[0]) . " <!-- " . $it[1] . " --></td></tr>\n";
+	foreach ($items as $k => $it) {
+		$cell = inline($it[0]);
+		if (isset($pointers[$title][$k])) {
+			$h = inline($pointers[$title][$k]);
+			$cell = str_replace('(see ' . $h . ')', '(see <a href="#' . slug($pointers[$title][$k]) . '">' . $h . '</a>)', $cell);
+		}
+		$out .= "\t<tr><td>" . $cell . " <!-- " . $it[1] . " --></td></tr>\n";
 	}
 	$body[] = $out . "</tbody>\n</table>\n</section>";
 }
