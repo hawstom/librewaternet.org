@@ -144,6 +144,8 @@ foreach ($sections as $title => $items) {
 		if (isset($pointers[$title][$k])) {
 			$h = inline($pointers[$title][$k]);
 			$cell = str_replace('(see ' . $h . ')', '(see <a href="#' . slug($pointers[$title][$k]) . '">' . $h . '</a>)', $cell);
+			// A pointer may say only where its section sits, "(above)" or "(below)" (Tom, 2026-10-17).
+			$cell = preg_replace('/\((above|below)\)/', '(<a href="#' . slug($pointers[$title][$k]) . '">$1</a>)', $cell);
 		}
 		$out .= "\t<tr><td>" . $cell . " <!-- " . $it[1] . " --></td></tr>\n";
 	}
