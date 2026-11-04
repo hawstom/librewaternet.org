@@ -1,5 +1,9 @@
 # LibreWaterNet.org — working guide
 
+**Since 2026-11-03 every landing page here 301s to the same page on epanet-plus-plus.org** (Tom: "lwn
+should be identical to epp", a 301). Write copy there, not here. `/app/` and `/engcalcs/` are still
+served from this host, because a visitor's saved projects are stored per origin.
+
 **This repository is a website, not the software.** The looped-network modelling it advertises lives
 in the EngCalcs repository (`~/webdev/hawsedc.subset/engcalcs`). Never copy code, strings or numbers
 across; link, or restate in your own words and mark where the fact came from.

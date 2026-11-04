@@ -17,6 +17,13 @@
 # Options is not granted returns 500 for EVERY request under this path, with no
 # partial symptom. The ./engcalcs symlink relies on SymLinksIfOwnerMatch instead.
 RewriteEngine On
+#
+# THE LANDING PAGES MOVED TO epanet-plus-plus.org (Tom, 2026-11-03: "lwn should be identical to
+# epp", then "I mean c", a 301). Only the front page and the .html pages redirect. /app/ and
+# /engcalcs/ stay served here: a project a visitor saved in this browser is stored per origin, so
+# redirecting the app would hide their work from them.
+RewriteRule ^(index\.html)?$ https://epanet-plus-plus.org/ [R=301,L]
+RewriteRule ^([a-z-]+\.html)$ https://epanet-plus-plus.org/$1 [R=301,L]
 RewriteRule ^app$ /app/ [R=301,L]
 RewriteRule ^app/?$ /engcalcs/Looped-Network.php [L]
 #
